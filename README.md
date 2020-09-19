@@ -1,5 +1,7 @@
 <h1 align="center">
+	Projeto Clinica Odontológica
     <img alt="ClinicaOdonto" title="#Projeto" src="src/img/cOdonto.svg" />
+	
 </h1>
 
 ## ✏ Sobre
