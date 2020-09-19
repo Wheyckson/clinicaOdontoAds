@@ -1,6 +1,6 @@
-<h4 align="center"> 
-	 Projeto Clinica Odontológica	  
-</h4>
+<h1 align="center">
+    <img alt="ClinicaOdonto" title="#Projeto" src="src/img/cOdonto.svg" />
+</h1>
 
 ## ✏ Sobre
  Projeto de um sistema para uma clinica odontológica utilizando a linguagem Java.
