@@ -3,14 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clinicaodonto;
-
-import java.awt.Dimension;
-import static java.awt.Frame.MAXIMIZED_BOTH;
-import java.awt.Insets;
-import java.awt.Toolkit;
-import javafx.scene.paint.Color;
-import static javafx.scene.paint.Color.color;
+package br.com.clinicaodonto.view;
 
 /**
  *
