@@ -1,10 +1,13 @@
 package br.com.clinicaodonto.model;
 
-public class Dentista {
+import java.awt.event.MouseAdapter;
+
+public class Dentistas {
 	private int idfuncionario;
-	private String cro;
+	private int cro;
 	private String categoria;
 	private String nome;
+	private String sobrenome;
 	private String nascimento;
 	private String sexo;
 	private String rg;
@@ -17,10 +20,10 @@ public class Dentista {
 	private String cep;
 	private String celular;
 	
-	public Dentista() {
+	public Dentistas() {
 	}
 
-	public Dentista(int idfuncionario, String cro, String categoria, String nome, String nascimento, String sexo,
+	public Dentistas(int idfuncionario, int cro, String categoria, String nome, String sobrenome, String nascimento, String sexo,
 			String rg, String cpf, String email, String endereco, String bairro, String municipio, String uf,
 			String cep, String celular) {
 		super();
@@ -28,6 +31,7 @@ public class Dentista {
 		this.cro = cro;
 		this.categoria = categoria;
 		this.nome = nome;
+		this.sobrenome = sobrenome;
 		this.nascimento = nascimento;
 		this.sexo = sexo;
 		this.rg = rg;
@@ -49,11 +53,11 @@ public class Dentista {
 		this.idfuncionario = idfuncionario;
 	}
 
-	public String getCro() {
+	public int getCro() {
 		return cro;
 	}
 
-	public void setCro(String cro) {
+	public void setCro(int cro) {
 		this.cro = cro;
 	}
 
@@ -71,6 +75,15 @@ public class Dentista {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 
 	public String getNascimento() {
@@ -160,6 +173,8 @@ public class Dentista {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
+
+	
 	
 	
 }
