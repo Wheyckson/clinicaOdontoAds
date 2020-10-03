@@ -3,11 +3,10 @@ package br.com.clinicaodonto.model;
 import java.awt.event.MouseAdapter;
 
 public class Dentistas {
-	private int idfuncionario;
+	private int idFuncionario;
 	private int cro;
 	private String categoria;
 	private String nome;
-	private String sobrenome;
 	private String nascimento;
 	private String sexo;
 	private String rg;
@@ -23,15 +22,16 @@ public class Dentistas {
 	public Dentistas() {
 	}
 
-	public Dentistas(int idfuncionario, int cro, String categoria, String nome, String sobrenome, String nascimento, String sexo,
+	
+
+	public Dentistas(int idFuncionario, int cro, String categoria, String nome, String nascimento, String sexo,
 			String rg, String cpf, String email, String endereco, String bairro, String municipio, String uf,
 			String cep, String celular) {
 		super();
-		this.idfuncionario = idfuncionario;
+		this.idFuncionario = idFuncionario;
 		this.cro = cro;
 		this.categoria = categoria;
 		this.nome = nome;
-		this.sobrenome = sobrenome;
 		this.nascimento = nascimento;
 		this.sexo = sexo;
 		this.rg = rg;
@@ -45,12 +45,14 @@ public class Dentistas {
 		this.celular = celular;
 	}
 
-	public int getIdfuncionario() {
-		return idfuncionario;
-	}
 
-	public void setIdfuncionario(int idfuncionario) {
-		this.idfuncionario = idfuncionario;
+
+	public int getIdfuncionario() {
+		return idFuncionario;
+	}
+	
+	public void setIdfuncionario1(int idFuncionario) {
+		this.idFuncionario = idFuncionario;
 	}
 
 	public int getCro() {
@@ -75,15 +77,6 @@ public class Dentistas {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
 	}
 
 	public String getNascimento() {
@@ -174,7 +167,5 @@ public class Dentistas {
 		this.celular = celular;
 	}
 
-	
-	
-	
+			
 }

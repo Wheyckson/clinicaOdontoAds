@@ -63,30 +63,19 @@ public class Menu extends javax.swing.JFrame {
         btnSalvarDentista.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         	//*************************************************
-            try {
-            Dentistas dentistas = new Dentistas();
-            //dentistas.setIdfuncionario(Integer.parseInt(txtCroDentista.getText()));
-            dentistas.setCro(Integer.parseInt(txtCroDentista.getText()));
-            dentistas.setCpf(txtCpfDentista.getText());
-            dentistas.setNome(txtCpfDentista.getText());
-            dentistas.setSobrenome(txtSobrenomeDentista.getText());
-            dentistas.setEmail(txtEmailDentista.getText());
-            dentistas.setCelular(txtTelDentista.getText());
-            dentistas.setEndereco(txtEnderecoDentista.getText());
-            dentistas.setCep(txtCepDentista.getText());
-            }catch (Exception e) {
-            	JOptionPane.showMessageDialog(null, "Erro ao Salvar"+e.getMessage());
-            }
-            
-            //cro txtCroDentista
-            //cpf txtCpfDentista
-            //nome txtNomeDentista
-            //sobrenome txtSobrenomeDentista
-            //email	txtEmailDentista
-            //telefone txtTelDentista
-            //endereco txtEnderecoDentista
-            //cep txtCepDentista
-        	//*************************************************
+	            try {
+	            Dentistas dentistas = new Dentistas();
+	            //dentistas.setIdfuncionario(Integer.parseInt(txtCroDentista.getText()));
+	            dentistas.setCro(Integer.parseInt(txtCroDentista.getText()));
+	            dentistas.setCpf(txtCpfDentista.getText());
+	            dentistas.setNome(txtCpfDentista.getText());
+	            dentistas.setEmail(txtEmailDentista.getText());
+	            dentistas.setCelular(txtTelDentista.getText());
+	            dentistas.setEndereco(txtEnderecoDentista.getText());
+	            dentistas.setCep(txtCepDentista.getText());
+	            }catch (Exception e) {
+	            	JOptionPane.showMessageDialog(null, "Erro ao Salvar"+e.getMessage());
+	            }
         	}
         });
         btnAtualizarDentista = new javax.swing.JButton();
