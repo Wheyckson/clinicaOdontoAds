@@ -11,17 +11,17 @@ public class Paciente {
 	private String email;
 	private String endereco;
 	private String bairro;
-	private String municipo;
+	private String municipio;
 	private String uf;
 	private String cep;
 	private String celular;
 	
 	public Paciente() {
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	public Paciente(int matricula, String nome, String nascimento, String sexo, String convenio, String rg, String cpf,
-			String email, String endereco, String bairro, String municipo, String uf, String cep, String celular) {
+			String email, String endereco, String bairro, String municipio, String uf, String cep, String celular) {
 		super();
 		this.matricula = matricula;
 		this.nome = nome;
@@ -33,7 +33,7 @@ public class Paciente {
 		this.email = email;
 		this.endereco = endereco;
 		this.bairro = bairro;
-		this.municipo = municipo;
+		this.municipio = municipio;
 		this.uf = uf;
 		this.cep = cep;
 		this.celular = celular;
@@ -119,12 +119,12 @@ public class Paciente {
 		this.bairro = bairro;
 	}
 
-	public String getMunicipo() {
-		return municipo;
+	public String getMunicipio() {
+		return municipio;
 	}
 
-	public void setMunicipo(String municipo) {
-		this.municipo = municipo;
+	public void setMunicipio(String municipio) {
+		this.municipio = municipio;
 	}
 
 	public String getUf() {
