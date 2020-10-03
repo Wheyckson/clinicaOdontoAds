@@ -45,7 +45,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        JLabel dentista = new javax.swing.JLabel();
+        dentista = new javax.swing.JLabel();
         funcionario = new javax.swing.JLabel();
         home = new javax.swing.JLabel();
         viewInicial = new javax.swing.JLabel();
@@ -58,37 +58,7 @@ public class Menu extends javax.swing.JFrame {
         txtNomeDentista = new javax.swing.JTextField();
         txtCpfDentista = new javax.swing.JTextField();
         txtCroDentista = new javax.swing.JTextField();
-        
         btnSalvarDentista = new javax.swing.JButton();
-        btnSalvarDentista.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        	//*************************************************
-            try {
-            Dentistas dentistas = new Dentistas();
-            //dentistas.setIdfuncionario(Integer.parseInt(txtCroDentista.getText()));
-            dentistas.setCro(Integer.parseInt(txtCroDentista.getText()));
-            dentistas.setCpf(txtCpfDentista.getText());
-            dentistas.setNome(txtCpfDentista.getText());
-            dentistas.setSobrenome(txtSobrenomeDentista.getText());
-            dentistas.setEmail(txtEmailDentista.getText());
-            dentistas.setCelular(txtTelDentista.getText());
-            dentistas.setEndereco(txtEnderecoDentista.getText());
-            dentistas.setCep(txtCepDentista.getText());
-            }catch (Exception e) {
-            	JOptionPane.showMessageDialog(null, "Erro ao Salvar"+e.getMessage());
-            }
-            
-            //cro txtCroDentista
-            //cpf txtCpfDentista
-            //nome txtNomeDentista
-            //sobrenome txtSobrenomeDentista
-            //email	txtEmailDentista
-            //telefone txtTelDentista
-            //endereco txtEnderecoDentista
-            //cep txtCepDentista
-        	//*************************************************
-        	}
-        });
         btnAtualizarDentista = new javax.swing.JButton();
         btnMostrarDentista = new javax.swing.JButton();
         btnDeletarDentista = new javax.swing.JButton();
@@ -391,6 +361,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnMostrarFuncionario;
     private javax.swing.JButton btnSalvarDentista;
     private javax.swing.JButton btnSalvarFuncionario;
+    private javax.swing.JLabel dentista;
     private javax.swing.JLabel funcionario;
     private javax.swing.JLabel home;
     private javax.swing.JPanel jPanel1;
