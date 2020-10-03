@@ -23,15 +23,35 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();        
+        viewInicial.setEnabled(true);
+        viewInicial.setVisible(true);
+        jPanel1.setEnabled(true);
+        jPanel1.setVisible(true);
+        
+        viewAgenda.setEnabled(false);
+        viewAgenda.setVisible(false);
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);
 
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
         jPanel2.setEnabled(false);
         jPanel2.setVisible(false);
+        
         viewFuncionario.setEnabled(false);
         viewFuncionario.setVisible(false);
         jPanel3.setEnabled(false);
-        jPanel3.setVisible(false);
+        jPanel3.setVisible(false);       
+        
+        viewPaciente.setEnabled(false);
+        viewPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
+        
+        viewReceita.setEnabled(false);
+        viewReceita.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
 
     }
 
@@ -45,19 +65,26 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        home = new javax.swing.JLabel();
+        agenda = new javax.swing.JLabel();
         dentista = new javax.swing.JLabel();
         funcionario = new javax.swing.JLabel();
-        home = new javax.swing.JLabel();
+        paciente = new javax.swing.JLabel();
+        receita = new javax.swing.JLabel();
         viewInicial = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtCepDentista = new javax.swing.JTextField();
+        txtMunicipioDentista = new javax.swing.JTextField();
         txtEnderecoDentista = new javax.swing.JTextField();
         txtTelDentista = new javax.swing.JTextField();
-        txtEmailDentista = new javax.swing.JTextField();
-        txtSobrenomeDentista = new javax.swing.JTextField();
-        txtNomeDentista = new javax.swing.JTextField();
         txtCpfDentista = new javax.swing.JTextField();
+        txtRgDentista = new javax.swing.JTextField();
+        txtNascimentoDentista = new javax.swing.JTextField();
+        cmbSexoDentista = new javax.swing.JComboBox<>();
+        txtEmailDentista = new javax.swing.JTextField();
+        txtNomeDentista = new javax.swing.JTextField();
         txtCroDentista = new javax.swing.JTextField();
+        txtMatriculaDentista = new javax.swing.JTextField();
         btnSalvarDentista = new javax.swing.JButton();
         btnAtualizarDentista = new javax.swing.JButton();
         btnMostrarDentista = new javax.swing.JButton();
@@ -65,18 +92,62 @@ public class Menu extends javax.swing.JFrame {
         viewDentist = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtCepFuncionario = new javax.swing.JTextField();
+        txtMunicipioFuncionario = new javax.swing.JTextField();
         txtEnderecoFuncionario = new javax.swing.JTextField();
         txtTelFuncionario = new javax.swing.JTextField();
-        txtEmailFuncionario = new javax.swing.JTextField();
-        txtSobrenomeFuncionario = new javax.swing.JTextField();
-        txtNomeFuncionario = new javax.swing.JTextField();
         txtCpfFuncionario = new javax.swing.JTextField();
-        txtCroFuncionario = new javax.swing.JTextField();
+        txtRgFuncionario = new javax.swing.JTextField();
+        txtNascimentoFuncionario = new javax.swing.JTextField();
+        cmbSexoFuncionario = new javax.swing.JComboBox<>();
+        txtEmailFuncionario = new javax.swing.JTextField();
+        txtNomeFuncionario = new javax.swing.JTextField();
+        txtMatriculaFuncionario = new javax.swing.JTextField();
         btnSalvarFuncionario = new javax.swing.JButton();
         btnAtualizarFuncionario = new javax.swing.JButton();
         btnMostrarFuncionario = new javax.swing.JButton();
         btnDeletarFuncionario = new javax.swing.JButton();
         viewFuncionario = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        txtMatriculaAgenda = new javax.swing.JTextField();
+        txtNomeAgenda = new javax.swing.JTextField();
+        cmbServicoAgenda = new javax.swing.JComboBox<>();
+        txtObsAgenda = new javax.swing.JTextField();
+        txtDataAgenda = new javax.swing.JTextField();
+        txtHoraAgenda = new javax.swing.JTextField();
+        btnAgendar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        viewAgenda = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        txtCepPaciente = new javax.swing.JTextField();
+        txtMunicipioPaciente = new javax.swing.JTextField();
+        txtEnderecoPaciente = new javax.swing.JTextField();
+        txtTelPaciente = new javax.swing.JTextField();
+        txtCpfPaciente = new javax.swing.JTextField();
+        txtRgPaciente = new javax.swing.JTextField();
+        txtNascimentoPaciente = new javax.swing.JTextField();
+        cmbSexoPaciente = new javax.swing.JComboBox<>();
+        txtEmailPaciente = new javax.swing.JTextField();
+        txtNomePaciente = new javax.swing.JTextField();
+        txtConvenioPaciente = new javax.swing.JTextField();
+        txtMatriculaPaciente = new javax.swing.JTextField();
+        btnSalvarPaciente = new javax.swing.JButton();
+        btnAtualizarPaciente = new javax.swing.JButton();
+        btnMostrarPaciente = new javax.swing.JButton();
+        btnDeletarPaciente = new javax.swing.JButton();
+        viewPaciente = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
+        txtQuantidadeReceita = new javax.swing.JTextField();
+        txtMedicamentoReceita = new javax.swing.JTextField();
+        txtNomeReceita = new javax.swing.JTextField();
+        txtMatriculaReceita = new javax.swing.JTextField();
+        btnSalvarReceita = new javax.swing.JButton();
+        btnAtualizarReceita = new javax.swing.JButton();
+        btnMostrarReceita = new javax.swing.JButton();
+        btnDeletarReceita = new javax.swing.JButton();
+        viewReceita = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -90,6 +161,20 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        home.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeMouseClicked(evt);
+            }
+        });
+        jPanel1.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 250, 110));
+
+        agenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agendaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(agenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 285, 300, 50));
 
         dentista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -105,12 +190,19 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel1.add(funcionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 300, 50));
 
-        home.addMouseListener(new java.awt.event.MouseAdapter() {
+        paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                homeMouseClicked(evt);
+                pacienteMouseClicked(evt);
             }
         });
-        jPanel1.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 250, 110));
+        jPanel1.add(paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 300, 50));
+
+        receita.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                receitaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(receita, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 533, 300, 50));
 
         viewInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/telaInicial.png"))); // NOI18N
         jPanel1.add(viewInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 768));
@@ -122,47 +214,65 @@ public class Menu extends javax.swing.JFrame {
                 txtCepDentistaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtCepDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 579, 222, 46));
-        jPanel2.add(txtEnderecoDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 579, 222, 46));
+        jPanel2.add(txtCepDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 623, 222, 30));
+        jPanel2.add(txtMunicipioDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 623, 222, 30));
 
-        txtTelDentista.addActionListener(new java.awt.event.ActionListener() {
+        txtEnderecoDentista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelDentistaActionPerformed(evt);
+                txtEnderecoDentistaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtTelDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 473, 222, 46));
-        jPanel2.add(txtEmailDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 473, 222, 46));
-        jPanel2.add(txtSobrenomeDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 367, 222, 46));
-        jPanel2.add(txtNomeDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 367, 222, 46));
-        jPanel2.add(txtCpfDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 261, 222, 46));
-        jPanel2.add(txtCroDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 261, 222, 46));
+        jPanel2.add(txtEnderecoDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 551, 222, 30));
+        jPanel2.add(txtTelDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 551, 222, 30));
+
+        txtCpfDentista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfDentistaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtCpfDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 481, 222, 30));
+        jPanel2.add(txtRgDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 479, 222, 30));
+
+        txtNascimentoDentista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNascimentoDentistaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtNascimentoDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 407, 222, 30));
+
+        cmbSexoDentista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Masculino", "Feminino", "Outro", " " }));
+        jPanel2.add(cmbSexoDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 407, 222, 30));
+        jPanel2.add(txtEmailDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 335, 222, 30));
+        jPanel2.add(txtNomeDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 335, 222, 30));
+        jPanel2.add(txtCroDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 260, 222, 30));
+        jPanel2.add(txtMatriculaDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 222, 30));
 
         btnSalvarDentista.setBackground(new java.awt.Color(0, 135, 208));
         btnSalvarDentista.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnSalvarDentista.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvarDentista.setText("Salvar");
-        jPanel2.add(btnSalvarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 670, 112, 44));
+        jPanel2.add(btnSalvarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 700, 108, 39));
 
         btnAtualizarDentista.setBackground(new java.awt.Color(0, 135, 208));
         btnAtualizarDentista.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnAtualizarDentista.setForeground(new java.awt.Color(255, 255, 255));
         btnAtualizarDentista.setText("Atualizar");
         btnAtualizarDentista.setToolTipText("");
-        jPanel2.add(btnAtualizarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 670, 112, 44));
+        jPanel2.add(btnAtualizarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 700, 108, 39));
 
         btnMostrarDentista.setBackground(new java.awt.Color(0, 135, 208));
         btnMostrarDentista.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnMostrarDentista.setForeground(new java.awt.Color(255, 255, 255));
         btnMostrarDentista.setText("Mostrar");
         btnMostrarDentista.setToolTipText("");
-        jPanel2.add(btnMostrarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(676, 670, 112, 44));
+        jPanel2.add(btnMostrarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 700, 108, 39));
 
         btnDeletarDentista.setBackground(new java.awt.Color(0, 135, 208));
         btnDeletarDentista.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnDeletarDentista.setForeground(new java.awt.Color(255, 255, 255));
         btnDeletarDentista.setText("Deletar");
         btnDeletarDentista.setToolTipText("");
-        jPanel2.add(btnDeletarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(822, 670, 112, 44));
+        jPanel2.add(btnDeletarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 700, 108, 39));
 
         viewDentist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/telaDentista.png"))); // NOI18N
         jPanel2.add(viewDentist, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 768));
@@ -176,52 +286,245 @@ public class Menu extends javax.swing.JFrame {
                 txtCepFuncionarioActionPerformed(evt);
             }
         });
-        jPanel3.add(txtCepFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 579, 222, 46));
-        jPanel3.add(txtEnderecoFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 579, 222, 46));
+        jPanel3.add(txtCepFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 623, 222, 30));
+        jPanel3.add(txtMunicipioFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 623, 222, 30));
 
-        txtTelFuncionario.addActionListener(new java.awt.event.ActionListener() {
+        txtEnderecoFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelFuncionarioActionPerformed(evt);
+                txtEnderecoFuncionarioActionPerformed(evt);
             }
         });
-        jPanel3.add(txtTelFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 473, 222, 46));
-        jPanel3.add(txtEmailFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 473, 222, 46));
-        jPanel3.add(txtSobrenomeFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 367, 222, 46));
-        jPanel3.add(txtNomeFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 367, 222, 46));
-        jPanel3.add(txtCpfFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 261, 222, 46));
-        jPanel3.add(txtCroFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 261, 222, 46));
+        jPanel3.add(txtEnderecoFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 551, 222, 30));
+        jPanel3.add(txtTelFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 551, 222, 30));
+
+        txtCpfFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfFuncionarioActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtCpfFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 481, 222, 30));
+        jPanel3.add(txtRgFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 479, 222, 30));
+
+        txtNascimentoFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNascimentoFuncionarioActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtNascimentoFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 407, 222, 30));
+
+        cmbSexoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Masculino", "Feminino", "Outro", " " }));
+        jPanel3.add(cmbSexoFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 407, 222, 30));
+        jPanel3.add(txtEmailFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 335, 222, 30));
+        jPanel3.add(txtNomeFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 335, 222, 30));
+        jPanel3.add(txtMatriculaFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 222, 30));
 
         btnSalvarFuncionario.setBackground(new java.awt.Color(0, 135, 208));
         btnSalvarFuncionario.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnSalvarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvarFuncionario.setText("Salvar");
-        jPanel3.add(btnSalvarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 670, 112, 44));
+        jPanel3.add(btnSalvarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 700, 108, 39));
 
         btnAtualizarFuncionario.setBackground(new java.awt.Color(0, 135, 208));
         btnAtualizarFuncionario.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnAtualizarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         btnAtualizarFuncionario.setText("Atualizar");
         btnAtualizarFuncionario.setToolTipText("");
-        jPanel3.add(btnAtualizarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 670, 112, 44));
+        jPanel3.add(btnAtualizarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 700, 108, 39));
 
         btnMostrarFuncionario.setBackground(new java.awt.Color(0, 135, 208));
         btnMostrarFuncionario.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnMostrarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         btnMostrarFuncionario.setText("Mostrar");
         btnMostrarFuncionario.setToolTipText("");
-        jPanel3.add(btnMostrarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(676, 670, 112, 44));
+        jPanel3.add(btnMostrarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 700, 108, 39));
 
         btnDeletarFuncionario.setBackground(new java.awt.Color(0, 135, 208));
         btnDeletarFuncionario.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnDeletarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         btnDeletarFuncionario.setText("Deletar");
         btnDeletarFuncionario.setToolTipText("");
-        jPanel3.add(btnDeletarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(822, 670, 112, 44));
+        jPanel3.add(btnDeletarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 700, 108, 39));
 
         viewFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/telaFuncionario.png"))); // NOI18N
         jPanel3.add(viewFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 768));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, 1020, 760));
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(txtMatriculaAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 244, 222, 30));
+
+        txtNomeAgenda.setEditable(false);
+        jPanel4.add(txtNomeAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(728, 244, 222, 30));
+
+        cmbServicoAgenda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Aparelho", "Tratamento", "Limpeza", "Manutenção", " " }));
+        jPanel4.add(cmbServicoAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 309, 222, 30));
+        jPanel4.add(txtObsAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(728, 309, 222, 30));
+        jPanel4.add(txtDataAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 375, 222, 30));
+        jPanel4.add(txtHoraAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(728, 375, 220, 30));
+
+        btnAgendar.setBackground(new java.awt.Color(0, 135, 208));
+        btnAgendar.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnAgendar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgendar.setActionCommand("Agendar");
+        btnAgendar.setLabel("Agendar");
+        jPanel4.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 417, 108, 39));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Cliente", "Serviço", "Data", "Hora", "Obs"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 472, 614, 268));
+
+        viewAgenda.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        viewAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/telaAgenda.png"))); // NOI18N
+        jPanel4.add(viewAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
+
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtCepPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCepPacienteActionPerformed(evt);
+            }
+        });
+        jPanel5.add(txtCepPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 623, 222, 30));
+        jPanel5.add(txtMunicipioPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 623, 222, 30));
+
+        txtEnderecoPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEnderecoPacienteActionPerformed(evt);
+            }
+        });
+        jPanel5.add(txtEnderecoPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 551, 222, 30));
+        jPanel5.add(txtTelPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 551, 222, 30));
+
+        txtCpfPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfPacienteActionPerformed(evt);
+            }
+        });
+        jPanel5.add(txtCpfPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 481, 222, 30));
+        jPanel5.add(txtRgPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 479, 222, 30));
+
+        txtNascimentoPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNascimentoPacienteActionPerformed(evt);
+            }
+        });
+        jPanel5.add(txtNascimentoPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 407, 222, 30));
+
+        cmbSexoPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Masculino", "Feminino", "Outro", " " }));
+        jPanel5.add(cmbSexoPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 407, 222, 30));
+        jPanel5.add(txtEmailPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 335, 222, 30));
+        jPanel5.add(txtNomePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 335, 222, 30));
+        jPanel5.add(txtConvenioPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 260, 222, 30));
+        jPanel5.add(txtMatriculaPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 222, 30));
+
+        btnSalvarPaciente.setBackground(new java.awt.Color(0, 135, 208));
+        btnSalvarPaciente.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnSalvarPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvarPaciente.setText("Salvar");
+        jPanel5.add(btnSalvarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 700, 108, 39));
+
+        btnAtualizarPaciente.setBackground(new java.awt.Color(0, 135, 208));
+        btnAtualizarPaciente.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnAtualizarPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizarPaciente.setText("Atualizar");
+        btnAtualizarPaciente.setToolTipText("");
+        jPanel5.add(btnAtualizarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 700, 108, 39));
+
+        btnMostrarPaciente.setBackground(new java.awt.Color(0, 135, 208));
+        btnMostrarPaciente.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnMostrarPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrarPaciente.setText("Mostrar");
+        btnMostrarPaciente.setToolTipText("");
+        jPanel5.add(btnMostrarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 700, 108, 39));
+
+        btnDeletarPaciente.setBackground(new java.awt.Color(0, 135, 208));
+        btnDeletarPaciente.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnDeletarPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeletarPaciente.setText("Deletar");
+        btnDeletarPaciente.setToolTipText("");
+        jPanel5.add(btnDeletarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 700, 108, 39));
+
+        viewPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/telaPaciente.png"))); // NOI18N
+        viewPaciente.setText("jLabel1");
+        jPanel5.add(viewPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
+
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane2.setViewportView(jEditorPane1);
+
+        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 463, 585, 190));
+        jPanel6.add(txtQuantidadeReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 366, 222, 30));
+        jPanel6.add(txtMedicamentoReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 366, 222, 30));
+
+        txtNomeReceita.setEditable(false);
+        jPanel6.add(txtNomeReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 261, 222, 30));
+        jPanel6.add(txtMatriculaReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 261, 222, 30));
+
+        btnSalvarReceita.setBackground(new java.awt.Color(0, 135, 208));
+        btnSalvarReceita.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnSalvarReceita.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvarReceita.setText("Salvar");
+        jPanel6.add(btnSalvarReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 680, 108, 39));
+
+        btnAtualizarReceita.setBackground(new java.awt.Color(0, 135, 208));
+        btnAtualizarReceita.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnAtualizarReceita.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizarReceita.setText("Atualizar");
+        btnAtualizarReceita.setToolTipText("");
+        jPanel6.add(btnAtualizarReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 680, 108, 39));
+
+        btnMostrarReceita.setBackground(new java.awt.Color(0, 135, 208));
+        btnMostrarReceita.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnMostrarReceita.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrarReceita.setText("Mostrar");
+        btnMostrarReceita.setToolTipText("");
+        jPanel6.add(btnMostrarReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 680, 108, 39));
+
+        btnDeletarReceita.setBackground(new java.awt.Color(0, 135, 208));
+        btnDeletarReceita.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnDeletarReceita.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeletarReceita.setText("Deletar");
+        btnDeletarReceita.setToolTipText("");
+        jPanel6.add(btnDeletarReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 680, 108, 39));
+
+        viewReceita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/telaReceita.png"))); // NOI18N
+        viewReceita.setText("jLabel1");
+        jPanel6.add(viewReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,6 +569,21 @@ public class Menu extends javax.swing.JFrame {
         viewFuncionario.setVisible(false);
         jPanel3.setEnabled(false);
         jPanel3.setVisible(false);
+        
+        viewAgenda.setEnabled(false);
+        viewAgenda.setVisible(false);
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
+        
+        viewPaciente.setEnabled(false);
+        viewPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
+        
+        viewReceita.setEnabled(false);
+        viewReceita.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
     }//GEN-LAST:event_dentistaMouseClicked
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
@@ -283,6 +601,21 @@ public class Menu extends javax.swing.JFrame {
         jPanel3.setEnabled(false);
         jPanel3.setVisible(false);
         
+        viewAgenda.setEnabled(false);
+        viewAgenda.setVisible(false);
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
+        
+        viewPaciente.setEnabled(false);
+        viewPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
+        
+        viewReceita.setEnabled(false);
+        viewReceita.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
+        
     }//GEN-LAST:event_homeMouseClicked
 
     private void funcionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionarioMouseClicked
@@ -295,27 +628,168 @@ public class Menu extends javax.swing.JFrame {
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
         jPanel2.setEnabled(false);
-        jPanel2.setVisible(false);
+        jPanel2.setVisible(false);       
+        
+        viewAgenda.setEnabled(false);
+        viewAgenda.setVisible(false);
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
+        
+        viewPaciente.setEnabled(false);
+        viewPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
+        
+        viewReceita.setEnabled(false);
+        viewReceita.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
         
         viewInicial.setEnabled(false);
         viewInicial.setVisible(false); 
     }//GEN-LAST:event_funcionarioMouseClicked
 
+    private void txtCpfDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfDentistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfDentistaActionPerformed
+
+    private void txtNascimentoDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNascimentoDentistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNascimentoDentistaActionPerformed
+
+    private void agendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agendaMouseClicked
+        // TODO add your handling code here:
+        viewDentist.setEnabled(false);
+        viewDentist.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
+        
+        viewFuncionario.setEnabled(false);
+        viewFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
+        
+        viewAgenda.setEnabled(true);
+        viewAgenda.setVisible(true);
+        jPanel4.setEnabled(true);
+        jPanel4.setVisible(true);     
+        
+        viewPaciente.setEnabled(false);
+        viewPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
+        
+        viewReceita.setEnabled(false);
+        viewReceita.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
+        
+        viewInicial.setEnabled(false);
+        viewInicial.setVisible(false); 
+    }//GEN-LAST:event_agendaMouseClicked
+
+    private void pacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteMouseClicked
+        // TODO add your handling code here:
+        viewDentist.setEnabled(false);
+        viewDentist.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
+        
+        viewFuncionario.setEnabled(false);
+        viewFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
+        
+        viewAgenda.setEnabled(false);
+        viewAgenda.setVisible(false);
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
+        
+        viewPaciente.setEnabled(true);
+        viewPaciente.setVisible(true);
+        jPanel5.setEnabled(true);
+        jPanel5.setVisible(true);
+        
+        viewReceita.setEnabled(false);
+        viewReceita.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
+        
+        viewInicial.setEnabled(false);
+        viewInicial.setVisible(false); 
+    }//GEN-LAST:event_pacienteMouseClicked
+
+    private void receitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_receitaMouseClicked
+        // TODO add your handling code here:
+        
+        viewDentist.setEnabled(false);
+        viewDentist.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
+        
+        viewFuncionario.setEnabled(false);
+        viewFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
+        
+        viewAgenda.setEnabled(false);
+        viewAgenda.setVisible(false);
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
+        
+        viewPaciente.setEnabled(false);
+        viewPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
+        
+        viewReceita.setEnabled(true);
+        viewReceita.setVisible(true);
+        jPanel6.setEnabled(true);
+        jPanel6.setVisible(true);
+        
+        viewInicial.setEnabled(false);
+        viewInicial.setVisible(false); 
+    }//GEN-LAST:event_receitaMouseClicked
+
+    private void txtEnderecoDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoDentistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEnderecoDentistaActionPerformed
+
     private void txtCepDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepDentistaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCepDentistaActionPerformed
-
-    private void txtTelDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelDentistaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelDentistaActionPerformed
 
     private void txtCepFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepFuncionarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCepFuncionarioActionPerformed
 
-    private void txtTelFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelFuncionarioActionPerformed
+    private void txtEnderecoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelFuncionarioActionPerformed
+    }//GEN-LAST:event_txtEnderecoFuncionarioActionPerformed
+
+    private void txtCpfFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfFuncionarioActionPerformed
+
+    private void txtNascimentoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNascimentoFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNascimentoFuncionarioActionPerformed
+
+    private void txtCepPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCepPacienteActionPerformed
+
+    private void txtEnderecoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEnderecoPacienteActionPerformed
+
+    private void txtCpfPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfPacienteActionPerformed
+
+    private void txtNascimentoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNascimentoPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNascimentoPacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,39 +827,90 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel agenda;
+    private javax.swing.JButton btnAgendar;
     private javax.swing.JButton btnAtualizarDentista;
     private javax.swing.JButton btnAtualizarFuncionario;
+    private javax.swing.JButton btnAtualizarPaciente;
+    private javax.swing.JButton btnAtualizarReceita;
     private javax.swing.JButton btnDeletarDentista;
     private javax.swing.JButton btnDeletarFuncionario;
+    private javax.swing.JButton btnDeletarPaciente;
+    private javax.swing.JButton btnDeletarReceita;
     private javax.swing.JButton btnMostrarDentista;
     private javax.swing.JButton btnMostrarFuncionario;
+    private javax.swing.JButton btnMostrarPaciente;
+    private javax.swing.JButton btnMostrarReceita;
     private javax.swing.JButton btnSalvarDentista;
     private javax.swing.JButton btnSalvarFuncionario;
+    private javax.swing.JButton btnSalvarPaciente;
+    private javax.swing.JButton btnSalvarReceita;
+    private javax.swing.JComboBox<String> cmbServicoAgenda;
+    private javax.swing.JComboBox<String> cmbSexoDentista;
+    private javax.swing.JComboBox<String> cmbSexoFuncionario;
+    private javax.swing.JComboBox<String> cmbSexoPaciente;
     private javax.swing.JLabel dentista;
     private javax.swing.JLabel funcionario;
     private javax.swing.JLabel home;
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel paciente;
+    private javax.swing.JLabel receita;
     private javax.swing.JTextField txtCepDentista;
     private javax.swing.JTextField txtCepFuncionario;
+    private javax.swing.JTextField txtCepPaciente;
+    private javax.swing.JTextField txtConvenioPaciente;
     private javax.swing.JTextField txtCpfDentista;
     private javax.swing.JTextField txtCpfFuncionario;
+    private javax.swing.JTextField txtCpfPaciente;
     private javax.swing.JTextField txtCroDentista;
-    private javax.swing.JTextField txtCroFuncionario;
+    private javax.swing.JTextField txtDataAgenda;
     private javax.swing.JTextField txtEmailDentista;
     private javax.swing.JTextField txtEmailFuncionario;
+    private javax.swing.JTextField txtEmailPaciente;
     private javax.swing.JTextField txtEnderecoDentista;
     private javax.swing.JTextField txtEnderecoFuncionario;
+    private javax.swing.JTextField txtEnderecoPaciente;
+    private javax.swing.JTextField txtHoraAgenda;
+    private javax.swing.JTextField txtMatriculaAgenda;
+    private javax.swing.JTextField txtMatriculaDentista;
+    private javax.swing.JTextField txtMatriculaFuncionario;
+    private javax.swing.JTextField txtMatriculaPaciente;
+    private javax.swing.JTextField txtMatriculaReceita;
+    private javax.swing.JTextField txtMedicamentoReceita;
+    private javax.swing.JTextField txtMunicipioDentista;
+    private javax.swing.JTextField txtMunicipioFuncionario;
+    private javax.swing.JTextField txtMunicipioPaciente;
+    private javax.swing.JTextField txtNascimentoDentista;
+    private javax.swing.JTextField txtNascimentoFuncionario;
+    private javax.swing.JTextField txtNascimentoPaciente;
+    private javax.swing.JTextField txtNomeAgenda;
     private javax.swing.JTextField txtNomeDentista;
     private javax.swing.JTextField txtNomeFuncionario;
-    private javax.swing.JTextField txtSobrenomeDentista;
-    private javax.swing.JTextField txtSobrenomeFuncionario;
+    private javax.swing.JTextField txtNomePaciente;
+    private javax.swing.JTextField txtNomeReceita;
+    private javax.swing.JTextField txtObsAgenda;
+    private javax.swing.JTextField txtQuantidadeReceita;
+    private javax.swing.JTextField txtRgDentista;
+    private javax.swing.JTextField txtRgFuncionario;
+    private javax.swing.JTextField txtRgPaciente;
     private javax.swing.JTextField txtTelDentista;
     private javax.swing.JTextField txtTelFuncionario;
+    private javax.swing.JTextField txtTelPaciente;
+    private javax.swing.JLabel viewAgenda;
     private javax.swing.JLabel viewDentist;
     private javax.swing.JLabel viewFuncionario;
     private javax.swing.JLabel viewInicial;
+    private javax.swing.JLabel viewPaciente;
+    private javax.swing.JLabel viewReceita;
     // End of variables declaration//GEN-END:variables
 
     
