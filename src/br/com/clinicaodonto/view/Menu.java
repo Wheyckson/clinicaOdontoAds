@@ -156,7 +156,7 @@ public class Menu extends javax.swing.JFrame {
         		dao.salvar(pacientes);
         			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
         		}catch (Exception e) {
-        			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!");
+        			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e.getMessage());
 				}
         		//*****************************************************
         	}
@@ -166,8 +166,8 @@ public class Menu extends javax.swing.JFrame {
         	public void actionPerformed(ActionEvent arg0) {
         		//******************************************************
         		try {
-        		pacientes = new Pacientes();
-        		pacientes.setMatricula(Integer.parseInt(txtMatriculaPaciente.getText()));
+        		Pacientes pacientes = new Pacientes();	
+        
         		pacientes.setNome(txtNomePaciente.getText());
         		pacientes.setSexo((String)cmbSexoPaciente.getSelectedItem());
         		pacientes.setRg(txtRgPaciente.getText());
@@ -179,6 +179,7 @@ public class Menu extends javax.swing.JFrame {
         		pacientes.setCpf(txtCpfPaciente.getText());
         		pacientes.setEndereco(txtEnderecoPaciente.getText());
         		pacientes.setCep(txtCepPaciente.getText());
+        		pacientes.setMatricula(Integer.parseInt(txtMatriculaPaciente.getText()));
         		
         		dao = new PacientesDAO();
         		
@@ -195,30 +196,29 @@ public class Menu extends javax.swing.JFrame {
         	public void actionPerformed(ActionEvent e) {
         		
         		//******************************************************
-        		try {
+        	try {
         		dao = new PacientesDAO();
-        		int matricula = Integer.parseInt(txtMatriculaPaciente.getText());
-        		pacientes = dao.consultar(matricula);
+        		
+        		PacientesDAO mostrar = new PacientesDAO();
+        		mostrar.consultar(txtMatriculaPaciente.getText());
         		
         		
-        		txtNomePaciente.setText(pacientes.getNome());
-        		txtNascimentoPaciente.setText(pacientes.getNascimento());
         		
-        		if (cmbSexoPaciente.getSelectedItem().equals("Masculino")) {
-        			cmbSexoPaciente.setSelectedIndex(1);
-				} else if(cmbSexoPaciente.getSelectedItem().equals("Feminino")){
-					cmbSexoPaciente.setSelectedIndex(2);
-				} else {
-					cmbSexoPaciente.setSelectedIndex(0);
-				}
-        		txtConvenioPaciente.setText(pacientes.getConvenio());
-        		txtRgPaciente.setText(pacientes.getRg());
-        		txtCpfPaciente.setText(pacientes.getCpf());
-        		txtEmailPaciente.setText(pacientes.getEmail());
-        		txtEnderecoPaciente.setText(pacientes.getEndereco());
-        		txtMunicipioPaciente.setText(pacientes.getMunicipio());
-        		txtCepPaciente.setText(pacientes.getCep());
-        		txtTelPaciente.setText(pacientes.getCelular());
+        		//dao matricula = Integer.parseInt(txtMatriculaPaciente.getText());
+        		//pacientes = dao.consultar(matricula);
+        		
+        		
+        		txtNomePaciente.setText(mostrar.paciente.getNome());
+        		txtNascimentoPaciente.setText(mostrar.paciente.getNascimento());
+        		cmbSexoPaciente.setSelectedItem(mostrar.paciente.getSexo());
+        		txtConvenioPaciente.setText(mostrar.paciente.getConvenio());
+        		txtRgPaciente.setText(mostrar.paciente.getRg());
+        		txtCpfPaciente.setText(mostrar.paciente.getCpf());
+        		txtEmailPaciente.setText(mostrar.paciente.getEmail());
+        		txtEnderecoPaciente.setText(mostrar.paciente.getEndereco());
+        		txtMunicipioPaciente.setText(mostrar.paciente.getMunicipio());
+        		txtCepPaciente.setText(mostrar.paciente.getCep());
+        		txtTelPaciente.setText(mostrar.paciente.getCelular());
         		
 
         			JOptionPane.showMessageDialog(null, "Paciente localizado!");

@@ -1,5 +1,5 @@
 package br.com.clinicaodonto.model;
-import java.sql.Connection;
+
 public class Pacientes {
 	private int matricula;
 	private String nome;

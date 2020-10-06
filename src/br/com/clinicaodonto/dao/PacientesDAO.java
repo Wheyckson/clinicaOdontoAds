@@ -4,14 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.util.ConnectionFactory;
 
 
 public class PacientesDAO {
 		
-	private Pacientes paciente;
+	public Pacientes paciente;
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
@@ -28,7 +27,7 @@ public class PacientesDAO {
 	public void salvar(Pacientes paciente) throws Exception {
 		try {
 			String sql="INSERT INTO dadospaciente(matricula,nome,nascimento,sexo,convenio,rg,cpf,email,endereco,municipio,cep,celular)"
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, paciente.getMatricula());
 			ps.setString(2, paciente.getNome());
@@ -44,6 +43,7 @@ public class PacientesDAO {
 			//ps.setString(12, paciente.getUf());
 			ps.setString(11, paciente.getCep());
 			ps.setString(12, paciente.getCelular());
+			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
 			throw new Exception("Erro ao Salvar"+e.getMessage());
@@ -51,8 +51,8 @@ public class PacientesDAO {
 	}
 	public void alterar(Pacientes pacientes) throws Exception {
 		try {
-			String sql="UPDATE dadospaciente SET nome=?,nascimento=?,sexo=?,convenio=?,rg=?,cpf=?,email=?,endereco=?,bairro=?,municipio=?,uf=?,cep=?,celular=?"
-					+ "WHERE matricula";
+			String sql="UPDATE dadospaciente SET nome=?,nascimento=?,sexo=?,convenio=?,rg=?,cpf=?,email=?,endereco=?,municipio=?,cep=?,celular=?"
+					+ "WHERE matricula=?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, pacientes.getNome());
 			ps.setString(2, pacientes.getNascimento());
@@ -68,8 +68,8 @@ public class PacientesDAO {
 			ps.setString(10, pacientes.getCep());
 			ps.setString(11, pacientes.getCelular());
 			ps.setInt(12, pacientes.getMatricula());
+			ps.executeUpdate();
 		} catch (Exception e) {
-			// TODO: handle exception
 			throw new Exception("Erro ao Alterar"+e.getMessage());
 		}
 	}	
@@ -83,13 +83,15 @@ public class PacientesDAO {
 				throw new Exception("Erro ao excluir"+e.getMessage());
 			}
 	}
-		public Pacientes consultar(int matricula) throws Exception {
+		public Pacientes consultar(String matricula) throws Exception {
+			String sql="SELECT * FROM `dadospaciente` WHERE matricula=?";
+			
 			try {
-				String sql="SELECT * FROM dadospaciente WHERE matricula";
 				ps = conn.prepareStatement(sql);
-				ps.setInt(1, matricula);
+				ps.setString(1, matricula);
 				rs = ps.executeQuery();
 				if(rs.next()) {
+					int matricula1 = rs.getInt("matricula");
 					String nome = rs.getString("nome");
 					String nascimento = rs.getString("nascimento");
 					String sexo = rs.getString("sexo");
@@ -103,7 +105,7 @@ public class PacientesDAO {
 					//String uf = rs.getString("uf");
 					String cep = rs.getString("cep");
 					String celular = rs.getString("celular");
-					paciente = new Pacientes(matricula,nome,nascimento,sexo,convenio,rg,cpf,email,endereco,municipio,cep,celular);
+					paciente = new Pacientes(matricula1, nome,nascimento,sexo,convenio,rg,cpf,email,endereco,municipio,cep,celular);
 			}
 			return paciente;
 			}catch (Exception e) {
