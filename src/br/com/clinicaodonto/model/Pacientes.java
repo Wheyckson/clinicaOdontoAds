@@ -1,6 +1,6 @@
 package br.com.clinicaodonto.model;
-
-public class Paciente {
+import java.sql.Connection;
+public class Pacientes {
 	private int matricula;
 	private String nome;
 	private String nascimento;
@@ -10,18 +10,18 @@ public class Paciente {
 	private String cpf;
 	private String email;
 	private String endereco;
-	private String bairro;
+	//private String bairro;
 	private String municipio;
-	private String uf;
+	//private String uf;
 	private String cep;
 	private String celular;
 	
-	public Paciente() {
+	public Pacientes() {
 	
 	}
 
-	public Paciente(int matricula, String nome, String nascimento, String sexo, String convenio, String rg, String cpf,
-			String email, String endereco, String bairro, String municipio, String uf, String cep, String celular) {
+	public Pacientes(int matricula, String nome, String nascimento, String sexo, String convenio, String rg, String cpf,
+			String email, String endereco, String municipio, String cep, String celular) {
 		super();
 		this.matricula = matricula;
 		this.nome = nome;
@@ -32,9 +32,9 @@ public class Paciente {
 		this.cpf = cpf;
 		this.email = email;
 		this.endereco = endereco;
-		this.bairro = bairro;
+		//this.bairro = bairro;
 		this.municipio = municipio;
-		this.uf = uf;
+		//this.uf = uf;
 		this.cep = cep;
 		this.celular = celular;
 	}
@@ -111,13 +111,13 @@ public class Paciente {
 		this.endereco = endereco;
 	}
 
-	public String getBairro() {
+	/*public String getBairro() {
 		return bairro;
 	}
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
-	}
+	}*/
 
 	public String getMunicipio() {
 		return municipio;
@@ -127,13 +127,13 @@ public class Paciente {
 		this.municipio = municipio;
 	}
 
-	public String getUf() {
+	/*public String getUf() {
 		return uf;
 	}
 
 	public void setUf(String uf) {
 		this.uf = uf;
-	}
+	}*/
 
 	public String getCep() {
 		return cep;
