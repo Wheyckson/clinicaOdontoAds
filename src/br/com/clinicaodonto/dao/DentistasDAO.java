@@ -9,7 +9,7 @@ import br.com.clinicaodonto.util.ConnectionFactory;
 
 public class DentistasDAO {
 
-	private Dentistas dentistas;
+	public Dentistas dentistas;
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
@@ -30,7 +30,7 @@ public class DentistasDAO {
 					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, dentistas.getIdfuncionario());
-			ps.setInt(2, dentistas.getCro());
+			ps.setString(2, dentistas.getCro());
 			ps.setString(3, dentistas.getCategoria());
 			ps.setString(4, dentistas.getNome());
 			ps.setString(5, dentistas.getNascimento());
@@ -54,7 +54,7 @@ public class DentistasDAO {
 			String sql="UPDATE dadosfuncionario SET cro=?,categoria=?,nome=?,nascimento=?,sexo=?,rg=?,cpf=?,email=?,endereco=?,bairro=?,municipio=?,uf=?,cep=?,celular=?"
 					+ "WHERE idFuncionario";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, dentistas.getCro());
+			ps.setString(1, dentistas.getCro());
 			ps.setString(2, dentistas.getCategoria());
 			ps.setString(3, dentistas.getNome());
 			ps.setString(4, dentistas.getNascimento());
@@ -84,14 +84,16 @@ public class DentistasDAO {
 				throw new Exception("Erro ao excluir"+e.getMessage());
 			}
 	}
-		public Dentistas consultar(int idFuncionario) throws Exception {
+		public Dentistas consultar(String idFuncionario) throws Exception {
+			String sql="SELECT * FROM dadosfuncionario WHERE idFuncionario";
+
 			try {
-				String sql="SELECT * FROM dadosfuncionario WHERE idFuncionario";
 				ps = conn.prepareStatement(sql);
-				ps.setInt(1, idFuncionario);
+				ps.setString(1, idFuncionario);
 				rs = ps.executeQuery();
 				if(rs.next()) {
-					int cro = rs.getInt("cro");
+					int idFuncionario1 = rs.getInt("idFuncionario");
+					String cro = rs.getString("cro");
 					String categoria = rs.getString("categoria");
 					String nome = rs.getString("nome");
 					String nascimento = rs.getString("nascimento");
@@ -105,7 +107,7 @@ public class DentistasDAO {
 					String uf = rs.getString("uf");
 					String cep = rs.getString("cep");
 					String celular = rs.getString("celular");
-					dentistas = new Dentistas(idFuncionario,cro,categoria,nome,nascimento,sexo,rg,cpf,email,endereco,bairro,municipio,uf,cep,celular);
+					dentistas = new Dentistas(idFuncionario1,cro,categoria,nome,nascimento,sexo,rg,cpf,email,endereco,bairro,municipio,uf,cep,celular);
 			}
 			return dentistas;
 			}catch (Exception e) {

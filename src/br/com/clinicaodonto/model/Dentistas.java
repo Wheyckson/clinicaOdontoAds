@@ -4,7 +4,7 @@ import java.awt.event.MouseAdapter;
 
 public class Dentistas {
 	private int idFuncionario;
-	private int cro;
+	private String cro;
 	private String categoria;
 	private String nome;
 	private String nascimento;
@@ -24,7 +24,7 @@ public class Dentistas {
 
 	
 
-	public Dentistas(int idFuncionario, int cro, String categoria, String nome, String nascimento, String sexo,
+	public Dentistas(int idFuncionario, String cro, String categoria, String nome, String nascimento, String sexo,
 			String rg, String cpf, String email, String endereco, String bairro, String municipio, String uf,
 			String cep, String celular) {
 		super();
@@ -51,15 +51,15 @@ public class Dentistas {
 		return idFuncionario;
 	}
 	
-	public void setIdfuncionario1(int idFuncionario) {
+	public void setIdfuncionario(int idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
 
-	public int getCro() {
+	public String getCro() {
 		return cro;
 	}
 
-	public void setCro(int cro) {
+	public void setCro(String cro) {
 		this.cro = cro;
 	}
 
