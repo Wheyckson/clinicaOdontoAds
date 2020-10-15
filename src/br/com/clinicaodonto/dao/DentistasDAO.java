@@ -153,7 +153,6 @@ public class DentistasDAO {
 			}
 			return dentista;
 			}catch (Exception e) {
-				// TODO: handle exception
 				throw new Exception("Erro ao Consultar"+e.getMessage());
 			}
 			
