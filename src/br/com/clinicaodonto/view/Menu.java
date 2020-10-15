@@ -15,7 +15,6 @@ import br.com.clinicaodonto.dao.ReceitasDAO;
 import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
-import br.com.sistema.dao.DadosDAO;
 /**
  *
  * @author whey
@@ -90,6 +89,9 @@ public class Menu extends javax.swing.JFrame {
         txtCroDentista = new javax.swing.JTextField();
         txtMatriculaDentista = new javax.swing.JTextField();
         
+        
+        
+        
         btnSalvarDentista = new javax.swing.JButton();
         btnSalvarDentista.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
@@ -106,9 +108,9 @@ public class Menu extends javax.swing.JFrame {
         		dentistas.setCpf(txtCpfDentista.getText());
         		dentistas.setEmail(txtEmailDentista.getText());
         		dentistas.setEndereco(txtEnderecoDentista.getText());
-        		dentistas.setBairro(txtMunicipioDentista.getText());
+        		//dentistas.setBairro(txtMunicipioDentista.getText());
         		dentistas.setMunicipio(txtMunicipioDentista.getText());
-        		dentistas.setUf(txtCepDentista.getText());
+        		//dentistas.setUf(txtCepDentista.getText());
         		dentistas.setCep(txtCepDentista.getText());
         		dentistas.setCelular(txtTelDentista.getText());
         		
@@ -122,7 +124,44 @@ public class Menu extends javax.swing.JFrame {
         		//*****************************************************
         	}
         });
+        
+        
+        
+        
         btnAtualizarDentista = new javax.swing.JButton();
+        btnAtualizarDentista.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		//******************************************************
+        	try {
+        		Dentistas dentistas = new Dentistas();	
+        		
+        		dentistas.setNome(txtNomeDentista.getText());
+        		dentistas.setSexo((String)cmbSexoDentista.getSelectedItem());
+        		dentistas.setRg(txtRgDentista.getText());
+        		dentistas.setCelular(txtTelDentista.getText());
+        		dentistas.setMunicipio(txtMunicipioDentista.getText());
+        		dentistas.setEmail(txtEmailDentista.getText());
+        		dentistas.setNascimento(txtNascimentoPaciente.getText());
+        		dentistas.setCpf(txtCpfDentista.getText());
+        		dentistas.setEndereco(txtEnderecoDentista.getText());
+        		dentistas.setCep(txtCepDentista.getText());
+        		dentistas.setIdfuncionario(Integer.parseInt(txtMatriculaDentista.getText()));
+        		
+        		dentistasdao = new DentistasDAO();
+        		
+        		dentistasdao.alterar(dentistas);
+        			JOptionPane.showMessageDialog(null, "Alterado com Sucesso!!");
+        		}catch (Exception e) {
+        			JOptionPane.showMessageDialog(null, "Erro ao Alterar!!" + e.getMessage());
+				}
+        		//*****************************************************
+        	
+        	}
+        });
+        
+        
+        
+        
         btnMostrarDentista = new javax.swing.JButton();
         btnMostrarDentista.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
@@ -133,7 +172,6 @@ public class Menu extends javax.swing.JFrame {
             		DentistasDAO mostrar = new DentistasDAO();
             		mostrar.consultar(txtMatriculaDentista.getText());
             		txtCroDentista.setText(mostrar.dentista.getCro());
-            		//txtCategoriaDentista.setText(mostrar.dentistas.getCro());
             		txtNomeDentista.setText(mostrar.dentista.getNome());
             		txtNascimentoDentista.setText(mostrar.dentista.getNascimento());
             		cmbSexoDentista.setSelectedItem(mostrar.dentista.getSexo());
@@ -210,9 +248,9 @@ public class Menu extends javax.swing.JFrame {
         		dentistas.setCpf(txtCpfFuncionario.getText());
         		dentistas.setEmail(txtEmailFuncionario.getText());
         		dentistas.setEndereco(txtEnderecoFuncionario.getText());
-        		dentistas.setBairro(txtMunicipioFuncionario.getText());
+        		//dentistas.setBairro(txtMunicipioFuncionario.getText());
         		dentistas.setMunicipio(txtMunicipioFuncionario.getText());
-        		dentistas.setUf(txtCepFuncionario.getText());
+        		//dentistas.setUf(txtCepFuncionario.getText());
         		dentistas.setCep(txtCepFuncionario.getText());
         		dentistas.setCelular(txtTelFuncionario.getText());
         		
@@ -411,14 +449,9 @@ public class Menu extends javax.swing.JFrame {
         		
         		PacientesDAO mostrar = new PacientesDAO();
         		mostrar.consultar(txtMatriculaPaciente.getText());
-        		
-        		
-        		
         		//dao matricula = Integer.parseInt(txtMatriculaPaciente.getText());
         		//pacientes = dao.consultar(matricula);
-        		
-        		
-        		txtNomePaciente.setText(mostrar.paciente.getNome());
+           		txtNomePaciente.setText(mostrar.paciente.getNome());
         		txtNascimentoPaciente.setText(mostrar.paciente.getNascimento());
         		cmbSexoPaciente.setSelectedItem(mostrar.paciente.getSexo());
         		txtConvenioPaciente.setText(mostrar.paciente.getConvenio());
@@ -476,11 +509,12 @@ public class Menu extends javax.swing.JFrame {
         	public void actionPerformed(ActionEvent e) {
         		//******************************************************
             	try {
-            		dao = PacientesDAO();
-					int codiDados = Integer.parseInt(txtMatricula.getText());
-					pacientes = dao.consultar(matricula);
+            		dao = new PacientesDAO();
             		
-               		txtNomePaciente.setText(mostrar.paciente.getNome());
+            		PacientesDAO mostrar = new PacientesDAO();
+            		mostrar.consultar(txtMatriculaReceita.getText());
+            		
+               		txtNomeReceita.setText(mostrar.paciente.getNome());
             		
            				JOptionPane.showMessageDialog(null, "Paciente localizado!");
             		}catch (Exception e1) {
@@ -491,7 +525,7 @@ public class Menu extends javax.swing.JFrame {
             		receitasdao = new ReceitasDAO();
             		
             		ReceitasDAO mostrar = new ReceitasDAO();
-            		//mostrar.consultar(txtMatriculaPaciente.getText());
+            		mostrar.consultar(txtMatriculaReceita.getText());
             		txtMedicamentoReceita.setText(mostrar.receita.getMedicamento());
                		txtQuantidadeReceita.setText(mostrar.receita.getQuantidade());
                		//jScrollPane2.setText(mostrar.paciente.getNome());
