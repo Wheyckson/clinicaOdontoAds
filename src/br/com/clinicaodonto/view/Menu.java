@@ -9,17 +9,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import br.com.clinicaodonto.dao.DentistasDAO;
 import br.com.clinicaodonto.dao.PacientesDAO;
-<<<<<<< Updated upstream
-import br.com.clinicaodonto.model.Pacientes;
-import java.sql.Connection;
-=======
 import br.com.clinicaodonto.dao.ReceitasDAO;
 import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
 import br.com.sistema.dao.DadosDAO;
->>>>>>> Stashed changes
 /**
  *
  * @author whey
@@ -93,11 +89,41 @@ public class Menu extends javax.swing.JFrame {
         txtNomeDentista = new javax.swing.JTextField();
         txtCroDentista = new javax.swing.JTextField();
         txtMatriculaDentista = new javax.swing.JTextField();
+        
         btnSalvarDentista = new javax.swing.JButton();
+        btnSalvarDentista.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		//******************************************************
+        		try {
+        		dentistas = new Dentistas();
+        		dentistas.setIdfuncionario(Integer.parseInt(txtMatriculaDentista.getText()));
+        		dentistas.setCro(txtCroDentista.getText());
+        		//dentistas.setCategoria(txtCategoriaDentista.getText());
+        		dentistas.setNome(txtNomeDentista.getText());
+        		dentistas.setNascimento(txtNascimentoDentista.getText());
+        		dentistas.setSexo((String)cmbSexoDentista.getSelectedItem());
+        		dentistas.setRg(txtRgDentista.getText());
+        		dentistas.setCpf(txtCpfDentista.getText());
+        		dentistas.setEmail(txtEmailDentista.getText());
+        		dentistas.setEndereco(txtEnderecoDentista.getText());
+        		dentistas.setBairro(txtMunicipioDentista.getText());
+        		dentistas.setMunicipio(txtMunicipioDentista.getText());
+        		dentistas.setUf(txtCepDentista.getText());
+        		dentistas.setCep(txtCepDentista.getText());
+        		dentistas.setCelular(txtTelDentista.getText());
+        		
+        		dentistasdao = new DentistasDAO();
+        		
+        		dentistasdao.salvar(dentistas);
+        			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
+        		}catch (Exception e1) {
+        			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e1.getMessage());
+				}
+        		//*****************************************************
+        	}
+        });
         btnAtualizarDentista = new javax.swing.JButton();
         btnMostrarDentista = new javax.swing.JButton();
-<<<<<<< Updated upstream
-=======
         btnMostrarDentista.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		//******************************************************
@@ -130,8 +156,29 @@ public class Menu extends javax.swing.JFrame {
         });
         
         
->>>>>>> Stashed changes
         btnDeletarDentista = new javax.swing.JButton();
+        btnDeletarDentista.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+        		txtMatriculaDentista.setText(null);
+        		txtCroDentista.setText(null);
+        		//txtCategoriaPaciente.setText(null);
+        		txtNomeDentista.setText(null);
+        		txtNascimentoDentista.setText(null);
+        		cmbSexoDentista.setSelectedIndex(0);
+        		txtRgDentista.setText(null);
+        		txtCpfDentista.setText(null);
+        		txtEmailDentista.setText(null);
+          		txtEnderecoDentista.setText(null);
+          		//txtBairroDentista.setText(null);
+          		txtMunicipioDentista.setText(null);
+          		//txtUfDentista.setText(null);
+        		txtCepDentista.setText(null);
+        		txtTelDentista.setText(null);
+        	
+        		//******************************************************
+        	}
+        });
         viewDentist = new javax.swing.JLabel();
         cadFuncionario = new javax.swing.JPanel();
         txtCepFuncionario = new javax.swing.JTextField();
@@ -145,11 +192,43 @@ public class Menu extends javax.swing.JFrame {
         txtEmailFuncionario = new javax.swing.JTextField();
         txtNomeFuncionario = new javax.swing.JTextField();
         txtMatriculaFuncionario = new javax.swing.JTextField();
+        
+        
         btnSalvarFuncionario = new javax.swing.JButton();
+        btnSalvarFuncionario.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+        		try {
+        		dentistas = new Dentistas();
+        		dentistas.setIdfuncionario(Integer.parseInt(txtMatriculaFuncionario.getText()));
+        		//dentistas.setCro(txtCroDentista.getText());
+        		//dentistas.setCategoria(txtCategoriaPaciente.getText());
+        		dentistas.setNome(txtNomeFuncionario.getText());
+        		dentistas.setNascimento(txtNascimentoFuncionario.getText());
+        		dentistas.setSexo((String)cmbSexoFuncionario.getSelectedItem());
+        		dentistas.setRg(txtRgFuncionario.getText());
+        		dentistas.setCpf(txtCpfFuncionario.getText());
+        		dentistas.setEmail(txtEmailFuncionario.getText());
+        		dentistas.setEndereco(txtEnderecoFuncionario.getText());
+        		dentistas.setBairro(txtMunicipioFuncionario.getText());
+        		dentistas.setMunicipio(txtMunicipioFuncionario.getText());
+        		dentistas.setUf(txtCepFuncionario.getText());
+        		dentistas.setCep(txtCepFuncionario.getText());
+        		dentistas.setCelular(txtTelFuncionario.getText());
+        		
+        		dentistasdao = new DentistasDAO();
+        		
+        		dentistasdao.salvar(dentistas);
+        			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
+        		}catch (Exception e1) {
+        			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e1.getMessage());
+				}
+        		//*****************************************************
+        	}
+        });
+        
+        
         btnAtualizarFuncionario = new javax.swing.JButton();
-<<<<<<< Updated upstream
-        btnMostrarFuncionario = new javax.swing.JButton();
-=======
         btnAtualizarFuncionario.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//******************************************************
@@ -214,8 +293,28 @@ public class Menu extends javax.swing.JFrame {
         
         
         
->>>>>>> Stashed changes
         btnDeletarFuncionario = new javax.swing.JButton();
+        btnDeletarFuncionario.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+        		txtMatriculaFuncionario.setText(null);
+        		//txtCategoriaPaciente.setText(null);
+        		txtNomeFuncionario.setText(null);
+        		txtNascimentoFuncionario.setText(null);
+        		cmbSexoFuncionario.setSelectedIndex(0);
+        		txtRgFuncionario.setText(null);
+        		txtCpfFuncionario.setText(null);
+        		txtEmailFuncionario.setText(null);
+          		txtEnderecoFuncionario.setText(null);
+          		//txtBairroDentista.setText(null);
+          		txtMunicipioFuncionario.setText(null);
+          		//txtUfDentista.setText(null);
+        		txtCepFuncionario.setText(null);
+        		txtTelFuncionario.setText(null);
+        	
+        		//******************************************************
+        	}
+        });
         viewFuncionario = new javax.swing.JLabel();
         agendamento = new javax.swing.JPanel();
         txtMatriculaAgenda = new javax.swing.JTextField();
@@ -241,8 +340,9 @@ public class Menu extends javax.swing.JFrame {
         txtNomePaciente = new javax.swing.JTextField();
         txtConvenioPaciente = new javax.swing.JTextField();
         txtMatriculaPaciente = new javax.swing.JTextField();
-        btnSalvarPaciente = new javax.swing.JButton();
         
+        
+        btnSalvarPaciente = new javax.swing.JButton();
         btnSalvarPaciente.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		//******************************************************
@@ -277,7 +377,7 @@ public class Menu extends javax.swing.JFrame {
         		//******************************************************
         		try {
         		Pacientes pacientes = new Pacientes();	
-        
+        		
         		pacientes.setNome(txtNomePaciente.getText());
         		pacientes.setSexo((String)cmbSexoPaciente.getSelectedItem());
         		pacientes.setRg(txtRgPaciente.getText());
@@ -377,7 +477,7 @@ public class Menu extends javax.swing.JFrame {
         		//******************************************************
             	try {
             		dao = PacientesDAO();
-					int codiDados = Integer.parseInt(txtMatriculaReceita.getText());
+					int codiDados = Integer.parseInt(txtMatricula.getText());
 					pacientes = dao.consultar(matricula);
             		
                		txtNomePaciente.setText(mostrar.paciente.getNome());
@@ -402,11 +502,6 @@ public class Menu extends javax.swing.JFrame {
     				}
             		//*****************************************************
         	}
-
-			private PacientesDAO PacientesDAO() {
-				// TODO Auto-generated method stub
-				return null;
-			}
         });
         btnDeletarReceita = new javax.swing.JButton();
         viewReceita = new javax.swing.JLabel();
@@ -532,7 +627,7 @@ public class Menu extends javax.swing.JFrame {
         btnDeletarDentista.setBackground(new java.awt.Color(0, 135, 208));
         btnDeletarDentista.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnDeletarDentista.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletarDentista.setText("Deletar");
+        btnDeletarDentista.setText("Limpar");
         btnDeletarDentista.setToolTipText("");
         cadDentista.add(btnDeletarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 700, 108, 39));
 
@@ -603,7 +698,7 @@ public class Menu extends javax.swing.JFrame {
         btnDeletarFuncionario.setBackground(new java.awt.Color(0, 135, 208));
         btnDeletarFuncionario.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnDeletarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletarFuncionario.setText("Deletar");
+        btnDeletarFuncionario.setText("Limpar");
         btnDeletarFuncionario.setToolTipText("");
         cadFuncionario.add(btnDeletarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 700, 108, 39));
 
@@ -1091,14 +1186,11 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Pacientes pacientes;
     private PacientesDAO dao;
-<<<<<<< Updated upstream
-=======
     private Dentistas dentistas;
     private DentistasDAO dentistasdao;
     private Receitas receitas;
     private ReceitasDAO receitasdao;
     
->>>>>>> Stashed changes
     
     private javax.swing.JLabel agenda;
     private javax.swing.JButton btnAgendar;
