@@ -4,8 +4,8 @@ import java.awt.event.MouseAdapter;
 
 public class Dentistas {
 	private int idFuncionario;
-	private int cro;
-	private String categoria;
+	private String cro;
+	//private String categoria;
 	private String nome;
 	private String nascimento;
 	private String sexo;
@@ -13,9 +13,9 @@ public class Dentistas {
 	private String cpf;
 	private String email;
 	private String endereco;
-	private String bairro;
+	//private String bairro;
 	private String municipio;
-	private String uf;
+	//private String uf;
 	private String cep;
 	private String celular;
 	
@@ -24,13 +24,12 @@ public class Dentistas {
 
 	
 
-	public Dentistas(int idFuncionario, int cro, String categoria, String nome, String nascimento, String sexo,
-			String rg, String cpf, String email, String endereco, String bairro, String municipio, String uf,
-			String cep, String celular) {
+	public Dentistas(int idFuncionario, String cro, String nome, String nascimento, String sexo,
+			String rg, String cpf, String email, String endereco, String municipio,	String cep, String celular) {
 		super();
 		this.idFuncionario = idFuncionario;
 		this.cro = cro;
-		this.categoria = categoria;
+		//this.categoria = categoria;
 		this.nome = nome;
 		this.nascimento = nascimento;
 		this.sexo = sexo;
@@ -38,9 +37,9 @@ public class Dentistas {
 		this.cpf = cpf;
 		this.email = email;
 		this.endereco = endereco;
-		this.bairro = bairro;
+		//this.bairro = bairro;
 		this.municipio = municipio;
-		this.uf = uf;
+		//this.uf = uf;
 		this.cep = cep;
 		this.celular = celular;
 	}
@@ -51,25 +50,25 @@ public class Dentistas {
 		return idFuncionario;
 	}
 	
-	public void setIdfuncionario1(int idFuncionario) {
+	public void setIdfuncionario(int idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
 
-	public int getCro() {
+	public String getCro() {
 		return cro;
 	}
 
-	public void setCro(int cro) {
+	public void setCro(String cro) {
 		this.cro = cro;
 	}
 
-	public String getCategoria() {
+	/*public String getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
-	}
+	}*/
 
 	public String getNome() {
 		return nome;
@@ -127,13 +126,13 @@ public class Dentistas {
 		this.endereco = endereco;
 	}
 
-	public String getBairro() {
+	/*public String getBairro() {
 		return bairro;
 	}
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
-	}
+	}*/
 
 	public String getMunicipio() {
 		return municipio;
@@ -143,13 +142,13 @@ public class Dentistas {
 		this.municipio = municipio;
 	}
 
-	public String getUf() {
+	/*public String getUf() {
 		return uf;
 	}
 
 	public void setUf(String uf) {
 		this.uf = uf;
-	}
+	}*/
 
 	public String getCep() {
 		return cep;

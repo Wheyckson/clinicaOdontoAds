@@ -68,14 +68,14 @@ public class PacientesDAO {
 			ps.setString(10, pacientes.getCep());
 			ps.setString(11, pacientes.getCelular());
 			ps.setInt(12, pacientes.getMatricula());
-			ps.executeUpdate();
+				
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
 		}
 	}	
 		public void excluir(int matricula) throws Exception {
 			try {
-				String sql="DELETE FROM dadosfuncionario WHERE idFuncionario";
+				String sql="DELETE FROM dadospaciente WHERE matricula";
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1, matricula);
 			} catch (Exception e) {
