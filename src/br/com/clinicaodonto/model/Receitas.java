@@ -1,29 +1,29 @@
 package br.com.clinicaodonto.model;
 
-public class Receita {
-	private int matricila;
+public class Receitas {
+	private int matricula;
 	private String medicamento;
 	private String quantidade;
 	private String prescricao;
 	
-	public Receita() {
+	public Receitas() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Receita(int matricila, String medicamento, String quantidade, String prescricao) {
+	public Receitas(int matricula, String medicamento, String quantidade, String prescricao) {
 		super();
-		this.matricila = matricila;
+		this.matricula = matricula;
 		this.medicamento = medicamento;
 		this.quantidade = quantidade;
 		this.prescricao = prescricao;
 	}
 
-	public int getMatricila() {
-		return matricila;
+	public int getMatricula() {
+		return matricula;
 	}
 
-	public void setMatricila(int matricila) {
-		this.matricila = matricila;
+	public void setMatricula(int matricula) {
+		this.matricula = matricula;
 	}
 
 	public String getMedicamento() {

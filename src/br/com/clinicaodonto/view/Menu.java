@@ -10,8 +10,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import br.com.clinicaodonto.dao.PacientesDAO;
+<<<<<<< Updated upstream
 import br.com.clinicaodonto.model.Pacientes;
 import java.sql.Connection;
+=======
+import br.com.clinicaodonto.dao.ReceitasDAO;
+import br.com.clinicaodonto.model.Dentistas;
+import br.com.clinicaodonto.model.Pacientes;
+import br.com.clinicaodonto.model.Receitas;
+import br.com.sistema.dao.DadosDAO;
+>>>>>>> Stashed changes
 /**
  *
  * @author whey
@@ -88,6 +96,41 @@ public class Menu extends javax.swing.JFrame {
         btnSalvarDentista = new javax.swing.JButton();
         btnAtualizarDentista = new javax.swing.JButton();
         btnMostrarDentista = new javax.swing.JButton();
+<<<<<<< Updated upstream
+=======
+        btnMostrarDentista.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		//******************************************************
+            	try {
+            		dentistasdao = new DentistasDAO();
+            		
+            		DentistasDAO mostrar = new DentistasDAO();
+            		mostrar.consultar(txtMatriculaDentista.getText());
+            		txtCroDentista.setText(mostrar.dentista.getCro());
+            		//txtCategoriaDentista.setText(mostrar.dentistas.getCro());
+            		txtNomeDentista.setText(mostrar.dentista.getNome());
+            		txtNascimentoDentista.setText(mostrar.dentista.getNascimento());
+            		cmbSexoDentista.setSelectedItem(mostrar.dentista.getSexo());
+                	txtRgDentista.setText(mostrar.dentista.getRg());
+            		txtCpfDentista.setText(mostrar.dentista.getCpf());
+            		txtEmailDentista.setText(mostrar.dentista.getEmail());
+            		txtEnderecoDentista.setText(mostrar.dentista.getEndereco());
+            		txtMunicipioDentista.setText(mostrar.dentista.getMunicipio());
+            		txtCepDentista.setText(mostrar.dentista.getCep());
+            		txtTelDentista.setText(mostrar.dentista.getCelular());
+            		
+
+            			JOptionPane.showMessageDialog(null, "Dentista localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum dentista encontrado!" + e1.getMessage());
+    				}
+            		//*****************************************************
+            		
+        	}
+        });
+        
+        
+>>>>>>> Stashed changes
         btnDeletarDentista = new javax.swing.JButton();
         viewDentist = new javax.swing.JLabel();
         cadFuncionario = new javax.swing.JPanel();
@@ -104,7 +147,74 @@ public class Menu extends javax.swing.JFrame {
         txtMatriculaFuncionario = new javax.swing.JTextField();
         btnSalvarFuncionario = new javax.swing.JButton();
         btnAtualizarFuncionario = new javax.swing.JButton();
+<<<<<<< Updated upstream
         btnMostrarFuncionario = new javax.swing.JButton();
+=======
+        btnAtualizarFuncionario.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+            	try {
+            		dentistasdao = new DentistasDAO();
+            		
+            		DentistasDAO mostrar = new DentistasDAO();
+            		mostrar.consultar(txtMatriculaFuncionario.getText());
+            		//txtCategoriaFuncionario.setText(mostrar.dentistas.getCro());
+            		txtNomeFuncionario.setText(mostrar.dentista.getNome());
+            		txtNascimentoFuncionario.setText(mostrar.dentista.getNascimento());
+            		cmbSexoFuncionario.setSelectedItem(mostrar.dentista.getSexo());
+                	txtRgFuncionario.setText(mostrar.dentista.getRg());
+            		txtCpfFuncionario.setText(mostrar.dentista.getCpf());
+            		txtEmailFuncionario.setText(mostrar.dentista.getEmail());
+            		txtEnderecoFuncionario.setText(mostrar.dentista.getEndereco());
+            		txtMunicipioFuncionario.setText(mostrar.dentista.getMunicipio());
+            		txtCepFuncionario.setText(mostrar.dentista.getCep());
+            		txtTelFuncionario.setText(mostrar.dentista.getCelular());
+            		
+
+            			JOptionPane.showMessageDialog(null, "Dentista localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum dentista encontrado!" + e1.getMessage());
+    				}
+            		//*****************************************************
+        	}
+        });
+        
+        
+        btnMostrarFuncionario = new javax.swing.JButton();
+        btnMostrarFuncionario.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+            	try {
+            		dentistasdao = new DentistasDAO();
+            		
+            		DentistasDAO mostrar = new DentistasDAO();
+            		mostrar.consultar(txtMatriculaFuncionario.getText());
+            		//txtCategoriaDentista.setText(mostrar.dentistas.getCro());
+            		txtNomeFuncionario.setText(mostrar.dentista.getNome());
+            		txtNascimentoFuncionario.setText(mostrar.dentista.getNascimento());
+            		cmbSexoFuncionario.setSelectedItem(mostrar.dentista.getSexo());
+                	txtRgFuncionario.setText(mostrar.dentista.getRg());
+            		txtCpfFuncionario.setText(mostrar.dentista.getCpf());
+            		txtEmailFuncionario.setText(mostrar.dentista.getEmail());
+            		txtEnderecoFuncionario.setText(mostrar.dentista.getEndereco());
+            		txtMunicipioFuncionario.setText(mostrar.dentista.getMunicipio());
+            		txtCepFuncionario.setText(mostrar.dentista.getCep());
+            		txtTelFuncionario.setText(mostrar.dentista.getCelular());
+            		
+
+            			JOptionPane.showMessageDialog(null, "Funcionario localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum Funcionario encontrado!" + e1.getMessage());
+    				}
+            		//*****************************************************
+	
+        	}
+        });
+        
+        
+        
+        
+>>>>>>> Stashed changes
         btnDeletarFuncionario = new javax.swing.JButton();
         viewFuncionario = new javax.swing.JLabel();
         agendamento = new javax.swing.JPanel();
@@ -258,7 +368,46 @@ public class Menu extends javax.swing.JFrame {
         txtMatriculaReceita = new javax.swing.JTextField();
         btnSalvarReceita = new javax.swing.JButton();
         btnAtualizarReceita = new javax.swing.JButton();
+       
+        
+        
         btnMostrarReceita = new javax.swing.JButton();
+        btnMostrarReceita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+            	try {
+            		dao = PacientesDAO();
+					int codiDados = Integer.parseInt(txtMatriculaReceita.getText());
+					pacientes = dao.consultar(matricula);
+            		
+               		txtNomePaciente.setText(mostrar.paciente.getNome());
+            		
+           				JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+    				}
+            	
+            	try {
+            		receitasdao = new ReceitasDAO();
+            		
+            		ReceitasDAO mostrar = new ReceitasDAO();
+            		//mostrar.consultar(txtMatriculaPaciente.getText());
+            		txtMedicamentoReceita.setText(mostrar.receita.getMedicamento());
+               		txtQuantidadeReceita.setText(mostrar.receita.getQuantidade());
+               		//jScrollPane2.setText(mostrar.paciente.getNome());
+
+           				JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+    				}
+            		//*****************************************************
+        	}
+
+			private PacientesDAO PacientesDAO() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+        });
         btnDeletarReceita = new javax.swing.JButton();
         viewReceita = new javax.swing.JLabel();
 
@@ -942,6 +1091,14 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Pacientes pacientes;
     private PacientesDAO dao;
+<<<<<<< Updated upstream
+=======
+    private Dentistas dentistas;
+    private DentistasDAO dentistasdao;
+    private Receitas receitas;
+    private ReceitasDAO receitasdao;
+    
+>>>>>>> Stashed changes
     
     private javax.swing.JLabel agenda;
     private javax.swing.JButton btnAgendar;
