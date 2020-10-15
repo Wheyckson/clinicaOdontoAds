@@ -15,7 +15,6 @@ import br.com.clinicaodonto.dao.ReceitasDAO;
 import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
-import br.com.sistema.dao.DadosDAO;
 /**
  *
  * @author whey
@@ -34,33 +33,33 @@ public class Menu extends javax.swing.JFrame {
         
         viewAdm.setEnabled(false);
         viewAdm.setVisible(false);
-        adm.setEnabled(false);
-        adm.setVisible(false);
+        jPanel7.setEnabled(false);
+        jPanel7.setVisible(false);
         
         viewAgenda.setEnabled(false);
         viewAgenda.setVisible(false);
-        agendamento.setEnabled(false);
-        agendamento.setVisible(false);
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);
 
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
-        cadDentista.setEnabled(false);
-        cadDentista.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
         
         viewFuncionario.setEnabled(false);
         viewFuncionario.setVisible(false);
-        cadFuncionario.setEnabled(false);
-        cadFuncionario.setVisible(false);       
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);       
         
         viewPaciente.setEnabled(false);
         viewPaciente.setVisible(false);
-        cadPaciente.setEnabled(false);
-        cadPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
         
         viewReceita.setEnabled(false);
         viewReceita.setVisible(false);
-        receituario.setEnabled(false);
-        receituario.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
 
     }
 
@@ -511,6 +510,9 @@ public class Menu extends javax.swing.JFrame {
 
         viewPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/telaPaciente.png"))); // NOI18N
         viewPaciente.setText("jLabel1");
+        viewPaciente.setMaximumSize(new java.awt.Dimension(1020, 768));
+        viewPaciente.setMinimumSize(new java.awt.Dimension(1020, 768));
+        viewPaciente.setPreferredSize(new java.awt.Dimension(1020, 768));
         jPanel5.add(viewPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
@@ -663,36 +665,36 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         viewDentist.setEnabled(true);
         viewDentist.setVisible(true);        
-        cadDentista.setEnabled(true);
-        cadDentista.setVisible(true);
+        jPanel2.setEnabled(true);
+        jPanel2.setVisible(true);
         
         viewInicial.setEnabled(false);
         viewInicial.setVisible(false);  
         
         viewFuncionario.setEnabled(false);
         viewFuncionario.setVisible(false);
-        cadFuncionario.setEnabled(false);
-        cadFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
         
         viewAgenda.setEnabled(false);
         viewAgenda.setVisible(false);
-        agendamento.setEnabled(false);
-        agendamento.setVisible(false);     
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
         
         viewPaciente.setEnabled(false);
         viewPaciente.setVisible(false);
-        cadPaciente.setEnabled(false);
-        cadPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
         
         viewReceita.setEnabled(false);
         viewReceita.setVisible(false);
-        receituario.setEnabled(false);
-        receituario.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
         
         viewAdm.setEnabled(false);
         viewAdm.setVisible(false);
-        adm.setEnabled(false);
-        adm.setVisible(false);
+        jPanel7.setEnabled(false);
+        jPanel7.setVisible(false);
     }//GEN-LAST:event_dentistaMouseClicked
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
@@ -702,33 +704,33 @@ public class Menu extends javax.swing.JFrame {
         
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
-        cadDentista.setEnabled(false);
-        cadDentista.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
         
         viewFuncionario.setEnabled(false);
         viewFuncionario.setVisible(false);
-        cadFuncionario.setEnabled(false);
-        cadFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
         
         viewAgenda.setEnabled(false);
         viewAgenda.setVisible(false);
-        agendamento.setEnabled(false);
-        agendamento.setVisible(false);     
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
         
         viewPaciente.setEnabled(false);
         viewPaciente.setVisible(false);
-        cadPaciente.setEnabled(false);
-        cadPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
         
         viewReceita.setEnabled(false);
         viewReceita.setVisible(false);
-        receituario.setEnabled(false);
-        receituario.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
         
         viewAdm.setEnabled(false);
         viewAdm.setVisible(false);
-        adm.setEnabled(false);
-        adm.setVisible(false);
+        jPanel7.setEnabled(false);
+        jPanel7.setVisible(false);
         
     }//GEN-LAST:event_homeMouseClicked
 
@@ -736,33 +738,33 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         viewFuncionario.setEnabled(true);
         viewFuncionario.setVisible(true);
-        cadFuncionario.setEnabled(true);
-        cadFuncionario.setVisible(true);
+        jPanel3.setEnabled(true);
+        jPanel3.setVisible(true);
         
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
-        cadDentista.setEnabled(false);
-        cadDentista.setVisible(false);       
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);       
         
         viewAgenda.setEnabled(false);
         viewAgenda.setVisible(false);
-        agendamento.setEnabled(false);
-        agendamento.setVisible(false);     
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
         
         viewPaciente.setEnabled(false);
         viewPaciente.setVisible(false);
-        cadPaciente.setEnabled(false);
-        cadPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
         
         viewReceita.setEnabled(false);
         viewReceita.setVisible(false);
-        receituario.setEnabled(false);
-        receituario.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
         
         viewAdm.setEnabled(false);
         viewAdm.setVisible(false);
-        adm.setEnabled(false);
-        adm.setVisible(false);
+        jPanel7.setEnabled(false);
+        jPanel7.setVisible(false);
         
         viewInicial.setEnabled(false);
         viewInicial.setVisible(false); 
@@ -780,33 +782,33 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
-        cadDentista.setEnabled(false);
-        cadDentista.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
         
         viewFuncionario.setEnabled(false);
         viewFuncionario.setVisible(false);
-        cadFuncionario.setEnabled(false);
-        cadFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
         
         viewAgenda.setEnabled(true);
         viewAgenda.setVisible(true);
-        agendamento.setEnabled(true);
-        agendamento.setVisible(true);     
+        jPanel4.setEnabled(true);
+        jPanel4.setVisible(true);     
         
         viewPaciente.setEnabled(false);
         viewPaciente.setVisible(false);
-        cadPaciente.setEnabled(false);
-        cadPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
         
         viewAdm.setEnabled(false);
         viewAdm.setVisible(false);
-        adm.setEnabled(false);
-        adm.setVisible(false);
+        jPanel7.setEnabled(false);
+        jPanel7.setVisible(false);
         
         viewReceita.setEnabled(false);
         viewReceita.setVisible(false);
-        receituario.setEnabled(false);
-        receituario.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
         
         viewInicial.setEnabled(false);
         viewInicial.setVisible(false); 
@@ -816,33 +818,33 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
-        cadDentista.setEnabled(false);
-        cadDentista.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
         
         viewFuncionario.setEnabled(false);
         viewFuncionario.setVisible(false);
-        cadFuncionario.setEnabled(false);
-        cadFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
         
         viewAgenda.setEnabled(false);
         viewAgenda.setVisible(false);
-        agendamento.setEnabled(false);
-        agendamento.setVisible(false);     
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
         
         viewPaciente.setEnabled(true);
         viewPaciente.setVisible(true);
-        cadPaciente.setEnabled(true);
-        cadPaciente.setVisible(true);
+        jPanel5.setEnabled(true);
+        jPanel5.setVisible(true);
         
         viewReceita.setEnabled(false);
         viewReceita.setVisible(false);
-        receituario.setEnabled(false);
-        receituario.setVisible(false);
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);
         
         viewAdm.setEnabled(false);
         viewAdm.setVisible(false);
-        adm.setEnabled(false);
-        adm.setVisible(false);
+        jPanel7.setEnabled(false);
+        jPanel7.setVisible(false);
         
         viewInicial.setEnabled(false);
         viewInicial.setVisible(false); 
@@ -853,33 +855,33 @@ public class Menu extends javax.swing.JFrame {
         
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
-        cadDentista.setEnabled(false);
-        cadDentista.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
         
         viewFuncionario.setEnabled(false);
         viewFuncionario.setVisible(false);
-        cadFuncionario.setEnabled(false);
-        cadFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
         
         viewAgenda.setEnabled(false);
         viewAgenda.setVisible(false);
-        agendamento.setEnabled(false);
-        agendamento.setVisible(false);     
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
         
         viewPaciente.setEnabled(false);
         viewPaciente.setVisible(false);
-        cadPaciente.setEnabled(false);
-        cadPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
         
         viewReceita.setEnabled(true);
         viewReceita.setVisible(true);
-        receituario.setEnabled(true);
-        receituario.setVisible(true);
+        jPanel6.setEnabled(true);
+        jPanel6.setVisible(true);
         
         viewAdm.setEnabled(false);
         viewAdm.setVisible(false);
-        adm.setEnabled(false);
-        adm.setVisible(false);
+        jPanel7.setEnabled(false);
+        jPanel7.setVisible(false);
         
         viewInicial.setEnabled(false);
         viewInicial.setVisible(false); 
@@ -941,33 +943,33 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         viewAdm.setEnabled(true);
         viewAdm.setVisible(true);
-        adm.setEnabled(true);
-        adm.setVisible(true);
+        jPanel7.setEnabled(true);
+        jPanel7.setVisible(true);
         
         viewDentist.setEnabled(false);
         viewDentist.setVisible(false);
-        cadDentista.setEnabled(false);
-        cadDentista.setVisible(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setVisible(false);
         
         viewFuncionario.setEnabled(false);
         viewFuncionario.setVisible(false);
-        cadFuncionario.setEnabled(false);
-        cadFuncionario.setVisible(false);
+        jPanel3.setEnabled(false);
+        jPanel3.setVisible(false);
         
         viewAgenda.setEnabled(false);
         viewAgenda.setVisible(false);
-        agendamento.setEnabled(false);
-        agendamento.setVisible(false);     
+        jPanel4.setEnabled(false);
+        jPanel4.setVisible(false);     
         
         viewPaciente.setEnabled(false);
         viewPaciente.setVisible(false);
-        cadPaciente.setEnabled(false);
-        cadPaciente.setVisible(false);
+        jPanel5.setEnabled(false);
+        jPanel5.setVisible(false);
         
         viewReceita.setEnabled(false);
         viewReceita.setVisible(false);
-        receituario.setEnabled(false);
-        receituario.setVisible(false);       
+        jPanel6.setEnabled(false);
+        jPanel6.setVisible(false);       
         
         viewInicial.setEnabled(false);
         viewInicial.setVisible(false); 
