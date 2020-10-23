@@ -28,24 +28,24 @@ public class DentistasDAO {
 	
 	public void salvar(Dentistas dentista) throws Exception {
 		try {
-			String sql="INSERT INTO dadosfuncionario(idFuncionario,cro,nome,nascimento,sexo,rg,cpf,email,endereco,municipio,cep,celular)"
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql="INSERT INTO dadosfuncionario(cro,nome,nascimento,sexo,rg,cpf,email,endereco,municipio,cep,celular)"
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, dentista.getIdfuncionario());
-			ps.setString(2, dentista.getCro());
+			//ps.setInt(1, dentista.getIdfuncionario());
+			ps.setString(1, dentista.getCro());
 			//ps.setString(3, dentista.getCategoria());
-			ps.setString(3, dentista.getNome());
-			ps.setString(4, dentista.getNascimento());
-			ps.setString(5, dentista.getSexo());
-			ps.setString(6, dentista.getRg());	
-			ps.setString(7, dentista.getCpf());
-			ps.setString(8, dentista.getEmail());
-			ps.setString(9, dentista.getEndereco());
+			ps.setString(2, dentista.getNome());
+			ps.setString(3, dentista.getNascimento());
+			ps.setString(4, dentista.getSexo());
+			ps.setString(5, dentista.getRg());	
+			ps.setString(6, dentista.getCpf());
+			ps.setString(7, dentista.getEmail());
+			ps.setString(8, dentista.getEndereco());
 			//ps.setString(11, dentista.getBairro());
-			ps.setString(10, dentista.getMunicipio());
+			ps.setString(9, dentista.getMunicipio());
 			//ps.setString(13, dentista.getUf());
-			ps.setString(11, dentista.getCep());
-			ps.setString(12, dentista.getCelular());
+			ps.setString(10, dentista.getCep());
+			ps.setString(11, dentista.getCelular());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -71,8 +71,8 @@ public class DentistasDAO {
 			//ps.setString(12, dentista.getUf());
 			ps.setString(10, dentistas.getCep());
 			ps.setString(11, dentistas.getCelular());
-			ps.setInt(12, dentistas.getIdfuncionario());
-			
+			ps.setString(12, dentistas.getIdfuncionario());
+			ps.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
 		}
@@ -87,22 +87,22 @@ public class DentistasDAO {
 				throw new Exception("Erro ao excluir"+e.getMessage());
 			}
 	}
-		public Dentistas consultar(String idFuncionario) throws Exception {
-			String sql="SELECT * FROM dadosfuncionario WHERE idFuncionario=?";
+		public Dentistas consultar(String cpf) throws Exception {
+			String sql="SELECT * FROM dadosfuncionario WHERE cpf=?";
 						
 			try {
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, idFuncionario);
+				ps.setString(1, cpf);
 				rs = ps.executeQuery();
 				if(rs.next()) {
-					int idFuncionario1 = rs.getInt("idFuncionario");
+					String idFuncionario = rs.getString("idFuncionario");
 					String cro = rs.getString("cro");
 					//String categoria = rs.getString("categoria");
 					String nome = rs.getString("nome");
 					String nascimento = rs.getString("nascimento");
 					String sexo = rs.getString("sexo");
 					String rg = rs.getString("rg");
-					String cpf = rs.getString("cpf");
+					String cpf1 = rs.getString("cpf");
 					String email = rs.getString("email");
 					String endereco = rs.getString("endereco");
 					//String bairro = rs.getString("bairro");
@@ -110,7 +110,7 @@ public class DentistasDAO {
 					//String uf = rs.getString("uf");
 					String cep = rs.getString("cep");
 					String celular = rs.getString("celular");
-					dentista = new Dentistas(idFuncionario1,cro,nome,nascimento,sexo,rg,cpf,email,endereco,municipio,cep,celular);
+					dentista = new Dentistas(idFuncionario,cro,nome,nascimento,sexo,rg,cpf1,email,endereco,municipio,cep,celular);
 
 			}
 			return dentista;

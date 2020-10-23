@@ -3,8 +3,9 @@ package br.com.clinicaodonto.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
 
 public class ReceitasDAO {
@@ -18,10 +19,10 @@ public class ReceitasDAO {
 		
 	}
 	
-	public void salvar(Pacientes paciente) throws Exception {
+	public void salvar(Receitas receita) throws Exception {
 		try {
 			String sql="INSERT INTO receita(matricula,medicamento,quantidade,prescricao)"
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "VALUES (?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, receita.getMatricula());
 			//ps.setString(2, receitas.getNome());
@@ -35,7 +36,7 @@ public class ReceitasDAO {
 			throw new Exception("Erro ao Salvar"+e.getMessage());
 		}
 	}
-	public void alterar(Pacientes pacientes) throws Exception {
+	public void alterar(Receitas receita) throws Exception {
 		try {
 			String sql="UPDATE receita SET medicamento=?, quantidade=?, prescricao=?"
 					+ "WHERE matricula=?";
@@ -49,6 +50,29 @@ public class ReceitasDAO {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
 		}
 	}
+	
+	
+	
+	public List listarTodos() throws Exception {
+		List<Receitas> lista = new ArrayList<Receitas>();
+		try {
+			ps = conn.prepareStatement("SELECT * FROM receita");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				int matricula = rs.getInt("matricula");
+				String medicamento = rs.getString("medicamento");
+				String quantidade = rs.getString("quantidade");
+				String prescricao = rs.getString("prescricao");
+				receita = new Receitas(matricula,medicamento,quantidade,prescricao);
+				lista.add(receita);
+			}
+			return lista;
+
+		} catch (Exception e) {
+			throw new Exception("Erro ao Listar" + e.getMessage());
+		}
+	}
+	
 	public Receitas consultar(String matricula) throws Exception {
 		String sql="SELECT * FROM `receita` WHERE matricula=?";
 		

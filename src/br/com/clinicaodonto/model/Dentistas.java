@@ -3,7 +3,7 @@ package br.com.clinicaodonto.model;
 import java.awt.event.MouseAdapter;
 
 public class Dentistas {
-	private int idFuncionario;
+	private String idFuncionario;
 	private String cro;
 	//private String categoria;
 	private String nome;
@@ -24,7 +24,7 @@ public class Dentistas {
 
 	
 
-	public Dentistas(int idFuncionario, String cro, String nome, String nascimento, String sexo,
+	public Dentistas(String idFuncionario, String cro, String nome, String nascimento, String sexo,
 			String rg, String cpf, String email, String endereco, String municipio,	String cep, String celular) {
 		super();
 		this.idFuncionario = idFuncionario;
@@ -46,11 +46,11 @@ public class Dentistas {
 
 
 
-	public int getIdfuncionario() {
+	public String getIdfuncionario() {
 		return idFuncionario;
 	}
 	
-	public void setIdfuncionario(int idFuncionario) {
+	public void setIdfuncionario(String idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
 

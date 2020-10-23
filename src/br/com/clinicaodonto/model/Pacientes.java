@@ -1,7 +1,7 @@
 package br.com.clinicaodonto.model;
 
 public class Pacientes {
-	private int matricula;
+	private String matricula;
 	private String nome;
 	private String nascimento;
 	private String sexo;
@@ -20,7 +20,7 @@ public class Pacientes {
 	
 	}
 
-	public Pacientes(int matricula, String nome, String nascimento, String sexo, String convenio, String rg, String cpf,
+	public Pacientes(String matricula, String nome, String nascimento, String sexo, String convenio, String rg, String cpf,
 			String email, String endereco, String municipio, String cep, String celular) {
 		super();
 		this.matricula = matricula;
@@ -39,11 +39,11 @@ public class Pacientes {
 		this.celular = celular;
 	}
 
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 

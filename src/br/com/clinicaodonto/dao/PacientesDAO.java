@@ -26,23 +26,23 @@ public class PacientesDAO {
 	
 	public void salvar(Pacientes paciente) throws Exception {
 		try {
-			String sql="INSERT INTO dadospaciente(matricula,nome,nascimento,sexo,convenio,rg,cpf,email,endereco,municipio,cep,celular)"
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql="INSERT INTO dadospaciente(nome,nascimento,sexo,convenio,rg,cpf,email,endereco,municipio,cep,celular)"
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, paciente.getMatricula());
-			ps.setString(2, paciente.getNome());
-			ps.setString(3, paciente.getNascimento());
-			ps.setString(4, paciente.getSexo());
-			ps.setString(5, paciente.getConvenio());
-			ps.setString(6, paciente.getRg());	
-			ps.setString(7, paciente.getCpf());
-			ps.setString(8, paciente.getEmail());
-			ps.setString(9, paciente.getEndereco());
+			//ps.setInt(1, paciente.getMatricula());
+			ps.setString(1, paciente.getNome());
+			ps.setString(2, paciente.getNascimento());
+			ps.setString(3, paciente.getSexo());
+			ps.setString(4, paciente.getConvenio());
+			ps.setString(5, paciente.getRg());	
+			ps.setString(6, paciente.getCpf());
+			ps.setString(7, paciente.getEmail());
+			ps.setString(8, paciente.getEndereco());
 			//ps.setString(10, paciente.getBairro());
-			ps.setString(10, paciente.getMunicipio());
+			ps.setString(9, paciente.getMunicipio());
 			//ps.setString(12, paciente.getUf());
-			ps.setString(11, paciente.getCep());
-			ps.setString(12, paciente.getCelular());
+			ps.setString(10, paciente.getCep());
+			ps.setString(11, paciente.getCelular());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -67,8 +67,8 @@ public class PacientesDAO {
 			//ps.setString(11, pacientes.getUf());
 			ps.setString(10, pacientes.getCep());
 			ps.setString(11, pacientes.getCelular());
-			ps.setInt(12, pacientes.getMatricula());
-				
+			ps.setString(12, pacientes.getMatricula());
+			ps.executeUpdate();	
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
 		}
@@ -83,21 +83,21 @@ public class PacientesDAO {
 				throw new Exception("Erro ao excluir"+e.getMessage());
 			}
 	}
-		public Pacientes consultar(String matricula) throws Exception {
-			String sql="SELECT * FROM `dadospaciente` WHERE matricula=?";
+		public Pacientes consultar(String cpf) throws Exception {
+			String sql="SELECT * FROM dadospaciente WHERE cpf=?";
 			
 			try {
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, matricula);
+				ps.setString(1, cpf);
 				rs = ps.executeQuery();
 				if(rs.next()) {
-					int matricula1 = rs.getInt("matricula");
+					String matricula = rs.getString("matricula");
 					String nome = rs.getString("nome");
 					String nascimento = rs.getString("nascimento");
 					String sexo = rs.getString("sexo");
 					String convenio = rs.getString("convenio");
 					String rg = rs.getString("rg");
-					String cpf = rs.getString("cpf");
+					String cpf1 = rs.getString("cpf");
 					String email = rs.getString("email");
 					String endereco = rs.getString("endereco");
 					//String bairro = rs.getString("bairro");
@@ -105,7 +105,7 @@ public class PacientesDAO {
 					//String uf = rs.getString("uf");
 					String cep = rs.getString("cep");
 					String celular = rs.getString("celular");
-					paciente = new Pacientes(matricula1, nome,nascimento,sexo,convenio,rg,cpf,email,endereco,municipio,cep,celular);
+					paciente = new Pacientes(matricula, nome,nascimento,sexo,convenio,rg,cpf1,email,endereco,municipio,cep,celular);
 			}
 			return paciente;
 			}catch (Exception e) {
