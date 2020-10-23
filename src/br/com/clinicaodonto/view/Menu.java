@@ -503,7 +503,7 @@ public class Menu extends javax.swing.JFrame {
         txtQuantidadeReceita = new javax.swing.JTextField();
         txtMedicamentoReceita = new javax.swing.JTextField();
         txtNomeReceita = new javax.swing.JTextField();
-        txtMatriculaReceita = new javax.swing.JTextField();
+        txtCpfReceita = new javax.swing.JTextField();
         
         
         btnSalvarReceita = new javax.swing.JButton();
@@ -513,7 +513,7 @@ public class Menu extends javax.swing.JFrame {
         		try {
 
 					Receitas receita = new Receitas();
-					receita.setMatricula(Integer.parseInt(txtMatriculaReceita.getText()));
+					receita.setMatricula(Integer.parseInt(txtCpfReceita.getText()));
 					receita.setMedicamento(txtMedicamentoReceita.getText());
 					receita.setQuantidade(txtQuantidadeReceita.getText());
 					//receita.setPrescricao(txtPrescricaoReceita.getText());
@@ -541,6 +541,20 @@ public class Menu extends javax.swing.JFrame {
         	public void actionPerformed(ActionEvent e) {
         		//******************************************************
         		try {
+            		dao = new PacientesDAO();
+            		
+            		PacientesDAO mostrar = new PacientesDAO();
+            		mostrar.consultar(txtCpfReceita.getText());
+               		txtNomeReceita.setText(mostrar.paciente.getNome());
+            		
+            		
+
+            			JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+    				}
+				
+        		try {
 					List<Receitas> lista = new ArrayList<Receitas>();
 					receitasdao = new ReceitasDAO();
 
@@ -553,7 +567,7 @@ public class Menu extends javax.swing.JFrame {
 					}
 
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Erro ao Consultar!" + e1.getMessage());
+					//JOptionPane.showMessageDialog(null, "Erro ao Consultar!" + e1.getMessage());
 				}
 
 			
@@ -905,7 +919,7 @@ public class Menu extends javax.swing.JFrame {
 
         txtNomeReceita.setEditable(false);
         receituario.add(txtNomeReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 261, 222, 30));
-        receituario.add(txtMatriculaReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 261, 222, 30));
+        receituario.add(txtCpfReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 261, 222, 30));
 
         btnSalvarReceita.setBackground(new java.awt.Color(0, 135, 208));
         btnSalvarReceita.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
@@ -1306,7 +1320,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField txtMatriculaDentista;
     private javax.swing.JTextField txtMatriculaFuncionario;
     private javax.swing.JTextField txtMatriculaPaciente;
-    private javax.swing.JTextField txtMatriculaReceita;
+    private javax.swing.JTextField txtCpfReceita;
     private javax.swing.JTextField txtMedicamentoReceita;
     private javax.swing.JTextField txtMunicipioDentista;
     private javax.swing.JTextField txtMunicipioFuncionario;
