@@ -5,6 +5,8 @@
  */
 package br.com.clinicaodonto.view;
 
+import java.text.ParseException;
+
 //import clinicaodonto.Menu;
 
 /**
@@ -15,8 +17,9 @@ public class ClinicaOdonto {
 
     /**
      * @param args the command line arguments
+     * @throws ParseException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // TODO code application logic here
         new Menu().setVisible(true);
     }

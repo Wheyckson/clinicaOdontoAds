@@ -1,30 +1,33 @@
 package br.com.clinicaodonto.model;
 
 public class Agenda {
-	private int idAgenda;
+	private String idAgenda;
 	private String matricula;
-	private String idFuncionario;
+	private String nome;
+	private String servico;
 	private String dataAgenda;
-	private String horaAgeda;
+	private String horaAgenda;
 	
 	public Agenda() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Agenda(int idAgenda, String matricula, String idFuncionario, String dataAgenda, String horaAgeda) {
+	public Agenda(String idAgenda, String matricula, String nome, String servico, String dataAgenda,
+			String horaAgenda) {
 		super();
 		this.idAgenda = idAgenda;
 		this.matricula = matricula;
-		this.idFuncionario = idFuncionario;
+		this.nome = nome;
+		this.servico = servico;
 		this.dataAgenda = dataAgenda;
-		this.horaAgeda = horaAgeda;
+		this.horaAgenda = horaAgenda;
 	}
 
-	public int getIdAgenda() {
+	public String getIdAgenda() {
 		return idAgenda;
 	}
 
-	public void setIdAgenda(int idAgenda) {
+	public void setIdAgenda(String idAgenda) {
 		this.idAgenda = idAgenda;
 	}
 
@@ -36,12 +39,20 @@ public class Agenda {
 		this.matricula = matricula;
 	}
 
-	public String getIdFuncionario() {
-		return idFuncionario;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setIdFuncionario(String idFuncionario) {
-		this.idFuncionario = idFuncionario;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getServico() {
+		return servico;
+	}
+
+	public void setServico(String servico) {
+		this.servico = servico;
 	}
 
 	public String getDataAgenda() {
@@ -52,12 +63,14 @@ public class Agenda {
 		this.dataAgenda = dataAgenda;
 	}
 
-	public String getHoraAgeda() {
-		return horaAgeda;
+	public String getHoraAgenda() {
+		return horaAgenda;
 	}
 
-	public void setHoraAgeda(String horaAgeda) {
-		this.horaAgeda = horaAgeda;
+	public void setHoraAgenda(String horaAgenda) {
+		this.horaAgenda = horaAgenda;
 	}
+
+	
 	
 }

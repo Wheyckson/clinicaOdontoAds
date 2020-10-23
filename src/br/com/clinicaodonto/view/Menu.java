@@ -19,6 +19,9 @@ import br.com.clinicaodonto.dao.ReceitasDAO;
 import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
+import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.Rectangle;
 /**
  *
  * @author whey
@@ -62,6 +65,7 @@ public class Menu extends javax.swing.JFrame {
         receituario.setVisible(false);
 
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,6 +99,8 @@ public class Menu extends javax.swing.JFrame {
         txtNomeDentista = new javax.swing.JTextField();
         txtCroDentista = new javax.swing.JTextField();
         txtMatriculaDentista = new javax.swing.JTextField();
+        txtMatriculaDentista.setBackground(SystemColor.control);
+        txtMatriculaDentista.setEditable(false);
        
         btnSalvarDentista = new javax.swing.JButton();
         btnSalvarDentista.addActionListener(new ActionListener() {
@@ -235,6 +241,8 @@ public class Menu extends javax.swing.JFrame {
         txtEmailFuncionario = new javax.swing.JTextField();
         txtNomeFuncionario = new javax.swing.JTextField();
         txtMatriculaFuncionario = new javax.swing.JTextField();
+        txtMatriculaFuncionario.setBackground(SystemColor.control);
+        txtMatriculaFuncionario.setEditable(false);
         
         
         btnSalvarFuncionario = new javax.swing.JButton();
@@ -384,6 +392,8 @@ public class Menu extends javax.swing.JFrame {
         txtNomePaciente = new javax.swing.JTextField();
         txtConvenioPaciente = new javax.swing.JTextField();
         txtMatriculaPaciente = new javax.swing.JTextField();
+        txtMatriculaPaciente.setBackground(SystemColor.control);
+        txtMatriculaPaciente.setEditable(false);
         
         
         btnSalvarPaciente = new javax.swing.JButton();
@@ -506,6 +516,7 @@ public class Menu extends javax.swing.JFrame {
         txtMedicamentoReceita = new javax.swing.JTextField();
         txtNomeReceita = new javax.swing.JTextField();
         txtCpfReceita = new javax.swing.JFormattedTextField(new MaskFormatter("###.###.###-##"));
+        txtCpfReceita.setBounds(new Rectangle(1, 1, 0, 0));
         
         
         btnSalvarReceita = new javax.swing.JButton();
@@ -1354,7 +1365,4 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel viewInicial;
     private javax.swing.JLabel viewPaciente;
     private javax.swing.JLabel viewReceita;
-    // End of variables declaration//GEN-END:variables
-
-    
 }
