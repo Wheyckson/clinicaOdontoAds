@@ -46,7 +46,7 @@ public class AgendasDAO {
 			ps.setString(3, agenda.getServico());
 			ps.setString(4, agenda.getDataAgenda());
 			ps.setString(6, agenda.getHoraAgenda());
-			ps.setInt(6, receita.getMatricula());
+			ps.setString(6, agenda.getMatricula());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
