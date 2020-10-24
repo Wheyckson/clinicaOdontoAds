@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.clinicaodonto.model.Receitas;
+import br.com.clinicaodonto.util.ConnectionFactory;
 
 public class ReceitasDAO {
 	
@@ -15,36 +16,40 @@ public class ReceitasDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
-	public ReceitasDAO() {
-		
+	public ReceitasDAO() throws Exception {
+		try {
+			conn = ConnectionFactory.getConnection();
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new Exception("Erro"+e.getMessage());
+		}
 	}
 	
 	public void salvar(Receitas receita) throws Exception {
 		try {
-			String sql="INSERT INTO receita(matricula,medicamento,quantidade,prescricao)"
+			String sql="INSERT INTO receita(cpf,nome,medicamento,quantidade)"
 					+ "VALUES (?,?,?,?)";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, receita.getMatricula());
-			//ps.setString(2, receitas.getNome());
-			ps.setString(2, receita.getMedicamento());
-			ps.setString(3, receita.getQuantidade());
-			ps.setString(4, receita.getPrescricao());
-			
+			ps.setString(1, receita.getCpf());
+			ps.setString(2, receita.getNome());
+			ps.setString(3, receita.getMedicamento());
+			ps.setString(4, receita.getQuantidade());
+			//ps.setString(5, receita.getPrescricao());
 			ps.executeUpdate();
 		} catch (Exception e) {
-			// TODO: handle exception
 			throw new Exception("Erro ao Salvar"+e.getMessage());
 		}
 	}
 	public void alterar(Receitas receita) throws Exception {
 		try {
-			String sql="UPDATE receita SET medicamento=?, quantidade=?, prescricao=?"
-					+ "WHERE matricula=?";
+			String sql="UPDATE receita SET nome=?, medicamento=?, quantidade=?"
+					+ "WHERE cpf=?";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, receita.getMedicamento());
-			ps.setString(2, receita.getQuantidade());
-			ps.setString(3, receita.getPrescricao());
-			ps.setInt(4, receita.getMatricula());
+			ps.setString(1, receita.getNome());
+			ps.setString(2, receita.getMedicamento());
+			ps.setString(3, receita.getQuantidade());
+			//ps.setString(3, receita.getPrescricao());
+			ps.setString(4, receita.getCpf());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
@@ -59,11 +64,12 @@ public class ReceitasDAO {
 			ps = conn.prepareStatement("SELECT * FROM receita");
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				int matricula = rs.getInt("matricula");
+				String cpf = rs.getString("cpf");
+				String nome = rs.getString("nome");
 				String medicamento = rs.getString("medicamento");
 				String quantidade = rs.getString("quantidade");
-				String prescricao = rs.getString("prescricao");
-				receita = new Receitas(matricula,medicamento,quantidade,prescricao);
+				//String prescricao = rs.getString("prescricao");
+				receita = new Receitas(cpf,nome,medicamento,quantidade);
 				lista.add(receita);
 			}
 			return lista;
@@ -73,20 +79,21 @@ public class ReceitasDAO {
 		}
 	}
 	
-	public Receitas consultar(String matricula) throws Exception {
-		String sql="SELECT * FROM `receita` WHERE matricula=?";
+	public Receitas consultar(String cpf) throws Exception {
+		String sql="SELECT * FROM receita WHERE cpf=?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, matricula);
+			ps.setString(1, cpf);
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				int matricula1 = rs.getInt("matricula");
+				String cpf1 = rs.getString("cpf");
+				String nome = rs.getString("nome");
 				String medicamento = rs.getString("medicamento");
 				String quantidade = rs.getString("quantidade");
-				String prescricao = rs.getString("prescricao");
-				receita = new Receitas(matricula1,medicamento,quantidade,prescricao);
+				//String prescricao = rs.getString("prescricao");
+				receita = new Receitas(cpf1,nome,medicamento,quantidade);
 		}
 		return receita;
 		}catch (Exception e) {

@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package br.com.clinicaodonto.view;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
@@ -19,9 +19,6 @@ import br.com.clinicaodonto.dao.ReceitasDAO;
 import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
-import java.awt.Color;
-import java.awt.SystemColor;
-import java.awt.Rectangle;
 /**
  *
  * @author whey
@@ -371,6 +368,7 @@ public class Menu extends javax.swing.JFrame {
         agendamento = new javax.swing.JPanel();
         txtMatriculaAgenda = new javax.swing.JFormattedTextField(new MaskFormatter("###.###.###-##"));
         txtNomeAgenda = new javax.swing.JTextField();
+        txtNomeAgenda.setBackground(SystemColor.control);
         cmbServicoAgenda = new javax.swing.JComboBox<>();
         txtObsAgenda = new javax.swing.JTextField();
         txtDataAgenda = new javax.swing.JFormattedTextField(new MaskFormatter("##/##/####"));
@@ -515,7 +513,8 @@ public class Menu extends javax.swing.JFrame {
         txtQuantidadeReceita = new javax.swing.JTextField();
         txtMedicamentoReceita = new javax.swing.JTextField();
         txtNomeReceita = new javax.swing.JTextField();
-        txtCpfReceita = new javax.swing.JFormattedTextField(new MaskFormatter("###.###.###-##"));
+        txtNomeReceita.setBackground(SystemColor.control);
+        txtCpfReceita = new javax.swing.JFormattedTextField(); // new MaskFormatter("###.###.###-##")
         txtCpfReceita.setBounds(new Rectangle(1, 1, 0, 0));
         
         
@@ -525,27 +524,64 @@ public class Menu extends javax.swing.JFrame {
         		//******************************************************
         		try {
 
-					Receitas receita = new Receitas();
-					receita.setMatricula(Integer.parseInt(txtCpfReceita.getText()));
-					receita.setMedicamento(txtMedicamentoReceita.getText());
-					receita.setQuantidade(txtQuantidadeReceita.getText());
+					receitas = new Receitas();
+					receitas.setCpf(txtCpfReceita.getText());
+					receitas.setNome(txtNomeReceita.getText());
+					receitas.setMedicamento(txtMedicamentoReceita.getText());
+					receitas.setQuantidade(txtQuantidadeReceita.getText());
 					//receita.setPrescricao(txtPrescricaoReceita.getText());
-
+					
 					receitasdao = new ReceitasDAO();
-					receitasdao.salvar(receita);
-
+					receitasdao.salvar(receitas);
 					JOptionPane.showMessageDialog(null, "Salvo com sucesso !");
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Erro ao salvar" + e.getMessage());
+				} catch (Exception i) {
+					JOptionPane.showMessageDialog(null, "Erro ao salvar" + i.getMessage());
 
 				}
 
-			
+			/*//******************************************************
+        		try {
+        		dentistas = new Dentistas();
+        		
+        		dentistas.setNome(txtNomeFuncionario.getText());
+        		
+        		
+        		dentistasdao = new DentistasDAO();
+        		dentistasdao.salvar(dentistas);
+        			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
+        		}catch (Exception e1) {
+        			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e1.getMessage());
+				}
+        		//******************************************************/
             	//******************************************************
         		
         	}
         });
         btnAtualizarReceita = new javax.swing.JButton();
+        btnAtualizarReceita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+        		try {
+            		Receitas receitas = new Receitas();	
+            		
+            		receitas.setCpf(txtCpfReceita.getText());
+            		receitas.setNome(txtNomeReceita.getText());
+            		receitas.setMedicamento(txtMedicamentoReceita.getText());
+            		receitas.setQuantidade(txtQuantidadeReceita.getText());
+            		//dentistas.setPrescricao(txtPrescricaoReceita.getText());
+            		
+            		
+            		receitasdao = new ReceitasDAO();
+            		
+            		receitasdao.alterar(receitas);
+            			JOptionPane.showMessageDialog(null, "Alterado com Sucesso!!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Erro ao Alterar!!" + e1.getMessage());
+    				}
+            	//******************************************************
+        		
+        	}
+        });
        
         
         
@@ -559,15 +595,47 @@ public class Menu extends javax.swing.JFrame {
             		PacientesDAO mostrar = new PacientesDAO();
             		mostrar.consultar(txtCpfReceita.getText());
                		txtNomeReceita.setText(mostrar.paciente.getNome());
-            		
-            		
-
-            			JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            	
+            			//JOptionPane.showMessageDialog(null, "Paciente localizado!");
             		}catch (Exception e1) {
             			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
     				}
-				
+        		
         		try {
+            		receitasdao = new ReceitasDAO();
+            		
+            		ReceitasDAO mostrar = new ReceitasDAO();
+            		mostrar.consultar(txtCpfReceita.getText());
+            		txtMedicamentoReceita.setText(mostrar.receita.getMedicamento());
+            		txtQuantidadeReceita.setText(mostrar.receita.getQuantidade());
+            		//txtPrescricaoReceita.setText(mostrar.paciente.getCelular());
+      
+            			//JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+    				}
+        		
+        		/*try {
+					List<Receitas> lista = new ArrayList<Receitas>();
+					receitasdao = new ReceitasDAO();
+
+					lista = receitasdao.listarTodos();
+					for (Receitas receita : lista) {
+						//jEditorPane1.append("\n" + "Matricula do paciente........." + receita.getCpf() + "\n");
+						//jEditorPane1.append("Medicamento do paciente......." + receita.getNome() + "\n");
+						//jEditorPane1.append("Quantidade do medicamento....." + receita.getMedicamento() + "\n");
+						//jEditorPane1.append("Precrisão do medico..........." + receita.getQuantidade() + "\n");
+						//jEditorPane1.append("Precrisão do medico..........." + receita.getPrescricao() + "\n");
+						
+					}
+
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Erro ao Consultar!" + e1.getMessage());
+				}*/
+
+            		//*****************************************************
+				
+        		/*try {
 					List<Receitas> lista = new ArrayList<Receitas>();
 					receitasdao = new ReceitasDAO();
 
@@ -581,13 +649,26 @@ public class Menu extends javax.swing.JFrame {
 
 				} catch (Exception e1) {
 					//JOptionPane.showMessageDialog(null, "Erro ao Consultar!" + e1.getMessage());
-				}
+				}*/
 
 			
             	//*****************************************************
         	}
         });
         btnDeletarReceita = new javax.swing.JButton();
+        btnDeletarReceita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+        		txtCpfReceita.setText(null);
+        		txtNomeReceita.setText(null);
+        		txtMedicamentoReceita.setText(null);
+        		txtQuantidadeReceita.setText(null);
+        		txtRgFuncionario.setText(null);
+        		
+        	
+        		//******************************************************
+        	}
+        });
         viewReceita = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
