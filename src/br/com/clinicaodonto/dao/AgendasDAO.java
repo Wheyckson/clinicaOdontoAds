@@ -3,31 +3,35 @@ package br.com.clinicaodonto.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
-import br.com.clinicaodonto.model.Agenda;
-import br.com.clinicaodonto.model.Receitas;
+import br.com.clinicaodonto.model.Agendas;
+import br.com.clinicaodonto.util.ConnectionFactory;
 
 public class AgendasDAO {
-	public Agenda agenda;
+	public Agendas agenda;
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
-	public AgendasDAO() {
-		
+	public AgendasDAO() throws Exception {
+		try {
+			conn = ConnectionFactory.getConnection();
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new Exception("Erro"+e.getMessage());
+		}
 	}
 	
-	public void salvar(Agenda agenda) throws Exception {
+	public void salvar(Agendas agenda) throws Exception {
 		try {
-			String sql="INSERT INTO receita(idagenda,matricula,nome,servico,dataagenda,horaagenda)"
+			String sql="INSERT INTO agenda(cpf,nome,servico,observacoes,dataagenda,horaagenda)"
 					+ "VALUES (?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, agenda.getIdAgenda());
-			ps.setString(2, agenda.getMatricula());
-			ps.setString(3, agenda.getNome());
-			ps.setString(4, agenda.getServico());
+			//ps.setString(1, agenda.getIdAgenda());
+			ps.setString(1, agenda.getCpf());
+			ps.setString(2, agenda.getNome());
+			ps.setString(3, agenda.getServico());
+			ps.setString(4, agenda.getObservacoes());
 			ps.setString(5, agenda.getDataAgenda());
 			ps.setString(6, agenda.getHoraAgenda());
 			ps.executeUpdate();
@@ -36,17 +40,18 @@ public class AgendasDAO {
 			throw new Exception("Erro ao Salvar"+e.getMessage());
 		}
 	}
-	public void alterar(Receitas receita) throws Exception {
+	public void alterar(Agendas agenda) throws Exception {
 		try {
-			String sql="UPDATE receita SET idagenda=?,idfuncionario=?,dataagenda=?,horaagenda=?"
-					+ "WHERE matricula=?";
+			String sql="UPDATE agenda SET nome=?,servico=?,observacoes=?,dataagenda=?,horaagenda=?"
+					+ "WHERE cpf=?";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, agenda.getIdAgenda());
-			ps.setString(2, agenda.getNome());
-			ps.setString(3, agenda.getServico());
+			//.setString(1, agenda.getIdAgenda());
+			ps.setString(1, agenda.getNome());
+			ps.setString(2, agenda.getServico());
+			ps.setString(3, agenda.getObservacoes());
 			ps.setString(4, agenda.getDataAgenda());
-			ps.setString(6, agenda.getHoraAgenda());
-			ps.setString(6, agenda.getMatricula());
+			ps.setString(5, agenda.getHoraAgenda());
+			ps.setString(6, agenda.getCpf());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
@@ -76,22 +81,23 @@ public class AgendasDAO {
 		}
 	}*/
 	
-	public Agenda consultar(String matricula) throws Exception {
-		String sql="SELECT * FROM agenda WHERE matricula=?";
+	public Agendas consultar(String cpf) throws Exception {
+		String sql="SELECT * FROM agenda WHERE cpf=?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, matricula);
+			ps.setString(1, cpf);
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
 				String idagenda = rs.getString("idagenda");
-				String matricula1 = rs.getString("matricula");
+				String cpf1 = rs.getString("cpf");
 				String nome = rs.getString("nome");
 				String servico = rs.getString("servico");
+				String observacoes = rs.getString("observacoes");
 				String dataagenda = rs.getString("dataagenda");
 				String horaagenda = rs.getString("horaagenda");
-				agenda = new Agenda(idagenda,matricula1,nome,servico,dataagenda,horaagenda);
+				agenda = new Agendas(idagenda,cpf1,nome,servico,observacoes,dataagenda,horaagenda);
 		}
 		return agenda;
 		}catch (Exception e) {
