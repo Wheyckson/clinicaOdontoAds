@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 import br.com.clinicaodonto.dao.AgendasDAO;
@@ -19,7 +20,7 @@ import br.com.clinicaodonto.model.Agendas;
 import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
-import javax.swing.DefaultComboBoxModel;
+import br.com.clinicaodonto.view.AgendaTableModel;
 /**
  *
  * @author whey
@@ -29,8 +30,11 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+	AgendaTableModel tableModel = new AgendaTableModel();
+    
     public Menu() {
-        initComponents();        
+        initComponents(); 
+        
         viewInicial.setEnabled(true);
         viewInicial.setVisible(true);
         jPanel1.setEnabled(true);
@@ -67,7 +71,11 @@ public class Menu extends javax.swing.JFrame {
         receituario.setVisible(false);
         
         
-
+        //**************TableModel***************
+        jTableAgenda.setModel(tableModel);
+        
+        
+        
     }
 
     /**
@@ -366,6 +374,15 @@ public class Menu extends javax.swing.JFrame {
         	}
         });
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
         viewFuncionario = new javax.swing.JLabel();
         agendamento = new javax.swing.JPanel();
         txtCpfAgenda = new javax.swing.JTextField();
@@ -392,6 +409,20 @@ public class Menu extends javax.swing.JFrame {
         		
         		agendasdao = new AgendasDAO();
         		
+        		if (jTableAgenda.getSelectedRow() != -1) {
+					tableModel.setValueAt(txtCpfPaciente.getText(), jTableAgenda.getSelectedRow(), 0);
+					tableModel.setValueAt(txtNomePaciente.getText(), jTableAgenda.getSelectedRow(), 1);
+					tableModel.setValueAt((String)cmbServicoAgenda.getSelectedItem(), jTableAgenda.getSelectedRow(), 2);
+					tableModel.setValueAt(txtObsAgenda.getText(), jTableAgenda.getSelectedRow(), 3);
+					tableModel.setValueAt(txtDataAgenda.getText(), jTableAgenda.getSelectedRow(), 4);
+					tableModel.setValueAt(txtHoraAgenda.getText(), jTableAgenda.getSelectedRow(), 5);
+
+        		
+        		
+        		
+        		
+        		}
+        		
         		agendasdao.alterar(agendas);
         			JOptionPane.showMessageDialog(null, "Alterado com Sucesso!!");
         		}catch (Exception e) {
@@ -402,7 +433,7 @@ public class Menu extends javax.swing.JFrame {
         });
         
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableAgenda = new javax.swing.JTable();
         
         btnLimparAgenda = new javax.swing.JButton();
         btnLimparAgenda.addActionListener(new ActionListener() {
@@ -414,6 +445,10 @@ public class Menu extends javax.swing.JFrame {
         		txtObsAgenda.setText(null);
         		txtDataAgenda.setText(null);
         		txtHoraAgenda.setText(null);
+        		
+        		if (jTableAgenda.getSelectedRow() != -1) {
+					tableModel.removeLinha(jTableAgenda.getSelectedRow());
+				}
         		//******************************************************
         	}
         });
@@ -432,15 +467,18 @@ public class Menu extends javax.swing.JFrame {
         		agendas.setDataAgenda(txtDataAgenda.getText());
         		agendas.setHoraAgenda(txtHoraAgenda.getText());
         		
-        		
         		agendasdao = new AgendasDAO();
         		
+        		tableModel.addLinha(agendas);//salvar na tebela
+        		       		
         		agendasdao.salvar(agendas);
         			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
         		}catch (Exception e1) {
         			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e1.getMessage());
 				}
-        		//*****************************************************
+        		
+        	
+           		//*****************************************************
         	}
         });
         
@@ -460,7 +498,7 @@ public class Menu extends javax.swing.JFrame {
             			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
     				}
         			
-        		try {
+        		/*try {
             		agendasdao = new AgendasDAO();
             		
             		AgendasDAO mostrar = new AgendasDAO();
@@ -475,7 +513,9 @@ public class Menu extends javax.swing.JFrame {
             			JOptionPane.showMessageDialog(null, "Paciente localizado!");
             		}catch (Exception e1) {
             			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
-    				}
+    				}*/
+        		
+        		
             		//*****************************************************
         	}
         });
@@ -775,7 +815,7 @@ public class Menu extends javax.swing.JFrame {
         admTela = new javax.swing.JPanel();
         cmbAdm = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableAdmin = new javax.swing.JTable();
         btnConsultarAdm = new javax.swing.JButton();
         viewAdm = new javax.swing.JLabel();
 
@@ -1011,7 +1051,7 @@ public class Menu extends javax.swing.JFrame {
         });
         agendamento.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, 108, 39));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1040,7 +1080,7 @@ public class Menu extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableAgenda);
 
         agendamento.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 472, 614, 268));
 
@@ -1206,7 +1246,7 @@ public class Menu extends javax.swing.JFrame {
         cmbAdm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "FuncionÃ¡rios", "Pacientes" }));
         admTela.add(cmbAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 222, 30));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1235,7 +1275,7 @@ public class Menu extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTableAdmin);
 
         admTela.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 472, 614, 268));
 
@@ -1682,8 +1722,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableAgenda;
+    private javax.swing.JTable jTableAdmin;
     private javax.swing.JTextArea txtListaReceita;
     private javax.swing.JLabel paciente;
     private javax.swing.JLabel receita;

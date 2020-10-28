@@ -82,6 +82,5 @@ public class Agendas {
 		this.horaAgenda = horaAgenda;
 	}
 
-	
-	
 }
+
