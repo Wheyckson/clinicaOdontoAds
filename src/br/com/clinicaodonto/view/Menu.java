@@ -6,8 +6,12 @@
 package br.com.clinicaodonto.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.clinicaodonto.dao.DentistasDAO;
 import br.com.clinicaodonto.dao.PacientesDAO;
@@ -506,7 +510,7 @@ public class Menu extends javax.swing.JFrame {
         viewPaciente = new javax.swing.JLabel();
         receituario = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtListaReceita = new javax.swing.JTextArea();
         txtQuantidadeReceita = new javax.swing.JTextField();
         txtMedicamentoReceita = new javax.swing.JTextField();
         txtNomeReceita = new javax.swing.JTextField();
@@ -583,7 +587,7 @@ public class Menu extends javax.swing.JFrame {
         
         btnMostrarReceita = new javax.swing.JButton();
         btnMostrarReceita.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent arg0) {
         		//******************************************************
         		try {
             		dao = new PacientesDAO();
@@ -597,7 +601,7 @@ public class Menu extends javax.swing.JFrame {
             			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
     				}
         		
-        		try {
+        		/*try {
             		receitasdao = new ReceitasDAO();
             		
             		ReceitasDAO mostrar = new ReceitasDAO();
@@ -609,25 +613,25 @@ public class Menu extends javax.swing.JFrame {
             			//JOptionPane.showMessageDialog(null, "Paciente localizado!");
             		}catch (Exception e1) {
             			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
-    				}
+    				}*/
         		
-        		/*try {
+        		try {
 					List<Receitas> lista = new ArrayList<Receitas>();
 					receitasdao = new ReceitasDAO();
 
 					lista = receitasdao.listarTodos();
-					for (Receitas receita : lista) {
-						//jEditorPane1.append("\n" + "Matricula do paciente........." + receita.getCpf() + "\n");
-						//jEditorPane1.append("Medicamento do paciente......." + receita.getNome() + "\n");
-						//jEditorPane1.append("Quantidade do medicamento....." + receita.getMedicamento() + "\n");
-						//jEditorPane1.append("Precris�o do medico..........." + receita.getQuantidade() + "\n");
-						//jEditorPane1.append("Precris�o do medico..........." + receita.getPrescricao() + "\n");
+					for(Receitas receita : lista) {
+						txtListaReceita.append("\n" + "CPF........." + receita.getCpf() + "\n");
+						txtListaReceita.append("Noma do paciente......." + receita.getNome() + "\n");
+						txtListaReceita.append("Medicamento....." + receita.getMedicamento() + "\n");
+						txtListaReceita.append("Quantidade do medicamento..........." + receita.getQuantidade() + "\n");
+						//txtListaReceita.append("Precrisção do medico..........." + receita.getPrescricao() + "\n");
 						
 					}
 
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, "Erro ao Consultar!" + e1.getMessage());
-				}*/
+				}
 
             		//*****************************************************
 				
@@ -660,7 +664,7 @@ public class Menu extends javax.swing.JFrame {
         		txtMedicamentoReceita.setText(null);
         		txtQuantidadeReceita.setText(null);
         		txtRgFuncionario.setText(null);
-        		
+        		txtListaReceita.setText(null);
         	
         		//******************************************************
         	}
@@ -1051,9 +1055,9 @@ public class Menu extends javax.swing.JFrame {
 
         receituario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        txtListaReceita.setColumns(20);
+        txtListaReceita.setRows(5);
+        jScrollPane3.setViewportView(txtListaReceita);
 
         receituario.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 463, 585, 190));
         receituario.add(txtQuantidadeReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 366, 222, 30));
@@ -1577,7 +1581,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtListaReceita;
     private javax.swing.JLabel paciente;
     private javax.swing.JLabel receita;
     private javax.swing.JPanel receituario;
