@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import br.com.clinicaodonto.dao.AgendasDAO;
 import br.com.clinicaodonto.dao.DentistasDAO;
@@ -20,7 +21,9 @@ import br.com.clinicaodonto.model.Agendas;
 import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
-import br.com.clinicaodonto.view.AgendaTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+//import br.com.clinicaodonto.view.AgendaTableModel;
 /**
  *
  * @author whey
@@ -30,7 +33,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-	AgendaTableModel tableModel = new AgendaTableModel();
+	//AgendaTableModel tableModel = new AgendaTableModel();
     
     public Menu() {
         initComponents(); 
@@ -72,7 +75,7 @@ public class Menu extends javax.swing.JFrame {
         
         
         //**************TableModel***************
-        jTableAgenda.setModel(tableModel);
+       // jTableAgenda.setModel(tableModel);
         
         
         
@@ -392,11 +395,26 @@ public class Menu extends javax.swing.JFrame {
         txtDataAgenda = new javax.swing.JTextField();
         txtHoraAgenda = new javax.swing.JTextField();
        //JFormatterTextField(new MaskFormatter("##:##:##"));
-        btnAgendar = new javax.swing.JButton();
-        btnAgendar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        		//******************************************************
-        		try {
+        btnAtualizarAgendar = new javax.swing.JButton();
+        btnAtualizarAgendar.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		//*********************************************************
+        		if (jTableAgenda.getSelectedRow() != -1) {
+					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
+				
+					txtCpfAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 0).toString());
+					txtNomeAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 1).toString());
+					cmbServicoAgenda.setSelectedItem((jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 2).toString()));
+					txtObsAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 3).toString());
+					txtDataAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 4).toString());
+					txtHoraAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 5).toString());
+
+					
+        		}else {
+					JOptionPane.showInternalMessageDialog(null, "Nenhum produto selecionado!");
+				}
+        		/*try {
         		Agendas agendas = new Agendas();	
         		
         		agendas.setCpf(txtCpfPaciente.getText());
@@ -427,13 +445,14 @@ public class Menu extends javax.swing.JFrame {
         			JOptionPane.showMessageDialog(null, "Alterado com Sucesso!!");
         		}catch (Exception e) {
         			JOptionPane.showMessageDialog(null, "Erro ao Alterar!!" + e.getMessage());
-				}
-        		//*****************************************************
+				}*/
+        		//*********************************************************
         	}
         });
-        
+                
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAgenda = new javax.swing.JTable();
+        jTableAgenda.setUpdateSelectionOnSort(false);
         
         
         
@@ -451,8 +470,15 @@ public class Menu extends javax.swing.JFrame {
         		txtHoraAgenda.setText(null);
         		
         		if (jTableAgenda.getSelectedRow() != -1) {
-					tableModel.removeLinha(jTableAgenda.getSelectedRow());
+					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
+				
+					DefaultTableModel dtmAgenda = (DefaultTableModel) jTableAgenda.getModel();
+	        		dtmAgenda.removeRow(jTableAgenda.getSelectedRow());
+	        		      		
+        		}else {
+					JOptionPane.showInternalMessageDialog(null, "Nenhum agendamento selecionado!");
 				}
+        		//jTableAgenda.getSelectedRow();
         		//******************************************************
         	}
         });
@@ -461,7 +487,7 @@ public class Menu extends javax.swing.JFrame {
         btnSalvarAgenda.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//******************************************************
-        		try {
+        		/*try {
         			agendas = new Agendas();
         		//pacientes.setMatricula(Integer.parseInt(txtMatriculaPaciente.getText()));
         		agendas.setCpf(txtCpfAgenda.getText());
@@ -479,9 +505,11 @@ public class Menu extends javax.swing.JFrame {
         			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
         		}catch (Exception e1) {
         			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e1.getMessage());
-				}
+				}*/
         		
-        	
+        		DefaultTableModel dtmAgenda = (DefaultTableModel) jTableAgenda.getModel();
+        		Object[] dados = {txtCpfAgenda.getText(),txtNomeAgenda.getText(),(String)cmbServicoAgenda.getSelectedItem(),txtObsAgenda.getText(),txtDataAgenda.getText(),txtHoraAgenda.getText()};
+        		dtmAgenda.addRow(dados);
            		//*****************************************************
         	}
         });
@@ -1045,47 +1073,25 @@ public class Menu extends javax.swing.JFrame {
         agendamento.add(txtDataAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 375, 222, 30));
         agendamento.add(txtHoraAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(728, 375, 220, 30));
 
-        btnAgendar.setBackground(new java.awt.Color(0, 135, 208));
-        btnAgendar.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
-        btnAgendar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgendar.setText("Atualizar");
-        btnAgendar.setActionCommand("Agendar");
-        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizarAgendar.setBackground(new java.awt.Color(0, 135, 208));
+        btnAtualizarAgendar.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
+        btnAtualizarAgendar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizarAgendar.setText("Atualizar");
+        btnAtualizarAgendar.setActionCommand("Agendar");
+        btnAtualizarAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgendarActionPerformed(evt);
             }
         });
-        agendamento.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, 108, 39));
+        agendamento.add(btnAtualizarAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, 108, 39));
 
-        jTableAgenda.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "CPF", "Paciente", "ServiÃ§o", "Data", "Hora", "Obs"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        jTableAgenda.setModel(new DefaultTableModel(
+        	new Object[][] {
+        	},
+        	new String[] {
+        		"CPF", "Paciente", "Servi\u00C3\u00A7o", "Data", "Hora", "Obs"
+        	}
+        ));
         jScrollPane1.setViewportView(jTableAgenda);
 
         agendamento.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 472, 614, 268));
@@ -1692,7 +1698,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel admTela;
     private javax.swing.JLabel agenda;
     private javax.swing.JPanel agendamento;
-    private javax.swing.JButton btnAgendar;
+    private javax.swing.JButton btnAtualizarAgendar;
     private javax.swing.JButton btnLimparAgenda;
     private javax.swing.JButton btnSalvarAgenda;
     private javax.swing.JButton btnMostrarAgenda;
