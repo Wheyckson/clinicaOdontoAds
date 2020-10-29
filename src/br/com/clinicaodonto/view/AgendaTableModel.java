@@ -84,6 +84,23 @@ public class AgendaTableModel extends AbstractTableModel {
 		this.dados.remove(rowIndex);
 		this.fireTableRowsDeleted(rowIndex, rowIndex);
 	}
+	public void listarJTable() {
+    	DefaultTableModel cpf = (DefaultTableModel) jTableAgenda.getCpf();
+    	
+    	AgendasDAO agendasdao = new AgendasDAO();
+    	
+    	for (Agendas agenda: agendasdao.Listar()) {
+    		cpf.addLinha (new Object[] {
+    			agenda.getCpf(),
+    			agenda.getNome(),
+    			agenda.getServico(),
+    			agenda.getObservacoes(),
+    			agenda.getDataAgenda(),
+    			agenda.getHoraAgenda(),
+    			
+    		});
+    	}
+    
+    
 	
-
 }

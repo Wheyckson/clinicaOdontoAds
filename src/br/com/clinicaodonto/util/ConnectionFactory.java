@@ -2,6 +2,9 @@ package br.com.clinicaodonto.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import javax.swing.JOptionPane;
 
 public class ConnectionFactory {
@@ -25,5 +28,41 @@ public class ConnectionFactory {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	public static void closeConnection(Connection conn) {
+		//PreparedStatement ps, ResultSet rs
+		//closeConnection(conn, ps, rs);
+		
+		try {
+			if (conn != null) {
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+		public static void closeConnection(Connection conn, PreparedStatement ps) {
+			//PreparedStatement ps, ResultSet rs
+			closeConnection(conn, ps);
+			
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+			public static void closeConnection(Connection conn, PreparedStatement ps, ResultSet rs) {
+				//PreparedStatement ps, ResultSet rs
+				closeConnection(conn, ps);
+				
+				try {
+					if (rs != null) {
+						rs.close();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	}
 }

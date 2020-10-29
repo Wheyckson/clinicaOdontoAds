@@ -435,6 +435,10 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAgenda = new javax.swing.JTable();
         
+        
+        
+        
+        
         btnLimparAgenda = new javax.swing.JButton();
         btnLimparAgenda.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
@@ -481,6 +485,8 @@ public class Menu extends javax.swing.JFrame {
            		//*****************************************************
         	}
         });
+        
+        
         
         btnMostrarAgenda = new javax.swing.JButton();
         btnMostrarAgenda.addActionListener(new ActionListener() {

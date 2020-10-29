@@ -3,8 +3,13 @@ package br.com.clinicaodonto.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sun.jdi.connect.spi.ClosedConnectionException;
 
 import br.com.clinicaodonto.model.Agendas;
+import br.com.clinicaodonto.model.Receitas;
 import br.com.clinicaodonto.util.ConnectionFactory;
 
 public class AgendasDAO {
@@ -36,7 +41,6 @@ public class AgendasDAO {
 			ps.setString(6, agenda.getHoraAgenda());
 			ps.executeUpdate();
 		} catch (Exception e) {
-			// TODO: handle exception
 			throw new Exception("Erro ao Salvar"+e.getMessage());
 		}
 	}
@@ -55,31 +59,47 @@ public class AgendasDAO {
 			ps.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
+		}finally {
+			ConnectionFactory.closeConnection(conn, ps);
 		}
 	}
 	
 	
 	
-	/*public List listarTodos() throws Exception {
-		List<Agenda> lista = new ArrayList<Agenda>();
-		try {
+		public List<Agendas> Listar() throws Exception {
+			
+			conn = ConnectionFactory.getConnection();
+			ps = null;
+			rs = null;
+		
+			List<Agendas> lista = new ArrayList<Agendas>();
+			
+			try {
 			ps = conn.prepareStatement("SELECT * FROM agenda");
 			rs = ps.executeQuery();
+			
 			while (rs.next()) {
-				String matricula = rs.getString("matricula");
-				String nome = rs.getString("nome");
-				String servico = rs.getString("quantidade");
-				String dataagenda = rs.getString("servico");
-				String horaagenda = rs.getString("horaagenda");
-				agenda = new Agenda(matricula,nome,servico,dataagenda,horaagenda);
+				agenda = new Agendas();
+				
+				agenda.setCpf(rs.getString("cpf"));
+				agenda.setNome(rs.getString("nome"));
+				agenda.setServico(rs.getString("servico"));
+				agenda.setObservacoes(rs.getString("observacoes"));
+				agenda.setDataAgenda(rs.getString("dataagenda"));
+				agenda.setHoraAgenda(rs.getString("horaagenda"));
 				lista.add(agenda);
+				
 			}
-			return lista;
-
+			
 		} catch (Exception e) {
-			throw new Exception("Erro ao Listar" + e.getMessage());
+			throw new Exception("Erro ao Listar"+e.getMessage());
+			
+		}finally {
+			ConnectionFactory.closeConnection(conn,ps,rs);
 		}
-	}*/
+			return lista;
+	}	
+
 	
 	public Agendas consultar(String cpf) throws Exception {
 		String sql="SELECT * FROM agenda WHERE cpf=?";
