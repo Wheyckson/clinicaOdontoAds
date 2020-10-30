@@ -31,7 +31,7 @@ public class AgendasDAO {
 			String sql="INSERT INTO agenda(cpf,nome,servico,observacoes,dataagenda,horaagenda)"
 					+ "VALUES (?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, agenda.getCpf());
+			ps.setInt(1, agenda.getCpf());
 			ps.setString(2, agenda.getNome());
 			ps.setString(3, agenda.getServico());
 			ps.setString(4, agenda.getObservacoes());
@@ -54,7 +54,7 @@ public class AgendasDAO {
 			ps.setString(3, agenda.getObservacoes());
 			ps.setString(4, agenda.getDataAgenda());
 			ps.setString(5, agenda.getHoraAgenda());
-			ps.setString(6, agenda.getCpf());
+			ps.setInt(6, agenda.getCpf());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
@@ -80,7 +80,7 @@ public class AgendasDAO {
 			while (rs.next()) {
 				agenda = new Agendas();
 				
-				agenda.setCpf(rs.getString("cpf"));
+				agenda.setCpf(Integer.parseInt(rs.getString("cpf")));
 				agenda.setNome(rs.getString("nome"));
 				agenda.setServico(rs.getString("servico"));
 				agenda.setObservacoes(rs.getString("observacoes"));
@@ -100,17 +100,17 @@ public class AgendasDAO {
 	}	
 
 	
-	public Agendas consultar(String cpf) throws Exception {
+	public Agendas consultar(int cpf) throws Exception {
 		String sql="SELECT * FROM agenda WHERE cpf=?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, cpf);
+			ps.setInt(1, cpf);
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
 				String idagenda = rs.getString("idagenda");
-				String cpf1 = rs.getString("cpf");
+				int cpf1 = rs.getInt("cpf");
 				String nome = rs.getString("nome");
 				String servico = rs.getString("servico");
 				String observacoes = rs.getString("observacoes");
@@ -133,5 +133,5 @@ public class AgendasDAO {
 		} catch (Exception e) {
 			throw new Exception("Erro ao excluir" + e.getMessage());
 		}
-}
+	}
 }

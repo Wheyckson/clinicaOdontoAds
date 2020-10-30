@@ -22,8 +22,6 @@ import br.com.clinicaodonto.model.Agendas;
 import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  *
@@ -419,45 +417,55 @@ public class Menu extends javax.swing.JFrame {
         txtHoraAgenda = new javax.swing.JTextField();
        //JFormatterTextField(new MaskFormatter("##:##:##"));
         btnAtualizarAgendar = new javax.swing.JButton();
-        btnAtualizarAgendar.addMouseListener(new MouseAdapter() {
+        /*btnAtualizarAgendar.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		//*********************************************************
         		if (jTableAgenda.getSelectedRow() != -1) {
 					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
-				
-					txtCpfAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 0).toString());
-					txtNomeAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 1).toString());
-					cmbServicoAgenda.setSelectedItem((jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 2).toString()));
-					txtObsAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 3).toString());
-					txtDataAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 4).toString());
-					txtHoraAgenda.setText(jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 5).toString());
-
-					
+        			//******************************************************
+            		
+            		
+            		
         		}else {
 					JOptionPane.showInternalMessageDialog(null, "Nenhum produto selecionado!");
 				}
         		
         		//*********************************************************
         	}
-        });
+        });*/
         
         btnAtualizarAgendar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		//******************************************************
         		if (jTableAgenda.getSelectedRow() != -1) {
 					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
-				
-					jTableAgenda.setValueAt(txtCpfAgenda.getText(), jTableAgenda.getSelectedRow(), 0);
-					jTableAgenda.setValueAt(txtNomeAgenda.getText(), jTableAgenda.getSelectedRow(), 1);
-					jTableAgenda.setValueAt(cmbServicoAgenda.getSelectedItem(), jTableAgenda.getSelectedRow(), 2);
-					jTableAgenda.setValueAt(txtObsAgenda.getText(), jTableAgenda.getSelectedRow(), 3);
-					jTableAgenda.setValueAt(txtDataAgenda.getText(), jTableAgenda.getSelectedRow(),4);
-					jTableAgenda.setValueAt(txtHoraAgenda.getText(), jTableAgenda.getSelectedRow(), 5);
+        			//******************************************************
+            		
+            		try {
+            			Agendas agendas = new Agendas();
+            			
+            			agendas.setCpf(Integer.parseInt(txtCpfAgenda.getText()));
+            			agendas.setNome(txtNomeAgenda.getText());
+            			agendas.setServico((String)cmbServicoAgenda.getSelectedItem());
+            			agendas.setObservacoes(txtObsAgenda.getText());
+            			agendas.setDataAgenda(txtDataAgenda.getText());
+            			agendas.setHoraAgenda(txtHoraAgenda.getText());
+            			
+            			agendasdao = new AgendasDAO();
+            			
+            			agendasdao.alterar(agendas);
+            			
+            			
+            	        listarJTable();
 
-					
+            			JOptionPane.showMessageDialog(null, "Exito ao salvar!");
+    				} catch (Exception e2) {
+            			JOptionPane.showMessageDialog(null, "Erro ao salvar!" + e2.getMessage());
+    				}
+            		
         		}else {
-					JOptionPane.showInternalMessageDialog(null, "Não foi possivel alterar!");
+					JOptionPane.showInternalMessageDialog(null, "Nenhum produto selecionado!");
 				}
         		//******************************************************
         	}
@@ -472,15 +480,27 @@ public class Menu extends javax.swing.JFrame {
         
         btnLimparAgenda = new javax.swing.JButton();
         btnLimparAgenda.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
+        	public void actionPerformed(ActionEvent e) {
         		//******************************************************
-        		
-        		
         		if (jTableAgenda.getSelectedRow() != -1) {
 					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
-				
-					DefaultTableModel dtmAgenda = (DefaultTableModel) jTableAgenda.getModel();
-	        		dtmAgenda.removeRow(jTableAgenda.getSelectedRow());
+        			try {
+            			//agendas = new Agendas();
+            			agendasdao = new AgendasDAO();
+            			int agenda = Integer.parseInt(txtCpfAgenda.getText());
+            			//agendas.setCpf((String) jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 0));
+            			
+            			agendasdao.excluir(agenda);
+            			
+            			//private AgendasDAO agendasdao;
+            	        listarJTable();
+
+            			JOptionPane.showMessageDialog(null, "Exito ao Excluir!");
+    				} catch (Exception e2) {
+            			JOptionPane.showMessageDialog(null, "Erro ao Excluir!" + e2.getMessage());
+    				}
+					//DefaultTableModel dtmAgenda = (DefaultTableModel) jTableAgenda.getModel();
+	        		//dtmAgenda.removeRow(jTableAgenda.getSelectedRow());
 	        		      		
         		}else {
 					JOptionPane.showInternalMessageDialog(null, "Nenhum agendamento selecionado!");
@@ -498,7 +518,7 @@ public class Menu extends javax.swing.JFrame {
         		try {
         			agendas = new Agendas();
         			
-        			agendas.setCpf(txtCpfAgenda.getText());
+        			agendas.setCpf(Integer.parseInt(txtCpfAgenda.getText()));
         			agendas.setNome(txtNomeAgenda.getText());
         			agendas.setServico((String)cmbServicoAgenda.getSelectedItem());
         			agendas.setObservacoes(txtObsAgenda.getText());
@@ -557,11 +577,11 @@ public class Menu extends javax.swing.JFrame {
             			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
     				}
         			
-        		/*try {
+        	try {
             		agendasdao = new AgendasDAO();
             		
             		AgendasDAO mostrar = new AgendasDAO();
-            		mostrar.consultar(txtCpfAgenda.getText());
+            		mostrar.consultar(Integer.parseInt(txtCpfAgenda.getText()));
                		//txtCpfAgenda.setText(mostrar.agenda.getCpf());
                		txtNomeAgenda.setText(mostrar.agenda.getNome());
                		cmbServicoAgenda.setSelectedItem(mostrar.agenda.getServico());
@@ -572,7 +592,7 @@ public class Menu extends javax.swing.JFrame {
             			JOptionPane.showMessageDialog(null, "Paciente localizado!");
             		}catch (Exception e1) {
             			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
-    				}*/
+    				}
         		
         		
             		//*****************************************************

@@ -2,7 +2,7 @@ package br.com.clinicaodonto.model;
 
 public class Agendas {
 	private String idAgenda;
-	private String cpf;
+	private int cpf;
 	private String nome;
 	private String servico;
 	private String observacoes;
@@ -13,7 +13,7 @@ public class Agendas {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Agendas(String idAgenda, String cpf, String nome, String servico, String observacoes, String dataAgenda,
+	public Agendas(String idAgenda, int cpf, String nome, String servico, String observacoes, String dataAgenda,
 			String horaAgenda) {
 		super();
 		this.idAgenda = idAgenda;
@@ -33,11 +33,11 @@ public class Agendas {
 		this.idAgenda = idAgenda;
 	}
 
-	public String getCpf() {
+	public int getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
 
