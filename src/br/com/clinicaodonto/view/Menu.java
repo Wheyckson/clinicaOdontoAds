@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import br.com.clinicaodonto.dao.AgendasDAO;
 import br.com.clinicaodonto.dao.DentistasDAO;
@@ -23,7 +24,7 @@ import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.model.Receitas;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-//import br.com.clinicaodonto.view.AgendaTableModel;
+
 /**
  *
  * @author whey
@@ -74,13 +75,35 @@ public class Menu extends javax.swing.JFrame {
         receituario.setVisible(false);
         
         
-        //**************TableModel***************
-       // jTableAgenda.setModel(tableModel);
-        
-        
-        
-    }
+        //**************TableModel - Agenda ***************
+        DefaultTableModel modelo = (DefaultTableModel) jTableAgenda.getModel();
+        jTableAgenda.setRowSorter(new TableRowSorter(modelo));
+        try {
+			listarJTable();
+		} catch (Exception e) {
+			
+		}
 
+        //**************TableModel - Admin ***************
+    }
+    
+    public void listarJTable() throws Exception {
+    	DefaultTableModel modelo = (DefaultTableModel) jTableAgenda.getModel();
+    	modelo.setNumRows(0);
+    	agendasdao = new AgendasDAO();
+    	
+    	for (Agendas agenda: agendasdao.Listar()) {
+    		modelo.addRow(new Object[] {
+    			agenda.getCpf(),
+    			agenda.getNome(),
+    			agenda.getServico(),
+    			agenda.getObservacoes(),
+    			agenda.getDataAgenda(),
+    			agenda.getHoraAgenda(),
+    			
+    		});
+    	}
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -414,42 +437,31 @@ public class Menu extends javax.swing.JFrame {
         		}else {
 					JOptionPane.showInternalMessageDialog(null, "Nenhum produto selecionado!");
 				}
-        		/*try {
-        		Agendas agendas = new Agendas();	
         		
-        		agendas.setCpf(txtCpfPaciente.getText());
-        		agendas.setNome(txtNomePaciente.getText());
-        		agendas.setServico((String)cmbServicoAgenda.getSelectedItem());
-        		agendas.setObservacoes(txtObsAgenda.getText());
-        		agendas.setDataAgenda(txtDataAgenda.getText());
-        		agendas.setHoraAgenda(txtHoraAgenda.getText());
-        		
-        		
-        		agendasdao = new AgendasDAO();
-        		
-        		if (jTableAgenda.getSelectedRow() != -1) {
-					tableModel.setValueAt(txtCpfPaciente.getText(), jTableAgenda.getSelectedRow(), 0);
-					tableModel.setValueAt(txtNomePaciente.getText(), jTableAgenda.getSelectedRow(), 1);
-					tableModel.setValueAt((String)cmbServicoAgenda.getSelectedItem(), jTableAgenda.getSelectedRow(), 2);
-					tableModel.setValueAt(txtObsAgenda.getText(), jTableAgenda.getSelectedRow(), 3);
-					tableModel.setValueAt(txtDataAgenda.getText(), jTableAgenda.getSelectedRow(), 4);
-					tableModel.setValueAt(txtHoraAgenda.getText(), jTableAgenda.getSelectedRow(), 5);
-
-        		
-        		
-        		
-        		
-        		}
-        		
-        		agendasdao.alterar(agendas);
-        			JOptionPane.showMessageDialog(null, "Alterado com Sucesso!!");
-        		}catch (Exception e) {
-        			JOptionPane.showMessageDialog(null, "Erro ao Alterar!!" + e.getMessage());
-				}*/
         		//*********************************************************
         	}
         });
-                
+        
+        btnAtualizarAgendar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		//******************************************************
+        		if (jTableAgenda.getSelectedRow() != -1) {
+					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
+				
+					jTableAgenda.setValueAt(txtCpfAgenda.getText(), jTableAgenda.getSelectedRow(), 0);
+					jTableAgenda.setValueAt(txtNomeAgenda.getText(), jTableAgenda.getSelectedRow(), 1);
+					jTableAgenda.setValueAt(cmbServicoAgenda.getSelectedItem(), jTableAgenda.getSelectedRow(), 2);
+					jTableAgenda.setValueAt(txtObsAgenda.getText(), jTableAgenda.getSelectedRow(), 3);
+					jTableAgenda.setValueAt(txtDataAgenda.getText(), jTableAgenda.getSelectedRow(),4);
+					jTableAgenda.setValueAt(txtHoraAgenda.getText(), jTableAgenda.getSelectedRow(), 5);
+
+					
+        		}else {
+					JOptionPane.showInternalMessageDialog(null, "Não foi possivel alterar!");
+				}
+        		//******************************************************
+        	}
+        });
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAgenda = new javax.swing.JTable();
         jTableAgenda.setUpdateSelectionOnSort(false);
@@ -462,12 +474,7 @@ public class Menu extends javax.swing.JFrame {
         btnLimparAgenda.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		//******************************************************
-        		txtCpfAgenda.setText(null);
-        		txtNomeAgenda.setText(null);
-        		cmbServicoAgenda.setSelectedIndex(0);
-        		txtObsAgenda.setText(null);
-        		txtDataAgenda.setText(null);
-        		txtHoraAgenda.setText(null);
+        		
         		
         		if (jTableAgenda.getSelectedRow() != -1) {
 					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
@@ -487,29 +494,47 @@ public class Menu extends javax.swing.JFrame {
         btnSalvarAgenda.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//******************************************************
-        		/*try {
+        		
+        		try {
         			agendas = new Agendas();
-        		//pacientes.setMatricula(Integer.parseInt(txtMatriculaPaciente.getText()));
-        		agendas.setCpf(txtCpfAgenda.getText());
-        		agendas.setNome(txtNomeAgenda.getText());
-        		agendas.setServico((String)cmbServicoAgenda.getSelectedItem());
-        		agendas.setObservacoes(txtObsAgenda.getText());
-        		agendas.setDataAgenda(txtDataAgenda.getText());
-        		agendas.setHoraAgenda(txtHoraAgenda.getText());
+        			
+        			agendas.setCpf(txtCpfAgenda.getText());
+        			agendas.setNome(txtNomeAgenda.getText());
+        			agendas.setServico((String)cmbServicoAgenda.getSelectedItem());
+        			agendas.setObservacoes(txtObsAgenda.getText());
+        			agendas.setDataAgenda(txtDataAgenda.getText());
+        			agendas.setHoraAgenda(txtHoraAgenda.getText());
+        			
+        			agendasdao = new AgendasDAO();
+        			
+        			agendasdao.salvar(agendas);
+        			
+        			
+        	        listarJTable();
+
+        			//DefaultTableModel dtmAgenda = (DefaultTableModel) jTableAgenda.getModel();
+            		//Object[] dados = {txtCpfAgenda.getText(),txtNomeAgenda.getText(),(String)cmbServicoAgenda.getSelectedItem(),txtObsAgenda.getText(),txtDataAgenda.getText(),txtHoraAgenda.getText()};
+            		//dtmAgenda.addRow(dados);
+            		
+        			JOptionPane.showMessageDialog(null, "Exito ao salvar!");
+				} catch (Exception e2) {
+        			JOptionPane.showMessageDialog(null, "Erro ao salvar!" + e2.getMessage());
+				}
         		
-        		agendasdao = new AgendasDAO();
+        		try {
+        			txtCpfAgenda.setText(null);
+	        		txtNomeAgenda.setText(null);
+	        		cmbServicoAgenda.setSelectedIndex(0);
+	        		txtObsAgenda.setText(null);
+	        		txtDataAgenda.setText(null);
+	        		txtHoraAgenda.setText(null);
+	        		
+	        		
+				} catch (Exception e2) {
+        			//JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+
+				}
         		
-        		tableModel.addLinha(agendas);//salvar na tebela
-        		       		
-        		agendasdao.salvar(agendas);
-        			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
-        		}catch (Exception e1) {
-        			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e1.getMessage());
-				}*/
-        		
-        		DefaultTableModel dtmAgenda = (DefaultTableModel) jTableAgenda.getModel();
-        		Object[] dados = {txtCpfAgenda.getText(),txtNomeAgenda.getText(),(String)cmbServicoAgenda.getSelectedItem(),txtObsAgenda.getText(),txtDataAgenda.getText(),txtHoraAgenda.getText()};
-        		dtmAgenda.addRow(dados);
            		//*****************************************************
         	}
         });
@@ -1099,7 +1124,7 @@ public class Menu extends javax.swing.JFrame {
         btnLimparAgenda.setBackground(new java.awt.Color(0, 135, 208));
         btnLimparAgenda.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnLimparAgenda.setForeground(new java.awt.Color(255, 255, 255));
-        btnLimparAgenda.setText("Limpar");
+        btnLimparAgenda.setText("Excluir");
         btnLimparAgenda.setActionCommand("Agendar");
         btnLimparAgenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

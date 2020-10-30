@@ -22,7 +22,6 @@ public class AgendasDAO {
 		try {
 			conn = ConnectionFactory.getConnection();
 		} catch (Exception e) {
-			// TODO: handle exception
 			throw new Exception("Erro"+e.getMessage());
 		}
 	}
@@ -32,7 +31,6 @@ public class AgendasDAO {
 			String sql="INSERT INTO agenda(cpf,nome,servico,observacoes,dataagenda,horaagenda)"
 					+ "VALUES (?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
-			//ps.setString(1, agenda.getIdAgenda());
 			ps.setString(1, agenda.getCpf());
 			ps.setString(2, agenda.getNome());
 			ps.setString(3, agenda.getServico());
@@ -44,6 +42,7 @@ public class AgendasDAO {
 			throw new Exception("Erro ao Salvar"+e.getMessage());
 		}
 	}
+		
 	public void alterar(Agendas agenda) throws Exception {
 		try {
 			String sql="UPDATE agenda SET nome=?,servico=?,observacoes=?,dataagenda=?,horaagenda=?"
@@ -59,9 +58,9 @@ public class AgendasDAO {
 			ps.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception("Erro ao Alterar"+e.getMessage());
-		}finally {
+		}/*finally {
 			ConnectionFactory.closeConnection(conn, ps);
-		}
+		}*/
 	}
 	
 	
@@ -94,9 +93,9 @@ public class AgendasDAO {
 		} catch (Exception e) {
 			throw new Exception("Erro ao Listar"+e.getMessage());
 			
-		}finally {
-			ConnectionFactory.closeConnection(conn,ps,rs);
-		}
+		}/*finally {
+			ConnectionFactory.closeConnection(conn,ps);
+		}*/
 			return lista;
 	}	
 
@@ -125,4 +124,14 @@ public class AgendasDAO {
 		}
 	}
 	
+	public void excluir(int cpf) throws Exception {
+		try {
+			String sql = "DELETE FROM agenda WHERE cpf=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, cpf);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception("Erro ao excluir" + e.getMessage());
+		}
+}
 }

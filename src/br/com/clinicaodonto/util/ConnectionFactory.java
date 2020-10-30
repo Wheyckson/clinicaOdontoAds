@@ -41,9 +41,8 @@ public class ConnectionFactory {
 			e.printStackTrace();
 		}
 	}
-		public static void closeConnection(Connection conn, PreparedStatement ps) {
-			//PreparedStatement ps, ResultSet rs
-			closeConnection(conn, ps);
+		/*public static void closeConnection(Connection conn, PreparedStatement ps) {
+				closeConnection(conn, ps);
 			
 			try {
 				if (ps != null) {
@@ -64,5 +63,5 @@ public class ConnectionFactory {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-	}
+	}*/
 }
