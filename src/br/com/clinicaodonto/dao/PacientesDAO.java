@@ -3,7 +3,10 @@ package br.com.clinicaodonto.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.com.clinicaodonto.model.Dentistas;
 import br.com.clinicaodonto.model.Pacientes;
 import br.com.clinicaodonto.util.ConnectionFactory;
 
@@ -114,4 +117,44 @@ public class PacientesDAO {
 			}
 			
 		}
+public List<Pacientes> Listar() throws Exception {
+			
+			conn = ConnectionFactory.getConnection();
+			ps = null;
+			rs = null;
+		
+			List<Pacientes> lista = new ArrayList<Pacientes>();
+			
+			try {
+			ps = conn.prepareStatement("SELECT * FROM dadospaciente");
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				paciente = new Pacientes();
+				
+				paciente.setMatricula(rs.getString("matricula"));
+				paciente.setConvenio(rs.getString("convenio"));
+				paciente.setNome(rs.getString("nome"));
+				paciente.setNascimento(rs.getString("nascimento"));
+				paciente.setSexo(rs.getString("sexo"));
+				paciente.setRg(rs.getString("rg"));
+				paciente.setCpf((rs.getString("cpf")));
+				paciente.setEmail(rs.getString("email"));
+				paciente.setEndereco(rs.getString("endereco"));
+				paciente.setMunicipio(rs.getString("municipio"));
+				paciente.setCep(rs.getString("cep"));
+				paciente.setCelular(rs.getString("celular"));
+				
+				lista.add(paciente);
+				
+			}
+			
+		} catch (Exception e) {
+			throw new Exception("Erro ao Listar"+e.getMessage());
+			
+		}/*finally {
+			ConnectionFactory.closeConnection(conn,ps);
+		}*/
+			return lista;
+	}	
 }

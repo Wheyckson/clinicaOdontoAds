@@ -83,10 +83,20 @@ public class Menu extends javax.swing.JFrame {
 		}
 
         //**************TableModel - Admin ***************
+        DefaultTableModel dent = (DefaultTableModel) jTableAdmin.getModel();
+        jTableAdmin.setRowSorter(new TableRowSorter(dent));
+        try {
+        	listarJTableFunc();
+		} catch (Exception e) {
+			
+		}
+    
     }
     
     public void listarJTable() throws Exception {
     	DefaultTableModel modelo = (DefaultTableModel) jTableAgenda.getModel();
+    	modelo.setColumnIdentifiers(new Object[] {"CPF","Nome","Serviço","Data","Hora"});
+
     	modelo.setNumRows(0);
     	agendasdao = new AgendasDAO();
     	
@@ -95,13 +105,64 @@ public class Menu extends javax.swing.JFrame {
     			agenda.getCpf(),
     			agenda.getNome(),
     			agenda.getServico(),
-    			agenda.getObservacoes(),
     			agenda.getDataAgenda(),
     			agenda.getHoraAgenda(),
-    			
+    			agenda.getObservacoes(),
     		});
     	}
     }
+    public void listarJTableFunc() throws Exception {
+    	DefaultTableModel dent = (DefaultTableModel) jTableAdmin.getModel();
+ 		dent.setColumnIdentifiers(new Object[] {"ID","CRO","Nome","Nascimento","Sexo","RG","CPF","E-mail","Endereço","Municipio","CEP","Telefone"});
+    	dent.setNumRows(0);
+    	dentistasdao = new DentistasDAO();
+    	dao = new PacientesDAO();
+    	
+    	//cmbAdm.getSelectedItem().equals("Funcionarios")
+    	if (cmbAdm.getSelectedItem().equals("Funcionarios")) {
+    		for (Dentistas dentista: dentistasdao.Listar()) {
+        		dent.addRow(new Object[] {
+        				dentista.getIdfuncionario(),
+        				dentista.getCro(),
+        				dentista.getNome(),
+        				dentista.getNascimento(),
+        				dentista.getSexo(),
+        				dentista.getRg(),
+        				dentista.getCpf(),
+        				dentista.getEmail(),
+        				dentista.getEndereco(),
+        				dentista.getMunicipio(),
+        				dentista.getCep(),
+        				dentista.getCelular(),
+        			
+        		});
+        	}
+		} else if (cmbAdm.getSelectedItem().equals("Pacientes")){
+			for (Pacientes paciente: dao.Listar()) {
+	    		dent.addRow(new Object[] {
+	    				paciente.getMatricula(),
+	    				paciente.getConvenio(),
+	    				paciente.getNome(),
+	    				paciente.getNascimento(),
+	    				paciente.getSexo(),
+	    				paciente.getRg(),
+	    				paciente.getCpf(),
+	    				paciente.getEmail(),
+	    				paciente.getEndereco(),
+	    				paciente.getMunicipio(),
+	    				paciente.getCep(),
+	    				paciente.getCelular(),
+	    				
+	    			
+	    		});
+	    	}
+		}
+    		
+		
+			
+		}
+    	
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -893,9 +954,96 @@ public class Menu extends javax.swing.JFrame {
         viewReceita = new javax.swing.JLabel();
         admTela = new javax.swing.JPanel();
         cmbAdm = new javax.swing.JComboBox<>();
+        cmbAdm.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+        		 /*try {
+             		dentistasdao = new DentistasDAO();
+             		dao = new PacientesDAO();
+             		ArrayList<Dentistas> lista = (ArrayList<Dentistas>) dentistasdao.Listar((int) cmbAdm.getSelectedItem());
+             		DefaultTableModel dent = new DefaultTableModel();
+             		dent.setColumnIdentifiers(new Object[] {"ID","CRO","Nome","Nascimento","Sexo","RG","CPF","E-mail","Endereco","Municipio","CEP","Telefone"});
+             		Object[] row = new Object[12];
+             			for (int i = 0; i < lista.size(); i++) {
+             				row [0] = lista.get(i).getIdfuncionario();
+             				row [1] = lista.get(i).getCro();
+             				row [2] = lista.get(i).getNome();
+             				row [3] = lista.get(i).getNascimento();
+             				row [4] = lista.get(i).getSexo();
+             				row [5] = lista.get(i).getRg();
+             				row [6] = lista.get(i).getCpf();
+             				row [7] = lista.get(i).getEmail();
+             				row [8] = lista.get(i).getEndereco();
+             				row [9] = lista.get(i).getMunicipio();
+             				row [10] = lista.get(i).getCep();
+             				row [11] = lista.get(i).getCelular();
+						}
+             			jTableAdmin.setModel(dent);
+				} catch (Exception e2) {
+        			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e2.getMessage());
+
+				}*/
+        		
+        		
+        		//******************************************************
+        	}
+        });
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableAdmin = new javax.swing.JTable();
+        
+        
         btnConsultarAdm = new javax.swing.JButton();
+        btnConsultarAdm.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//******************************************************
+        		/*try {
+            		dentistasdao = new DentistasDAO();
+            		
+            		DentistasDAO mostrar = new DentistasDAO();
+            		mostrar.consultar(txtCpfAgenda.getText());
+               		txtNomeAgenda.setText(mostrar.paciente.getNome());
+            	
+            			JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+    				}
+        			
+        	try {
+            		agendasdao = new AgendasDAO();
+            		
+            		AgendasDAO mostrar = new AgendasDAO();
+            		mostrar.consultar(Integer.parseInt(txtCpfAgenda.getText()));
+               		//txtCpfAgenda.setText(mostrar.agenda.getCpf());
+               		txtNomeAgenda.setText(mostrar.agenda.getNome());
+               		cmbServicoAgenda.setSelectedItem(mostrar.agenda.getServico());
+               		txtObsAgenda.setText(mostrar.agenda.getObservacoes());
+               		txtDataAgenda.setText(mostrar.agenda.getDataAgenda());
+               		txtHoraAgenda.setText(mostrar.agenda.getHoraAgenda());
+               		
+            			JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            		}catch (Exception e1) {
+            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+    				}*/
+        		try {
+        			dentistasdao = new DentistasDAO();
+        			dao = new PacientesDAO();
+        			
+        			if (cmbAdm.getSelectedItem().equals("Funcionarios")) {
+        				listarJTableFunc();
+					}if (cmbAdm.getSelectedItem().equals("Pacientes")) {
+						listarJTableFunc();					
+						} else {
+
+					}
+        			
+				} catch (Exception e1) {
+        			JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!" + e1.getMessage());
+				}
+        		
+            		//*****************************************************
+        	}
+        });
+        
         viewAdm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1300,38 +1448,16 @@ public class Menu extends javax.swing.JFrame {
 
         admTela.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cmbAdm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "FuncionÃ¡rios", "Pacientes" }));
+        cmbAdm.setModel(new DefaultComboBoxModel(new String[] {"...", "Funcionarios", "Pacientes"}));
         admTela.add(cmbAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 222, 30));
 
-        jTableAdmin.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Matricula", "Paciente", "ServiÃ§o", "Data", "Hora", "Obs"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        jTableAdmin.setModel(new DefaultTableModel(
+        	new Object[][] {
+        	},
+        	new String[] {
+        		"Matricula", "Paciente", "Servi\u00C3\u00A7o", "Data", "Hora", "Obs", "New column", "New column", "New column", "New column", "New column", "New column"
+        	}
+        ));
         jScrollPane2.setViewportView(jTableAdmin);
 
         admTela.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 472, 614, 268));
