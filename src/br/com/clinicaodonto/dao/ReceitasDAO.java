@@ -58,18 +58,19 @@ public class ReceitasDAO {
 	
 	
 	
-	public List listarTodos() throws Exception {
+	public List listarTodos(String cpf) throws Exception {
 		List<Receitas> lista = new ArrayList<Receitas>();
 		try {
-			ps = conn.prepareStatement("SELECT * FROM receita");
+			ps = conn.prepareStatement("SELECT * FROM receita WHERE cpf=?");
+			ps.setString(1, cpf);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				String cpf = rs.getString("cpf");
+				String cpf1 = rs.getString("cpf");
 				String nome = rs.getString("nome");
 				String medicamento = rs.getString("medicamento");
 				String quantidade = rs.getString("quantidade");
-				//String prescricao = rs.getString("prescricao");
-				receita = new Receitas(cpf,nome,medicamento,quantidade);
+
+				receita = new Receitas(cpf1,nome,medicamento,quantidade);
 				lista.add(receita);
 			}
 			return lista;
@@ -92,7 +93,6 @@ public class ReceitasDAO {
 				String nome = rs.getString("nome");
 				String medicamento = rs.getString("medicamento");
 				String quantidade = rs.getString("quantidade");
-				//String prescricao = rs.getString("prescricao");
 				receita = new Receitas(cpf1,nome,medicamento,quantidade);
 		}
 		return receita;

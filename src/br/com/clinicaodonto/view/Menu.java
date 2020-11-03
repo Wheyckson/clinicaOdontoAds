@@ -6,6 +6,7 @@
 package br.com.clinicaodonto.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.MaskFormatter;
 
 import br.com.clinicaodonto.dao.AgendasDAO;
 import br.com.clinicaodonto.dao.DentistasDAO;
@@ -102,6 +104,7 @@ public class Menu extends javax.swing.JFrame {
     	
     	for (Agendas agenda: agendasdao.Listar()) {
     		modelo.addRow(new Object[] {
+    				
     			agenda.getCpf(),
     			agenda.getNome(),
     			agenda.getServico(),
@@ -113,7 +116,16 @@ public class Menu extends javax.swing.JFrame {
     }
     public void listarJTableFunc() throws Exception {
     	DefaultTableModel dent = (DefaultTableModel) jTableAdmin.getModel();
- 		dent.setColumnIdentifiers(new Object[] {"ID","CRO","Nome","Nascimento","Sexo","RG","CPF","E-mail","Endereço","Municipio","CEP","Telefone"});
+ 		
+    	if (cmbAdm.getSelectedItem().equals("Funcionarios")) {
+        	dent.setColumnIdentifiers(new Object[] {"ID","CRO","Nome","Nascimento","Sexo","RG","CPF","E-mail","Endereço","Municipio","CEP","Telefone"});
+		}else if (cmbAdm.getSelectedItem().equals("Pacientes")) {
+	    	dent.setColumnIdentifiers(new Object[] {"ID","Convenio","Nome","Nascimento","Sexo","RG","CPF","E-mail","Endereço","Municipio","CEP","Telefone"});
+
+		}else {
+	    	dent.setColumnIdentifiers(new Object[] {"ID","CRO","Nome","Nascimento","Sexo","RG","CPF","E-mail","Endereço","Municipio","CEP","Telefone"});
+
+		}
     	dent.setNumRows(0);
     	dentistasdao = new DentistasDAO();
     	dao = new PacientesDAO();
@@ -182,18 +194,29 @@ public class Menu extends javax.swing.JFrame {
         receita = new javax.swing.JLabel();
         viewInicial = new javax.swing.JLabel();
         cadDentista = new javax.swing.JPanel();
-        txtCepDentista = new javax.swing.JTextField();
+        
         txtMunicipioDentista = new javax.swing.JTextField();
         txtEnderecoDentista = new javax.swing.JTextField();
-        txtTelDentista = new javax.swing.JTextField();
+        
+        try {
+        	txtCepDentista = new javax.swing.JFormattedTextField(new MaskFormatter("#####-###"));
+			txtTelDentista = new javax.swing.JFormattedTextField(new MaskFormatter("(##) #####-####"));
+			txtRgDentista = new javax.swing.JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			txtNascimentoDentista = new javax.swing.JFormattedTextField(new MaskFormatter("##/##/####"));
+			txtCpfDentista = new javax.swing.JFormattedTextField(new MaskFormatter("###.###.###/##"));
+		} catch (ParseException e5) {
+			// TODO Auto-generated catch block
+			e5.printStackTrace();
+		}
         txtCroDentista = new javax.swing.JTextField();
-        txtRgDentista = new javax.swing.JTextField();
-        txtNascimentoDentista = new javax.swing.JTextField();
+        
+        
         cmbSexoDentista = new javax.swing.JComboBox<>();
         txtEmailDentista = new javax.swing.JTextField();
         txtNomeDentista = new javax.swing.JTextField();
-        txtCpfDentista = new javax.swing.JTextField();
+        
         txtMatriculaDentista = new javax.swing.JTextField();
+        txtMatriculaDentista.setEditable(false);
        
         btnSalvarDentista = new javax.swing.JButton();
         btnSalvarDentista.addActionListener(new ActionListener() {
@@ -201,19 +224,15 @@ public class Menu extends javax.swing.JFrame {
         		//******************************************************
         		try {
         		dentistas = new Dentistas();
-        		//dentistas.setIdfuncionario(Integer.parseInt(txtMatriculaDentista.getText()));
-        		dentistas.setCro(txtCpfDentista.getText());
-        		//dentistas.setCategoria(txtCategoriaDentista.getText());
+        		dentistas.setCro(txtCroDentista.getText());
         		dentistas.setNome(txtNomeDentista.getText());
         		dentistas.setNascimento(txtNascimentoDentista.getText());
         		dentistas.setSexo((String)cmbSexoDentista.getSelectedItem());
         		dentistas.setRg(txtRgDentista.getText());
-        		dentistas.setCpf(txtCroDentista.getText());
+        		dentistas.setCpf(txtCpfDentista.getText());
         		dentistas.setEmail(txtEmailDentista.getText());
         		dentistas.setEndereco(txtEnderecoDentista.getText());
-        		//dentistas.setBairro(txtMunicipioDentista.getText());
         		dentistas.setMunicipio(txtMunicipioDentista.getText());
-        		//dentistas.setUf(txtCepDentista.getText());
         		dentistas.setCep(txtCepDentista.getText());
         		dentistas.setCelular(txtTelDentista.getText());
         		
@@ -239,14 +258,14 @@ public class Menu extends javax.swing.JFrame {
         		Dentistas dentistas = new Dentistas();	
         		
         		dentistas.setNome(txtNomeDentista.getText());
-        		dentistas.setCro(txtCpfDentista.getText());
+        		dentistas.setCro(txtCroDentista.getText());
         		dentistas.setSexo((String)cmbSexoDentista.getSelectedItem());
         		dentistas.setRg(txtRgDentista.getText());
         		dentistas.setCelular(txtTelDentista.getText());
         		dentistas.setMunicipio(txtMunicipioDentista.getText());
         		dentistas.setEmail(txtEmailDentista.getText());
         		dentistas.setNascimento(txtNascimentoDentista.getText());
-        		dentistas.setCpf(txtCroDentista.getText());
+        		dentistas.setCpf(txtCpfDentista.getText());
         		dentistas.setEndereco(txtEnderecoDentista.getText());
         		dentistas.setCep(txtCepDentista.getText());
         		dentistas.setIdfuncionario(txtMatriculaDentista.getText());
@@ -323,17 +342,25 @@ public class Menu extends javax.swing.JFrame {
         });
         viewDentist = new javax.swing.JLabel();
         cadFuncionario = new javax.swing.JPanel();
-        txtCpfFuncionario = new javax.swing.JTextField();
-        txtCepFuncionario = new javax.swing.JTextField();
+        try {
+			txtCpfFuncionario = new javax.swing.JFormattedTextField(new MaskFormatter("###.###.###/##"));
+			txtCepFuncionario = new javax.swing.JFormattedTextField(new MaskFormatter("#####-###"));
+			txtTelFuncionario = new javax.swing.JFormattedTextField(new MaskFormatter("(##) #####-####"));
+	        txtRgFuncionario = new javax.swing.JFormattedTextField(new MaskFormatter("##.###.###-#"));
+	        txtNascimentoFuncionario = new javax.swing.JFormattedTextField(new MaskFormatter("##/##/####"));
+	        
+			
+		} catch (ParseException e5) {
+			e5.printStackTrace();
+		}
+        
         txtMunicipioFuncionario = new javax.swing.JTextField();
         txtEnderecoFuncionario = new javax.swing.JTextField();
-        txtTelFuncionario = new javax.swing.JTextField();
-        txtRgFuncionario = new javax.swing.JTextField();
-        txtNascimentoFuncionario = new javax.swing.JTextField();
         cmbSexoFuncionario = new javax.swing.JComboBox<>();
         txtEmailFuncionario = new javax.swing.JTextField();
         txtNomeFuncionario = new javax.swing.JTextField();
         txtMatriculaFuncionario = new javax.swing.JTextField();
+        txtMatriculaFuncionario.setEditable(false);
        
         
         btnSalvarFuncionario = new javax.swing.JButton();
@@ -470,43 +497,31 @@ public class Menu extends javax.swing.JFrame {
         
         viewFuncionario = new javax.swing.JLabel();
         agendamento = new javax.swing.JPanel();
-        txtCpfAgenda = new javax.swing.JTextField();
+        try {
+			txtCpfAgenda = new javax.swing.JFormattedTextField(new MaskFormatter("###.###.###/##"));
+			txtDataAgenda = new javax.swing.JFormattedTextField(new MaskFormatter("##/##/####"));
+			txtHoraAgenda = new javax.swing.JFormattedTextField(new MaskFormatter("##:##"));
+		} catch (ParseException e4) {
+			e4.printStackTrace();
+		}
         txtNomeAgenda = new javax.swing.JTextField();
         cmbServicoAgenda = new javax.swing.JComboBox<>();
         txtObsAgenda = new javax.swing.JTextField();
-        txtDataAgenda = new javax.swing.JTextField();
-        txtHoraAgenda = new javax.swing.JTextField();
-       //JFormatterTextField(new MaskFormatter("##:##:##"));
-        btnAtualizarAgendar = new javax.swing.JButton();
-        /*btnAtualizarAgendar.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		//*********************************************************
-        		if (jTableAgenda.getSelectedRow() != -1) {
-					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
-        			//******************************************************
-            		
-            		
-            		
-        		}else {
-					JOptionPane.showInternalMessageDialog(null, "Nenhum produto selecionado!");
-				}
-        		
-        		//*********************************************************
-        	}
-        });*/
         
+        
+       //JFormatterTextField(new MaskFormatter("##:##:##"));
+       
+        
+        btnAtualizarAgendar = new javax.swing.JButton();
         btnAtualizarAgendar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		//******************************************************
         		if (jTableAgenda.getSelectedRow() != -1) {
-					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
-        			//******************************************************
-            		
+					
             		try {
             			Agendas agendas = new Agendas();
             			
-            			agendas.setCpf(Integer.parseInt(txtCpfAgenda.getText()));
+            			agendas.setCpf(txtCpfAgenda.getText());
             			agendas.setNome(txtNomeAgenda.getText());
             			agendas.setServico((String)cmbServicoAgenda.getSelectedItem());
             			agendas.setObservacoes(txtObsAgenda.getText());
@@ -520,9 +535,9 @@ public class Menu extends javax.swing.JFrame {
             			
             	        listarJTable();
 
-            			JOptionPane.showMessageDialog(null, "Exito ao salvar!");
+            			//JOptionPane.showMessageDialog(null, "Exito ao salvar!");
     				} catch (Exception e2) {
-            			JOptionPane.showMessageDialog(null, "Erro ao salvar!" + e2.getMessage());
+            			//JOptionPane.showMessageDialog(null, "Erro ao salvar!" + e2.getMessage());
     				}
             		
         		}else {
@@ -544,29 +559,36 @@ public class Menu extends javax.swing.JFrame {
         	public void actionPerformed(ActionEvent e) {
         		//******************************************************
         		if (jTableAgenda.getSelectedRow() != -1) {
-					//tableModel.removeLinha(jTableAgenda.getSelectedRow());
-        			try {
-            			//agendas = new Agendas();
+					try {
+						agendas = new Agendas();
             			agendasdao = new AgendasDAO();
-            			int agenda = Integer.parseInt(txtCpfAgenda.getText());
-            			//agendas.setCpf((String) jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 0));
             			
-            			agendasdao.excluir(agenda);
+            			agendas.setCpf((String) jTableAgenda.getValueAt(jTableAgenda.getSelectedRow(), 0));
+           			
+            			agendasdao.excluir(agendas);
             			
-            			//private AgendasDAO agendasdao;
-            	        listarJTable();
+            			listarJTable();
 
-            			JOptionPane.showMessageDialog(null, "Exito ao Excluir!");
+            			//JOptionPane.showMessageDialog(null, "Exito ao Excluir!");
     				} catch (Exception e2) {
             			JOptionPane.showMessageDialog(null, "Erro ao Excluir!" + e2.getMessage());
     				}
-					//DefaultTableModel dtmAgenda = (DefaultTableModel) jTableAgenda.getModel();
-	        		//dtmAgenda.removeRow(jTableAgenda.getSelectedRow());
-	        		      		
-        		}else {
+					}else {
 					JOptionPane.showInternalMessageDialog(null, "Nenhum agendamento selecionado!");
 				}
-        		//jTableAgenda.getSelectedRow();
+        		try {
+        			txtCpfAgenda.setText(null);
+	        		txtNomeAgenda.setText(null);
+	        		cmbServicoAgenda.setSelectedIndex(0);
+	        		txtObsAgenda.setText(null);
+	        		txtDataAgenda.setText(null);
+	        		txtHoraAgenda.setText(null);
+        		
+        		
+			} catch (Exception e2) {
+    			//JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+
+			}
         		//******************************************************
         	}
         });
@@ -579,7 +601,7 @@ public class Menu extends javax.swing.JFrame {
         		try {
         			agendas = new Agendas();
         			
-        			agendas.setCpf(Integer.parseInt(txtCpfAgenda.getText()));
+        			agendas.setCpf(txtCpfAgenda.getText());
         			agendas.setNome(txtNomeAgenda.getText());
         			agendas.setServico((String)cmbServicoAgenda.getSelectedItem());
         			agendas.setObservacoes(txtObsAgenda.getText());
@@ -590,14 +612,9 @@ public class Menu extends javax.swing.JFrame {
         			
         			agendasdao.salvar(agendas);
         			
-        			
         	        listarJTable();
 
-        			//DefaultTableModel dtmAgenda = (DefaultTableModel) jTableAgenda.getModel();
-            		//Object[] dados = {txtCpfAgenda.getText(),txtNomeAgenda.getText(),(String)cmbServicoAgenda.getSelectedItem(),txtObsAgenda.getText(),txtDataAgenda.getText(),txtHoraAgenda.getText()};
-            		//dtmAgenda.addRow(dados);
-            		
-        			JOptionPane.showMessageDialog(null, "Exito ao salvar!");
+        			//JOptionPane.showMessageDialog(null, "Exito ao salvar!");
 				} catch (Exception e2) {
         			JOptionPane.showMessageDialog(null, "Erro ao salvar!" + e2.getMessage());
 				}
@@ -633,16 +650,16 @@ public class Menu extends javax.swing.JFrame {
             		mostrar.consultar(txtCpfAgenda.getText());
                		txtNomeAgenda.setText(mostrar.paciente.getNome());
             	
-            			JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            			//JOptionPane.showMessageDialog(null, "Paciente localizado!");
             		}catch (Exception e1) {
-            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+            			//JOptionPane.showMessageDialog(null, "Paciente não encontrado!" + e1.getMessage());
     				}
         			
         	try {
             		agendasdao = new AgendasDAO();
             		
             		AgendasDAO mostrar = new AgendasDAO();
-            		mostrar.consultar(Integer.parseInt(txtCpfAgenda.getText()));
+            		mostrar.consultar(txtCpfAgenda.getText());
                		//txtCpfAgenda.setText(mostrar.agenda.getCpf());
                		txtNomeAgenda.setText(mostrar.agenda.getNome());
                		cmbServicoAgenda.setSelectedItem(mostrar.agenda.getServico());
@@ -650,9 +667,9 @@ public class Menu extends javax.swing.JFrame {
                		txtDataAgenda.setText(mostrar.agenda.getDataAgenda());
                		txtHoraAgenda.setText(mostrar.agenda.getHoraAgenda());
                		
-            			JOptionPane.showMessageDialog(null, "Paciente localizado!");
+            			//JOptionPane.showMessageDialog(null, "Paciente localizado!");
             		}catch (Exception e1) {
-            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+            			//JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
     				}
         		
         		
@@ -662,18 +679,26 @@ public class Menu extends javax.swing.JFrame {
         
         viewAgenda = new javax.swing.JLabel();
         cadPaciente = new javax.swing.JPanel();
-        txtCepPaciente = new javax.swing.JTextField();
+        try {
+			txtCepPaciente = new javax.swing.JFormattedTextField(new MaskFormatter("#####-###"));
+			txtTelPaciente = new javax.swing.JFormattedTextField(new MaskFormatter("(##) #####-####"));
+			txtRgPaciente = new javax.swing.JFormattedTextField(new MaskFormatter("##.###.###-#"));
+	        txtNascimentoPaciente = new javax.swing.JFormattedTextField(new MaskFormatter("##/##/####"));
+	        txtCpfPaciente = new javax.swing.JFormattedTextField(new MaskFormatter("###.###.###/##"));
+		} catch (ParseException e2) {
+			e2.printStackTrace();
+		}
         txtMunicipioPaciente = new javax.swing.JTextField();
         txtEnderecoPaciente = new javax.swing.JTextField();
-        txtTelPaciente = new javax.swing.JTextField();
+        
         txtConvenioPaciente = new javax.swing.JTextField();
-        txtRgPaciente = new javax.swing.JTextField();
-        txtNascimentoPaciente = new javax.swing.JTextField();
+        
         cmbSexoPaciente = new javax.swing.JComboBox<>();
         txtEmailPaciente = new javax.swing.JTextField();
         txtNomePaciente = new javax.swing.JTextField();
-        txtCpfPaciente = new javax.swing.JTextField();
+        
         txtMatriculaPaciente = new javax.swing.JTextField();
+        txtMatriculaPaciente.setEditable(false);
         
         btnSalvarPaciente = new javax.swing.JButton();
         btnSalvarPaciente.addActionListener(new ActionListener() {
@@ -697,7 +722,7 @@ public class Menu extends javax.swing.JFrame {
         		dao = new PacientesDAO();
         		
         		dao.salvar(pacientes);
-        			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
+        			//JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
         		}catch (Exception e) {
         			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e.getMessage());
 				}
@@ -744,15 +769,13 @@ public class Menu extends javax.swing.JFrame {
         		
         		PacientesDAO mostrar = new PacientesDAO();
         		mostrar.consultar(txtCpfPaciente.getText());
-        		//dao matricula = Integer.parseInt(txtMatriculaPaciente.getText());
-        		//pacientes = dao.consultar(matricula);
+        		
         		txtMatriculaPaciente.setText(mostrar.paciente.getMatricula());
            		txtNomePaciente.setText(mostrar.paciente.getNome());
         		txtNascimentoPaciente.setText(mostrar.paciente.getNascimento());
         		cmbSexoPaciente.setSelectedItem(mostrar.paciente.getSexo());
         		txtConvenioPaciente.setText(mostrar.paciente.getConvenio());
         		txtRgPaciente.setText(mostrar.paciente.getRg());
-        		//txtCpfPaciente.setText(mostrar.paciente.getCpf());
         		txtEmailPaciente.setText(mostrar.paciente.getEmail());
         		txtEnderecoPaciente.setText(mostrar.paciente.getEndereco());
         		txtMunicipioPaciente.setText(mostrar.paciente.getMunicipio());
@@ -760,9 +783,9 @@ public class Menu extends javax.swing.JFrame {
         		txtTelPaciente.setText(mostrar.paciente.getCelular());
         		
 
-        			JOptionPane.showMessageDialog(null, "Paciente localizado!");
+        			//JOptionPane.showMessageDialog(null, "Paciente localizado!");
         		}catch (Exception e1) {
-        			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
+        			//JOptionPane.showMessageDialog(null, "Paciente não cadastrado!" + e1.getMessage());
 				}
         		//*****************************************************
         		
@@ -795,7 +818,11 @@ public class Menu extends javax.swing.JFrame {
         txtQuantidadeReceita = new javax.swing.JTextField();
         txtMedicamentoReceita = new javax.swing.JTextField();
         txtNomeReceita = new javax.swing.JTextField();
-        txtCpfReceita = new javax.swing.JTextField();
+        try {
+			txtCpfReceita = new javax.swing.JFormattedTextField(new MaskFormatter("###.###.###/##"));
+		} catch (ParseException e2) {
+			e2.printStackTrace();
+		}
        
         
         
@@ -810,7 +837,6 @@ public class Menu extends javax.swing.JFrame {
 					receitas.setNome(txtNomeReceita.getText());
 					receitas.setMedicamento(txtMedicamentoReceita.getText());
 					receitas.setQuantidade(txtQuantidadeReceita.getText());
-					//receita.setPrescricao(txtPrescricaoReceita.getText());
 					
 					receitasdao = new ReceitasDAO();
 					receitasdao.salvar(receitas);
@@ -820,20 +846,7 @@ public class Menu extends javax.swing.JFrame {
 
 				}
 
-			/*//******************************************************
-        		try {
-        		dentistas = new Dentistas();
-        		
-        		dentistas.setNome(txtNomeFuncionario.getText());
-        		
-        		
-        		dentistasdao = new DentistasDAO();
-        		dentistasdao.salvar(dentistas);
-        			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
-        		}catch (Exception e1) {
-        			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e1.getMessage());
-				}
-        		//******************************************************/
+			
             	//******************************************************
         		
         	}
@@ -849,8 +862,6 @@ public class Menu extends javax.swing.JFrame {
             		receitas.setNome(txtNomeReceita.getText());
             		receitas.setMedicamento(txtMedicamentoReceita.getText());
             		receitas.setQuantidade(txtQuantidadeReceita.getText());
-            		//dentistas.setPrescricao(txtPrescricaoReceita.getText());
-            		
             		
             		receitasdao = new ReceitasDAO();
             		
@@ -876,63 +887,43 @@ public class Menu extends javax.swing.JFrame {
             		PacientesDAO mostrar = new PacientesDAO();
             		mostrar.consultar(txtCpfReceita.getText());
                		txtNomeReceita.setText(mostrar.paciente.getNome());
-            	
+               		           	
             			//JOptionPane.showMessageDialog(null, "Paciente localizado!");
             		}catch (Exception e1) {
             			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
     				}
         		
-        		/*try {
-            		receitasdao = new ReceitasDAO();
+        		try {
+        			receitasdao = new ReceitasDAO();
             		
-            		ReceitasDAO mostrar = new ReceitasDAO();
+        			ReceitasDAO mostrar = new ReceitasDAO();
             		mostrar.consultar(txtCpfReceita.getText());
             		txtMedicamentoReceita.setText(mostrar.receita.getMedicamento());
-            		txtQuantidadeReceita.setText(mostrar.receita.getQuantidade());
-            		//txtPrescricaoReceita.setText(mostrar.paciente.getCelular());
-      
-            			//JOptionPane.showMessageDialog(null, "Paciente localizado!");
-            		}catch (Exception e1) {
-            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
-    				}*/
+               		txtQuantidadeReceita.setText(mostrar.receita.getQuantidade());
+				} catch (Exception e3) {
+        			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e3.getMessage());
+				}
         		
+        		        		
         		try {
 					List<Receitas> lista = new ArrayList<Receitas>();
 					receitasdao = new ReceitasDAO();
 
-					lista = receitasdao.listarTodos();
+					lista = receitasdao.listarTodos(txtCpfReceita.getText());
 					for(Receitas receita : lista) {
 						txtListaReceita.append("\n" + "CPF........." + receita.getCpf() + "\n");
 						txtListaReceita.append("Noma do paciente......." + receita.getNome() + "\n");
 						txtListaReceita.append("Medicamento....." + receita.getMedicamento() + "\n");
 						txtListaReceita.append("Quantidade do medicamento..........." + receita.getQuantidade() + "\n");
-						//txtListaReceita.append("Precrisção do medico..........." + receita.getPrescricao() + "\n");
 						
 					}
 
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Erro ao Consultar!" + e1.getMessage());
+					JOptionPane.showMessageDialog(null, "Sem prescrições para esse paciente!" + e1.getMessage());
 				}
 
-            		//*****************************************************
-				
-        		/*try {
-					List<Receitas> lista = new ArrayList<Receitas>();
-					receitasdao = new ReceitasDAO();
-
-					lista = receitasdao.listarTodos();
-					for (Receitas receita : lista) {
-						//.append("\n" + "Matricula do paciente........." + receita.getMatricula() + "\n");
-						//.append("Medicamento do paciente......." + receita.getMedicamento() + "\n");
-						//.append("Quantidade do medicamento....." + receita.getQuantidade() + "\n");
-						//txtReceita3.append("Precris�o do medico..........." + receita.getPrescricao() + "\n");
-					}
-
-				} catch (Exception e1) {
-					//JOptionPane.showMessageDialog(null, "Erro ao Consultar!" + e1.getMessage());
-				}*/
-
-			
+        		
+            		
             	//*****************************************************
         	}
         });
@@ -956,36 +947,7 @@ public class Menu extends javax.swing.JFrame {
         cmbAdm = new javax.swing.JComboBox<>();
         cmbAdm.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//******************************************************
-        		 /*try {
-             		dentistasdao = new DentistasDAO();
-             		dao = new PacientesDAO();
-             		ArrayList<Dentistas> lista = (ArrayList<Dentistas>) dentistasdao.Listar((int) cmbAdm.getSelectedItem());
-             		DefaultTableModel dent = new DefaultTableModel();
-             		dent.setColumnIdentifiers(new Object[] {"ID","CRO","Nome","Nascimento","Sexo","RG","CPF","E-mail","Endereco","Municipio","CEP","Telefone"});
-             		Object[] row = new Object[12];
-             			for (int i = 0; i < lista.size(); i++) {
-             				row [0] = lista.get(i).getIdfuncionario();
-             				row [1] = lista.get(i).getCro();
-             				row [2] = lista.get(i).getNome();
-             				row [3] = lista.get(i).getNascimento();
-             				row [4] = lista.get(i).getSexo();
-             				row [5] = lista.get(i).getRg();
-             				row [6] = lista.get(i).getCpf();
-             				row [7] = lista.get(i).getEmail();
-             				row [8] = lista.get(i).getEndereco();
-             				row [9] = lista.get(i).getMunicipio();
-             				row [10] = lista.get(i).getCep();
-             				row [11] = lista.get(i).getCelular();
-						}
-             			jTableAdmin.setModel(dent);
-				} catch (Exception e2) {
-        			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e2.getMessage());
-
-				}*/
         		
-        		
-        		//******************************************************
         	}
         });
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -996,34 +958,7 @@ public class Menu extends javax.swing.JFrame {
         btnConsultarAdm.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//******************************************************
-        		/*try {
-            		dentistasdao = new DentistasDAO();
-            		
-            		DentistasDAO mostrar = new DentistasDAO();
-            		mostrar.consultar(txtCpfAgenda.getText());
-               		txtNomeAgenda.setText(mostrar.paciente.getNome());
-            	
-            			JOptionPane.showMessageDialog(null, "Paciente localizado!");
-            		}catch (Exception e1) {
-            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
-    				}
-        			
-        	try {
-            		agendasdao = new AgendasDAO();
-            		
-            		AgendasDAO mostrar = new AgendasDAO();
-            		mostrar.consultar(Integer.parseInt(txtCpfAgenda.getText()));
-               		//txtCpfAgenda.setText(mostrar.agenda.getCpf());
-               		txtNomeAgenda.setText(mostrar.agenda.getNome());
-               		cmbServicoAgenda.setSelectedItem(mostrar.agenda.getServico());
-               		txtObsAgenda.setText(mostrar.agenda.getObservacoes());
-               		txtDataAgenda.setText(mostrar.agenda.getDataAgenda());
-               		txtHoraAgenda.setText(mostrar.agenda.getHoraAgenda());
-               		
-            			JOptionPane.showMessageDialog(null, "Paciente localizado!");
-            		}catch (Exception e1) {
-            			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e1.getMessage());
-    				}*/
+        		
         		try {
         			dentistasdao = new DentistasDAO();
         			dao = new PacientesDAO();
@@ -1174,7 +1109,7 @@ public class Menu extends javax.swing.JFrame {
         btnDeletarDentista.setBackground(new java.awt.Color(0, 135, 208));
         btnDeletarDentista.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnDeletarDentista.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletarDentista.setText("Deletar");
+        btnDeletarDentista.setText("Limpar");
         btnDeletarDentista.setToolTipText("");
         cadDentista.add(btnDeletarDentista, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 700, 108, 39));
 
@@ -1389,7 +1324,7 @@ public class Menu extends javax.swing.JFrame {
         btnDeletarPaciente.setBackground(new java.awt.Color(0, 135, 208));
         btnDeletarPaciente.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnDeletarPaciente.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletarPaciente.setText("Deletar");
+        btnDeletarPaciente.setText("Limpar");
         btnDeletarPaciente.setToolTipText("");
         cadPaciente.add(btnDeletarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 700, 108, 39));
 
@@ -1436,7 +1371,7 @@ public class Menu extends javax.swing.JFrame {
         btnDeletarReceita.setBackground(new java.awt.Color(0, 135, 208));
         btnDeletarReceita.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnDeletarReceita.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletarReceita.setText("Deletar");
+        btnDeletarReceita.setText("Limpar");
         btnDeletarReceita.setToolTipText("");
         receituario.add(btnDeletarReceita, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 680, 108, 39));
 

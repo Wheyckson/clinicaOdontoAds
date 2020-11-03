@@ -31,17 +31,18 @@ public class DentistasDAO {
 	
 	public void salvar(Dentistas dentista) throws Exception {
 		try {
-			String sql="INSERT INTO dadosfuncionario(cro,nome,nascimento,sexo,rg,cpf,email,endereco,municipio,cep,celular)"
+			String sql="INSERT INTO dadosfuncionario(cpf,nome,nascimento,sexo,rg,cro,email,endereco,municipio,cep,celular)"
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			//ps.setInt(1, dentista.getIdfuncionario());
-			ps.setString(1, dentista.getCro());
+			ps.setString(1, dentista.getCpf());
+			
 			//ps.setString(3, dentista.getCategoria());
 			ps.setString(2, dentista.getNome());
 			ps.setString(3, dentista.getNascimento());
 			ps.setString(4, dentista.getSexo());
 			ps.setString(5, dentista.getRg());	
-			ps.setString(6, dentista.getCpf());
+			ps.setString(6, dentista.getCro());
 			ps.setString(7, dentista.getEmail());
 			ps.setString(8, dentista.getEndereco());
 			//ps.setString(11, dentista.getBairro());
