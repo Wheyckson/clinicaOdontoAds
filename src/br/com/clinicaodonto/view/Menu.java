@@ -541,7 +541,7 @@ public class Menu extends javax.swing.JFrame {
     				}
             		
         		}else {
-					JOptionPane.showInternalMessageDialog(null, "Nenhum produto selecionado!");
+					JOptionPane.showInternalMessageDialog(null, "Nenhum agendamento selecionado!");
 				}
         		//******************************************************
         	}
@@ -722,7 +722,7 @@ public class Menu extends javax.swing.JFrame {
         		dao = new PacientesDAO();
         		
         		dao.salvar(pacientes);
-        			//JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
+        			JOptionPane.showMessageDialog(null, "Salvo com Sucesso!!");
         		}catch (Exception e) {
         			JOptionPane.showMessageDialog(null, "Erro ao Salvar!!"+ e.getMessage());
 				}
@@ -845,7 +845,22 @@ public class Menu extends javax.swing.JFrame {
 					JOptionPane.showMessageDialog(null, "Erro ao salvar" + i.getMessage());
 
 				}
+        		try {
+					List<Receitas> lista = new ArrayList<Receitas>();
+					receitasdao = new ReceitasDAO();
 
+					lista = receitasdao.listarTodos(txtCpfReceita.getText());
+					for(Receitas receita : lista) {
+						txtListaReceita.append("\n" + "CPF........." + receita.getCpf() + "\n");
+						txtListaReceita.append("Noma do paciente......." + receita.getNome() + "\n");
+						txtListaReceita.append("Medicamento....." + receita.getMedicamento() + "\n");
+						txtListaReceita.append("Quantidade do medicamento..........." + receita.getQuantidade() + "\n");
+						
+					}
+
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Sem prescrições para esse paciente!" + e1.getMessage());
+				}
 			
             	//******************************************************
         		
@@ -901,7 +916,7 @@ public class Menu extends javax.swing.JFrame {
             		txtMedicamentoReceita.setText(mostrar.receita.getMedicamento());
                		txtQuantidadeReceita.setText(mostrar.receita.getQuantidade());
 				} catch (Exception e3) {
-        			JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e3.getMessage());
+        			//JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado!" + e3.getMessage());
 				}
         		
         		        		
@@ -1180,7 +1195,7 @@ public class Menu extends javax.swing.JFrame {
         btnDeletarFuncionario.setBackground(new java.awt.Color(0, 135, 208));
         btnDeletarFuncionario.setFont(new java.awt.Font("Segoe UI Semilight", 1, 16)); // NOI18N
         btnDeletarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletarFuncionario.setText("Deletar");
+        btnDeletarFuncionario.setText("Limpar");
         btnDeletarFuncionario.setToolTipText("");
         cadFuncionario.add(btnDeletarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 700, 108, 39));
 
